@@ -1,4 +1,4 @@
-# Design System: Coding Mueang Sam Mok (เมืองสามหมอกเดฟ)
+# Design System: Sam Mok Coding (เมืองสามหมอกเดฟ)
 **Project Identity:** `coding-mueang-sam-mok` / `sam-mok-codeing`
 **System:** Editorial Ivory / Mountain Mist — ระบบเดียว ทุกหน้า
 

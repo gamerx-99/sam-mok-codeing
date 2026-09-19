@@ -1,0 +1,953 @@
+<!DOCTYPE html><html class="light" lang="th" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ระบบสร้างร้านค้า &amp; ระบบ Live สด - SAM MOK CODING</title>
+<!-- Google Fonts: Plus Jakarta Sans (Theme Required) & Mali + Itim for Hand-drawn Thai feel -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Itim&amp;family=Mali:ital,wght@0,300;0,400;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container": "#e7eeff",
+            "on-tertiary-fixed-variant": "#005236",
+            "on-tertiary-container": "#67f4b7",
+            "tertiary": "#005338",
+            "on-secondary": "#ffffff",
+            "surface-bright": "#f9f9ff",
+            "primary-fixed-dim": "#c3c0ff",
+            "primary-container": "#4f46e5",
+            "secondary-fixed-dim": "#ffb3b0",
+            "error-container": "#ffdad6",
+            "surface-variant": "#d8e3fb",
+            "tertiary-fixed": "#6ffbbe",
+            "background": "#f9f9ff",
+            "secondary-fixed": "#ffdad8",
+            "on-secondary-container": "#6d0010",
+            "on-surface": "#111c2d",
+            "surface-container-high": "#dee8ff",
+            "on-primary-fixed-variant": "#3323cc",
+            "on-secondary-fixed-variant": "#8c1520",
+            "on-surface-variant": "#464555",
+            "on-error-container": "#93000a",
+            "inverse-on-surface": "#ecf1ff",
+            "secondary-container": "#ff6b6b",
+            "primary": "#3525cd",
+            "on-error": "#ffffff",
+            "on-primary-fixed": "#0f0069",
+            "tertiary-fixed-dim": "#4edea3",
+            "on-secondary-fixed": "#410006",
+            "surface-dim": "#cfdaf2",
+            "on-primary-container": "#dad7ff",
+            "primary-fixed": "#e2dfff",
+            "on-primary": "#ffffff",
+            "surface-container-highest": "#d8e3fb",
+            "on-tertiary": "#ffffff",
+            "surface-container-low": "#f0f3ff",
+            "inverse-surface": "#263143",
+            "secondary": "#ae2f34",
+            "surface": "#f9f9ff",
+            "error": "#ba1a1a",
+            "outline": "#777587",
+            "on-background": "#111c2d",
+            "tertiary-container": "#006e4b",
+            "surface-container-lowest": "#ffffff",
+            "outline-variant": "#c7c4d8",
+            "inverse-primary": "#c3c0ff",
+            "on-tertiary-fixed": "#002113",
+            "surface-tint": "#4d44e3"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.25rem",
+            "margin-md": "2rem",
+            "space-2xl": "3rem",
+            "space-sm": "0.5rem",
+            "margin-lg": "3.5rem",
+            "gutter": "1.25rem",
+            "space-xs": "0.25rem",
+            "margin": "1.25rem",
+            "space-md": "0.875rem",
+            "gutter-lg": "1.5rem",
+            "space-xl": "2rem"
+          },
+          "fontFamily": {
+            "display-hero": ["Plus Jakarta Sans", "Mali", "sans-serif"],
+            "headline-xl": ["Plus Jakarta Sans", "Mali", "sans-serif"],
+            "mono-code": ["Space Grotesk", "monospace"],
+            "headline-md": ["Plus Jakarta Sans", "Mali", "sans-serif"],
+            "headline-lg": ["Plus Jakarta Sans", "Mali", "sans-serif"],
+            "display-hero-mobile": ["Plus Jakarta Sans", "Mali", "sans-serif"],
+            "body-sm": ["Plus Jakarta Sans", "Itim", "sans-serif"],
+            "title-sm": ["Plus Jakarta Sans", "Mali", "sans-serif"],
+            "label-md": ["Plus Jakarta Sans", "Mali", "sans-serif"],
+            "body-md": ["Plus Jakarta Sans", "Itim", "sans-serif"],
+            "label-sm": ["Plus Jakarta Sans", "Mali", "sans-serif"]
+          },
+          "fontSize": {
+            "display-hero": ["44px", { "lineHeight": "54px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "headline-xl": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "mono-code": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-md": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-lg": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "display-hero-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "title-sm": ["15px", { "lineHeight": "20px", "fontWeight": "700" }],
+            "label-md": ["13px", { "lineHeight": "16px", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Hand-Drawn / Sketchbook Custom CSS Touches */
+    .paper-pattern {
+      background-color: #faf9f6;
+      background-image: radial-gradient(#d1d5db 1.2px, transparent 1.2px);
+      background-size: 20px 20px;
+    }
+    .sketch-border {
+      border: 2px solid #1e293b;
+      border-radius: 22px 18px 26px 19px / 19px 24px 18px 23px;
+    }
+    .sketch-border-subtle {
+      border: 1.8px dashed #475569;
+    }
+    .sketch-shadow {
+      box-shadow: 4px 4px 0px #1e293b;
+    }
+    .sketch-shadow-sm {
+      box-shadow: 2.5px 2.5px 0px #1e293b;
+    }
+    .sketch-shadow-accent {
+      box-shadow: 4px 4px 0px #3525cd;
+    }
+    .washi-tape-yellow {
+      background: rgba(254, 240, 138, 0.85);
+      clip-path: polygon(2% 0%, 98% 0%, 100% 100%, 0% 100%);
+      transform: rotate(-1.5deg);
+    }
+    .washi-tape-mint {
+      background: rgba(167, 243, 208, 0.9);
+      clip-path: polygon(0% 0%, 99% 2%, 97% 100%, 2% 98%);
+      transform: rotate(1deg);
+    }
+    .doodle-hatch {
+      background: repeating-linear-gradient(
+        -45deg,
+        #4f46e5,
+        #4f46e5 8px,
+        #3525cd 8px,
+        #3525cd 16px
+      );
+    }
+    .doodle-hatch-mint {
+      background: repeating-linear-gradient(
+        45deg,
+        #10b981,
+        #10b981 6px,
+        #059669 6px,
+        #059669 12px
+      );
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col paper-pattern antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TOP NAV BAR (Shared Component JSON Source of Truth) -->
+<header class="bg-surface dark:bg-inverse-surface text-primary dark:text-inverse-primary border-b border-outline-variant/30 dark:border-outline-variant/10 shadow-sm sticky top-0 z-40">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<!-- Brand Logo -->
+<div class="flex items-center gap-3">
+<a class="text-headline-md font-headline-md font-extrabold text-primary dark:text-inverse-primary flex items-center gap-2 tracking-tight" href="#">
+<div class="w-9 h-9 sketch-border bg-yellow-200 flex items-center justify-center text-on-surface sketch-shadow-sm rotate-[-3deg]">
+<span class="material-symbols-outlined text-[20px]" data-icon="draw">draw</span>
+</div>
+<span class="font-headline-md text-headline-md text-primary">TOOLS WORKSPACE</span>
+</a>
+<span class="text-label-sm font-label-sm bg-surface-container-high text-primary px-2 py-0.5 rounded-full border border-primary/20 hidden lg:inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+          Doodle Studio v2.4
+        </span>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-on-surface transition-colors font-body-md text-body-md" href="#">PDF &amp; เอกสาร</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-on-surface transition-colors font-body-md text-body-md" href="#">กราฟิก &amp; สตูดิโอ</a>
+<a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md flex items-center gap-1.5" href="#">
+<span class="">คำนวณภาษี &amp; ร้านค้า</span>
+<span class="bg-secondary-container text-white text-[10px] px-1.5 py-0.2 rounded-full font-bold">LIVE</span>
+</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-on-surface transition-colors font-body-md text-body-md" href="#">เครื่องมือ Dev</a>
+</nav>
+<!-- Trailing Action Cluster & Icons -->
+<div class="flex items-center gap-3">
+<!-- Search bar on right as configured in JSON -->
+<div class="relative hidden xl:block w-44">
+<input class="w-full pl-8 pr-3 py-1.5 text-body-sm font-body-sm bg-surface-container-lowest sketch-border sketch-shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="ค้นหาเครื่องมือ..." type="text">
+<span class="material-symbols-outlined absolute left-2.5 top-2 text-on-surface-variant text-[16px]" data-icon="search">search</span>
+</div>
+<button class="px-3.5 py-1.5 bg-primary text-white font-label-md text-label-md rounded-xl sketch-shadow-sm hover:bg-primary-container active:scale-95 transition-all flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]" data-icon="lightbulb">lightbulb</span>
+<span class="">ส่งข้อเสนอแนะ</span>
+</button>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all duration-150 active:scale-95" title="สลับโหมดมืด">
+<span class="material-symbols-outlined text-[20px]" data-icon="dark_mode">dark_mode</span>
+</button>
+<button class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all duration-150 active:scale-95" title="ช่วยเหลือ">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- SUBHEADER / BREADCRUMB & STORE TITLE -->
+<section class="max-w-7xl mx-auto w-full px-6 pt-6 pb-2">
+<!-- Breadcrumb with doodle arrows -->
+<div class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant">
+<span class="flex items-center gap-1 hover:text-primary cursor-pointer">
+<span class="material-symbols-outlined text-[16px]" data-icon="home">home</span>
+<span class="">หน้าหลัก</span>
+</span>
+<span class="text-outline">✏️&gt;</span>
+<span class="hover:text-primary cursor-pointer">ข้อมูลร้านค้า</span>
+<span class="text-outline">✏️&gt;</span>
+<span class="text-primary font-bold bg-primary-fixed/40 px-2 py-0.5 rounded-md">ร้านค้า / สร้างร้านค้า</span>
+</div>
+<!-- Store Main Hero Badge & Sketch Header -->
+<div class="mt-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="w-14 h-14 bg-amber-100 sketch-border flex items-center justify-center sketch-shadow rotate-[-2deg]">
+<span class="material-symbols-outlined text-[32px] text-amber-800" data-icon="storefront">storefront</span>
+</div>
+<span class="absolute -top-2 -right-2 text-[18px]">✨</span>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<h1 class="text-headline-xl font-headline-xl text-on-surface"><span class="">ระบบสร้างร้านค้า &amp; ระบบ Live สด</span><span class="block text-headline-md font-headline-md font-bold text-primary font-mono-code tracking-tight mt-0.5">Shop Creation Wizard &amp; Live Commerce</span></h1>
+<span class="washi-tape-mint px-2.5 py-0.5 text-label-sm font-label-sm text-tertiary font-bold border border-emerald-800/40 rounded-sm">
+              ● กำลังตั้งค่าร้านค้าไลฟ์สด
+            </span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1.5 mt-0.5">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="verified_user">verified_user</span>
+<span class="">ระบบเชื่อมต่อ Live Commerce, AI ตรวจสลิป &amp; เครื่องคิดเลขออเดอร์อัตโนมัติ 100% On-Device</span>
+</p>
+</div>
+</div>
+<!-- Quick Action Pill Buttons -->
+<div class="flex items-center gap-2">
+<button class="bg-amber-300 hover:bg-amber-400 text-on-surface font-label-md text-label-md px-4 py-2 sketch-border sketch-shadow-sm active:translate-y-0.5 flex items-center gap-1.5 transition-all" id="open-product-modal-btn">
+<span class="material-symbols-outlined text-[18px]" data-icon="add_box">add_box</span>
+<span class="">เพิ่มรหัสสินค้า Live สด (CF)</span>
+</button>
+<button class="bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-md text-label-md px-3 py-2 sketch-border sketch-shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="history_edu">history_edu</span>
+<span class="">บันทึกร่าง</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 4-STEP WIZARD PROGRESS BAR (Hand-drawn / Sketchbook Style) -->
+<section class="max-w-7xl mx-auto w-full px-6 py-4">
+<div class="bg-surface-container-lowest sketch-border p-4 sketch-shadow relative overflow-hidden">
+<!-- Tape accent -->
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 washi-tape-yellow px-6 py-0.5 text-[11px] font-mono-code font-bold tracking-wider text-slate-800 border border-amber-400">
+        WIZARD PROGRESS // STEP 01 OF 04
+      </div>
+<!-- Steps Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 relative z-10 pt-2">
+<!-- Step 1: Active -->
+<div class="p-2.5 rounded-xl sketch-border bg-primary-fixed/30 sketch-shadow-sm flex items-center gap-3 border-primary">
+<div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold sketch-border">
+<span class="material-symbols-outlined text-[20px]" data-icon="storefront">storefront</span>
+</div>
+<div>
+<div class="text-label-sm font-label-sm text-primary flex items-center gap-1">
+<span class="">01 กำลังกรอก</span>
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+</div>
+<div class="text-title-sm font-title-sm text-on-surface">ข้อมูลร้านค้า</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="p-2.5 rounded-xl border border-slate-300 bg-surface-container-low/60 flex items-center gap-3 hover:bg-white transition-colors cursor-pointer">
+<div class="w-10 h-10 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center font-bold border border-slate-400">
+<span class="material-symbols-outlined text-[20px]" data-icon="payments">payments</span>
+</div>
+<div>
+<div class="text-label-sm font-label-sm text-outline">02 ถัดไป</div>
+<div class="text-title-sm font-title-sm text-on-surface-variant">การชำระ &amp; กฎ CF</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="p-2.5 rounded-xl border border-slate-300 bg-surface-container-low/60 flex items-center gap-3 hover:bg-white transition-colors cursor-pointer">
+<div class="w-10 h-10 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center font-bold border border-slate-400">
+<span class="material-symbols-outlined text-[20px]" data-icon="local_shipping">local_shipping</span>
+</div>
+<div>
+<div class="text-label-sm font-label-sm text-outline">03 จัดส่ง</div>
+<div class="text-title-sm font-title-sm text-on-surface-variant">การจัดส่ง &amp; ค่าส่ง</div>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="p-2.5 rounded-xl border border-slate-300 bg-surface-container-low/60 flex items-center gap-3 hover:bg-white transition-colors cursor-pointer">
+<div class="w-10 h-10 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center font-bold border border-slate-400">
+<span class="material-symbols-outlined text-[20px]" data-icon="verified">verified</span>
+</div>
+<div>
+<div class="text-label-sm font-label-sm text-outline">04 สรุป</div>
+<div class="text-title-sm font-title-sm text-on-surface-variant">ยืนยัน &amp; เปิดไลฟ์</div>
+</div>
+</div>
+</div>
+<!-- Hand-sketched Ruler Progress Bar -->
+<div class="mt-4 pt-3 border-t-2 border-dashed border-slate-300">
+<div class="flex items-center justify-between text-body-sm font-body-sm text-outline mb-1.5">
+<span class="flex items-center gap-1 font-mono-code">
+<span class="material-symbols-outlined text-[14px]" data-icon="straighten">straighten</span>
+            ไม้บรรทัดความคืบหน้า (Doodle Meter)
+          </span>
+<span class="font-bold text-primary font-mono-code">35% COMPLETED (STEP 1/4)</span>
+</div>
+<div class="w-full h-5 bg-slate-100 rounded-full sketch-border overflow-hidden p-0.5 relative">
+<div class="h-full rounded-full doodle-hatch w-[35%] transition-all duration-500 relative">
+<div class="absolute right-0 top-0 bottom-0 w-2 bg-yellow-300 border-l border-slate-900"></div>
+</div>
+<!-- Tick marks -->
+<div class="absolute inset-0 flex justify-between px-3 pointer-events-none opacity-40">
+<span class="border-r border-slate-900 h-full"></span>
+<span class="border-r border-slate-900 h-full"></span>
+<span class="border-r border-slate-900 h-full"></span>
+<span class="border-r border-slate-900 h-full"></span>
+<span class="border-r border-slate-900 h-full"></span>
+<span class="border-r border-slate-900 h-full"></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- MAIN WORKSPACE CONTENT: 12-COLUMN DUAL PANEL -->
+<main class="max-w-7xl mx-auto w-full px-6 py-4 flex-1">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- LEFT COLUMN (7 Cols): STEP 01 SHOP PROFILE FORM -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<!-- STEP 01 CARD -->
+<div class="bg-surface-container-lowest sketch-border p-6 sketch-shadow relative">
+<!-- Washi tape corner -->
+<div class="absolute -top-3 -left-3 washi-tape-yellow px-4 py-0.5 text-label-sm font-label-sm font-bold text-slate-900 border border-yellow-500">
+            📌 ขั้นตอนที่ 01
+          </div>
+<div class="flex items-center justify-between border-b-2 border-slate-200 pb-3 mb-5 mt-1">
+<div>
+<h2 class="text-headline-lg font-headline-lg text-on-surface flex items-center gap-2">
+<span class="">ข้อมูลร้านค้า &amp; เชื่อมต่อ TikTok Live</span>
+<span class="text-base">📝</span>
+</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">ระบุข้อมูลที่อยู่สำหรับออกใบเสร็จ และเชื่อมต่อไอดีไลฟ์สด</p>
+</div>
+<span class="bg-emerald-100 text-emerald-800 text-label-sm font-label-sm px-2.5 py-1 rounded-full sketch-border-subtle flex items-center gap-1 font-bold">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              เปิดใช้งานดูด CF
+            </span>
+</div>
+<!-- Form Fields -->
+<form class="space-y-4" onsubmit="event.preventDefault();">
+<!-- Row 1: Shop Name -->
+<div>
+<label class="block text-title-sm font-title-sm text-on-surface mb-1 flex items-center justify-between">
+<span class="flex items-center gap-1">
+<span class="">ชื่อร้านค้า (Shop Name)</span>
+<span class="text-error font-bold">*</span>
+</span>
+<span class="text-label-sm font-label-sm text-outline">แสดงในบิล &amp; หน้าสรุปยอด</span>
+</label>
+<div class="relative">
+<input class="w-full px-3.5 py-2.5 bg-surface-bright sketch-border sketch-shadow-sm text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20" type="text" value="สามหมอกโค้ดดิ้ง (Sam Mok Coding Store)">
+<span class="material-symbols-outlined absolute right-3 top-3 text-emerald-600 text-[18px]" data-icon="check_circle">check_circle</span>
+</div>
+</div>
+<!-- Row 2: Phone & Country -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block text-title-sm font-title-sm text-on-surface mb-1">
+<span class="">เบอร์โทรศัพท์ร้านค้า</span>
+<span class="text-error font-bold">*</span>
+</label>
+<div class="relative">
+<input class="w-full px-3.5 py-2.5 bg-surface-bright sketch-border sketch-shadow-sm text-on-surface font-mono-code text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20" type="text" value="089-123-4567">
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline text-[18px]" data-icon="call">call</span>
+</div>
+</div>
+<div>
+<label class="block text-title-sm font-title-sm text-on-surface mb-1">
+<span class="">ประเทศ (Country)</span>
+<span class="text-error font-bold">*</span>
+</label>
+<div class="relative">
+<select class="w-full px-3.5 py-2.5 bg-surface-bright sketch-border sketch-shadow-sm text-on-surface font-body-md text-body-md focus:outline-none appearance-none">
+<option selected="">ไทย (Thailand) 🇹🇭</option>
+<option>ลาว (Laos) 🇱🇦</option>
+<option>มาเลเซีย (Malaysia) 🇲🇾</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline pointer-events-none text-[18px]" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Row 3: Address -->
+<div>
+<label class="block text-title-sm font-title-sm text-on-surface mb-1">
+<span class="">ที่อยู่ส่งของต้นทาง / ที่ตั้งร้านค้า</span>
+<span class="text-error font-bold">*</span>
+</label>
+<input class="w-full px-3.5 py-2.5 bg-surface-bright sketch-border sketch-shadow-sm text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20" type="text" value="123/4 หมู่ 2 ต.จองคำ">
+</div>
+<!-- Row 4: District & Province & Postal Code -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<div class="md:col-span-2">
+<label class="block text-title-sm font-title-sm text-on-surface mb-1">
+<span class="">ตำบล / อำเภอ / จังหวัด</span>
+<span class="text-error font-bold">*</span>
+</label>
+<input class="w-full px-3.5 py-2.5 bg-surface-bright sketch-border sketch-shadow-sm text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20" type="text" value="ต.จองคำ อ.เมือง จ.แม่ฮ่องสอน">
+</div>
+<div>
+<label class="block text-title-sm font-title-sm text-on-surface mb-1">
+<span class="">รหัสไปรษณีย์</span>
+<span class="text-error font-bold">*</span>
+</label>
+<input class="w-full px-3.5 py-2.5 bg-surface-bright sketch-border sketch-shadow-sm text-on-surface font-mono-code text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20" type="text" value="58000">
+</div>
+</div>
+<!-- TikTok Live CF Integration Section -->
+<div class="mt-4 p-4 rounded-2xl bg-amber-50 sketch-border sketch-shadow-sm border-amber-800/60">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-lg bg-black text-white flex items-center justify-center font-bold text-xs sketch-border">
+                    TT
+                  </span>
+<div>
+<h3 class="text-title-sm font-title-sm text-on-surface font-bold">TikTok Username สำหรับ Live สด</h3>
+<p class="text-body-sm font-body-sm text-outline">ใช้ดูดคอมเมนต์ CF อัตโนมัติด้วยระบบบอทตรวจจับคำสั่ง</p>
+</div>
+</div>
+<span class="bg-emerald-200 text-emerald-900 border border-emerald-700 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="check">check</span>
+                  เชื่อมต่อสำเร็จ (พร้อมดูด CF)
+                </span>
+</div>
+<div class="flex gap-2 mt-2">
+<div class="relative flex-1">
+<span class="absolute left-3 top-2.5 text-outline font-mono-code font-bold">@</span>
+<input class="w-full pl-8 pr-3 py-2 bg-white sketch-border text-body-md font-mono-code focus:outline-none" type="text" value="sammok_live">
+</div>
+<button class="bg-slate-900 text-white hover:bg-slate-800 font-label-md text-label-md px-4 py-2 sketch-border sketch-shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="sync">sync</span>
+<span class="">ตรวจสอบ</span>
+</button>
+</div>
+<!-- Mini doodle tip inside -->
+<div class="mt-2 text-body-sm font-body-sm text-amber-900 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-amber-700" data-icon="tips_and_updates">tips_and_updates</span>
+<span class="">ทิป: ขณะไลฟ์สด เมื่อลูกค้าพิมพ์รหัส เช่น <span class="bg-white px-1 py-0.2 rounded border border-amber-300 font-mono-code font-bold">A1</span> ระบบจะส่งข้อความสรุปยอดในอินบ็อกซ์ทันที!</span>
+</div>
+</div>
+<!-- Action Buttons at bottom of Step 1 -->
+<div class="pt-4 flex items-center justify-between border-t-2 border-dashed border-slate-200 mt-6">
+<button class="px-5 py-2.5 bg-surface-container-low text-on-surface font-label-md text-label-md sketch-border sketch-shadow-sm hover:bg-white flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_back">arrow_back</span>
+<span class="">ก่อนหน้า</span>
+</button>
+<div class="flex items-center gap-3">
+<span class="text-body-sm font-body-sm text-outline hidden sm:inline">ระบบจะเซฟร่างอัตโนมัติ 💾</span>
+<button class="px-6 py-2.5 bg-primary text-white font-headline-md text-headline-md sketch-border sketch-shadow-accent hover:bg-primary-container active:translate-y-0.5 flex items-center gap-2" type="button">
+<span class="">ถัดไป: การชำระเงิน &amp; กฎ CF</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</form>
+</div>
+<!-- STEP 03 SHIPPING METHODS PREVIEW CARD -->
+<div class="bg-surface-container-lowest sketch-border p-6 sketch-shadow relative">
+<!-- Tape label -->
+<div class="absolute -top-3 -right-3 washi-tape-mint px-4 py-0.5 text-label-sm font-label-sm font-bold text-tertiary border border-emerald-600">
+            🚚 ขั้นตอนที่ 03: ขนส่ง
+          </div>
+<div class="flex items-center justify-between mb-3">
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface flex items-center gap-2">
+<span class="">การจัดส่ง &amp; อัตราค่าส่ง (Shipping Methods)</span>
+</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">เลือกผู้ให้บริการขนส่งที่รองรับในไลฟ์</p>
+</div>
+<button class="text-label-md font-label-md text-primary hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="add_circle">add_circle</span>
+<span class="">ดูขนส่งเพิ่มเติม</span>
+</button>
+</div>
+<!-- Alert Tip -->
+<div class="p-3 bg-blue-50 sketch-border-subtle rounded-xl mb-4 text-body-sm font-body-sm text-blue-900 flex items-start gap-2">
+<span class="material-symbols-outlined text-blue-600 text-[18px] shrink-0 mt-0.5" data-icon="info">info</span>
+<span class="">ช่องทางที่เป็น <strong>'ส่งฟรี'</strong> ทางร้านจะเป็นผู้ออกค่าจัดส่งให้ลูกค้า และระบบจะคำนวณบิลเป็น ฿0 ทันทีเมื่อตรงเงื่อนไข</span>
+</div>
+<!-- Shipping Providers Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+<!-- J&T -->
+<div class="p-3 bg-surface-bright sketch-border rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-lg bg-red-100 border border-red-400 flex items-center justify-center font-bold text-red-600 font-mono-code text-xs">
+                  J&amp;T
+                </div>
+<div>
+<div class="text-title-sm font-title-sm text-on-surface">J&amp;T Express</div>
+<div class="text-body-sm font-body-sm text-primary font-bold">ค่าส่ง ฿35</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 text-on-surface-variant hover:text-primary" title="แก้ไข">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600 border border-slate-700"></div>
+</label>
+</div>
+</div>
+<!-- Flash -->
+<div class="p-3 bg-surface-bright sketch-border rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-lg bg-yellow-100 border border-yellow-500 flex items-center justify-center font-bold text-yellow-800 font-mono-code text-xs">
+                  FLASH
+                </div>
+<div>
+<div class="text-title-sm font-title-sm text-on-surface">Flash Express</div>
+<div class="text-body-sm font-body-sm text-primary font-bold">ค่าส่ง ฿30</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 text-on-surface-variant hover:text-primary" title="แก้ไข">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600 border border-slate-700"></div>
+</label>
+</div>
+</div>
+<!-- Thailand Post EMS -->
+<div class="p-3 bg-surface-bright sketch-border rounded-xl flex items-center justify-between opacity-80">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-lg bg-slate-100 border border-slate-400 flex items-center justify-center font-bold text-slate-600 font-mono-code text-xs">
+                  EMS
+                </div>
+<div>
+<div class="text-title-sm font-title-sm text-on-surface">ไปรษณีย์ไทย EMS</div>
+<div class="text-body-sm font-body-sm text-outline">ค่าส่ง ฿40</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1 text-on-surface-variant hover:text-primary" title="แก้ไข">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600 border border-slate-700"></div>
+</label>
+</div>
+</div>
+<!-- Holding service / Merge shipping -->
+<div class="p-3 bg-amber-50 sketch-border rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-lg bg-amber-200 border border-amber-600 flex items-center justify-center text-amber-900">
+<span class="material-symbols-outlined text-[20px]" data-icon="inventory_2">inventory_2</span>
+</div>
+<div>
+<div class="text-title-sm font-title-sm text-on-surface">บริการฝากของ</div>
+<div class="text-body-sm font-body-sm text-amber-800">รอรวมส่งรอบหน้า (จ่ายครั้งเดียว)</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600 border border-slate-700"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (5 Cols): STEP 02 LIVE RULES, BANK ACCOUNT & CHEAT SHEET -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- BANK ACCOUNT & SLIP VERIFY CARD -->
+<div class="bg-surface-container-lowest sketch-border p-5 sketch-shadow relative">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 sketch-border flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" data-icon="account_balance">account_balance</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface">บัญชีธนาคารรับโอนเงิน</h3>
+</div>
+<button class="text-label-sm font-label-sm bg-surface-container-low px-2.5 py-1 sketch-border hover:bg-white flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-[15px]" data-icon="add">add</span>
+<span class="">เพิ่มบัญชี</span>
+</button>
+</div>
+<!-- Notice banner -->
+<div class="p-3 bg-amber-50 sketch-border-subtle rounded-xl text-body-sm font-body-sm text-amber-900 mb-3 flex items-start gap-2">
+<span class="material-symbols-outlined text-amber-700 text-[18px] shrink-0 mt-0.5" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="">กรอกหมายเลขและชื่อบัญชีให้ตรงกับ QR Code เพื่อเปิดใช้งานระบบ <strong>AI ตรวจสลิป (Slip Verify)</strong> แบบอัตโนมัติ</span>
+</div>
+<!-- Bank Item: KBANK -->
+<div class="p-3.5 bg-emerald-50/70 sketch-border rounded-xl relative">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-xl bg-emerald-600 text-white font-bold flex items-center justify-center sketch-border text-xs font-mono-code">
+                  KBANK
+                </div>
+<div>
+<div class="text-title-sm font-title-sm text-on-surface font-bold">ธนาคารกสิกรไทย</div>
+<div class="text-title-sm font-title-sm font-mono-code text-primary">123-4-56789-0</div>
+<div class="text-body-sm font-body-sm text-outline">ชื่อบัญชี: <strong>นายสามหมอก โค้ดดิ้ง</strong></div>
+</div>
+</div>
+<span class="bg-emerald-200 text-emerald-900 text-label-sm font-label-sm px-2 py-0.5 rounded-md font-bold border border-emerald-600">
+                บัญชีหลัก
+              </span>
+</div>
+<!-- Sub Action Buttons -->
+<div class="mt-3 pt-2.5 border-t border-emerald-200 flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-3">
+<button class="text-on-surface-variant hover:text-primary flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-[16px]" data-icon="qr_code">qr_code</span>
+<span class="">QR Code พิมพ์สแกน</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="visibility">visibility</span>
+<span class="">ดูตัวอย่าง</span>
+</button>
+</div>
+<button class="text-error hover:text-red-800 p-1" title="ลบบัญชี">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- CF RULES & AUTO REMINDER AUTOMATION CARD -->
+<div class="bg-surface-container-lowest sketch-border p-5 sketch-shadow relative">
+<!-- Washi tape label -->
+<div class="absolute -top-3 left-6 washi-tape-yellow px-4 py-0.5 text-label-sm font-label-sm font-bold text-slate-800 border border-yellow-500">
+            ⚡ กฎการดูด CF &amp; ระบบอัตโนมัติ
+          </div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-4 mt-1 flex items-center gap-2">
+<span class="">การควบคุมคำสั่งซื้ออัตโนมัติ</span>
+<span class="text-xs bg-primary-fixed text-primary px-2 py-0.5 rounded-full font-mono-code font-bold">BOT RULES</span>
+</h3>
+<div class="space-y-4">
+<!-- 1. Auto-Reminder (ระบบทวงยอดอัตโนมัติ) -->
+<div class="p-3 bg-surface-bright sketch-border rounded-xl">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="alarm">alarm</span>
+<span class="text-title-sm font-title-sm text-on-surface">ระบบทวงยอดอัตโนมัติ (Auto-Reminder)</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-10 h-5 bg-slate-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all border border-slate-800"></div>
+</label>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-1">ส่งข้อความแจ้งเตือนลูกค้าชำระเงิน (ทวงได้สูงสุด 4 ครั้ง เช่น 19:00, 20:00, 21:00, 22:00)</p>
+<div class="mt-2.5 flex items-center gap-2 text-body-sm font-body-sm">
+<span class="text-on-surface-variant font-mono-code text-xs bg-slate-100 px-2 py-1 rounded border border-slate-300">Offset: +07:00</span>
+<select class="bg-white sketch-border text-body-sm font-body-sm py-1 px-2 focus:outline-none">
+<option>ไม่เกินระยะเวลา (กำหนดเอง)</option>
+<option>ทุก 2 ชั่วโมง</option>
+<option>ก่อนตัดยอด 30 นาที</option>
+</select>
+</div>
+</div>
+<!-- 2. Auto-Cutoff (ระบบตัดยอดอัตโนมัติ) -->
+<div class="p-3 bg-surface-bright sketch-border rounded-xl">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="hourglass_bottom">hourglass_bottom</span>
+<span class="text-title-sm font-title-sm text-on-surface">ระบบตัดยอดอัตโนมัติ (Auto-Cutoff)</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-10 h-5 bg-slate-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-secondary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all border border-slate-800"></div>
+</label>
+</div>
+<div class="mt-2 grid grid-cols-2 gap-2 text-body-sm font-body-sm">
+<div class="bg-white p-2 sketch-border rounded-lg">
+<span class="text-outline text-xs block">เวลาตัดยอด:</span>
+<span class="font-bold font-mono-code text-on-surface">12:00 น.</span>
+</div>
+<div class="bg-white p-2 sketch-border rounded-lg">
+<span class="text-outline text-xs block">วันที่ตัดยอด:</span>
+<span class="font-bold text-on-surface">วันถัดไป (หลังบิล)</span>
+</div>
+</div>
+<label class="mt-2 flex items-center gap-2 text-body-sm font-body-sm text-on-surface cursor-pointer">
+<input checked="" class="rounded border-slate-800 text-primary focus:ring-0" type="checkbox">
+<span class="">ส่งข้อความแจ้งลูกค้าเมื่อออเดอร์ถูกตัดยอด</span>
+</label>
+</div>
+<!-- 3. Auto-Blacklist (ระบบบล็อกอัตโนมัติ) -->
+<div class="p-3 bg-surface-bright sketch-border rounded-xl">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[20px]" data-icon="block">block</span>
+<span class="text-title-sm font-title-sm text-on-surface">ระบบบล็อกอัตโนมัติ (Auto-Blacklist)</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-10 h-5 bg-slate-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-error after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all border border-slate-800"></div>
+</label>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-1">เงื่อนไข: บล็อกเมื่อลูกค้า CF แล้วเท / ไม่โอนเงินครบ <strong>4 ครั้ง</strong></p>
+<label class="mt-2 flex items-center gap-2 text-body-sm font-body-sm text-on-surface cursor-pointer">
+<input checked="" class="rounded border-slate-800 text-primary focus:ring-0" type="checkbox">
+<span class="">ส่งข้อความแจ้งลูกค้าว่าถูกขึ้นบัญชีดักแบล็กลิสต์</span>
+</label>
+</div>
+<!-- Additional Toggles Checklist -->
+<div class="p-3 bg-yellow-50/80 sketch-border rounded-xl space-y-2">
+<span class="text-label-sm font-label-sm font-bold text-amber-900 block">ตัวเลือกเสริมในการเปิดบิล:</span>
+<label class="flex items-center gap-2 text-body-sm font-body-sm text-on-surface cursor-pointer">
+<input checked="" class="rounded border-slate-800 text-primary focus:ring-0" type="checkbox">
+<span class="">เก็บเงินปลายทาง (COD) บวกเพิ่ม ฿20</span>
+</label>
+<label class="flex items-center gap-2 text-body-sm font-body-sm text-on-surface cursor-pointer">
+<input checked="" class="rounded border-slate-800 text-primary focus:ring-0" type="checkbox">
+<span class="">รวมค่าจัดส่งหลายออเดอร์ในรอบบิลเดียวอัตโนมัติ</span>
+</label>
+<label class="flex items-center gap-2 text-body-sm font-body-sm text-on-surface cursor-pointer">
+<input checked="" class="rounded border-slate-800 text-primary focus:ring-0" type="checkbox">
+<span class="">ดึงเนื้อหา/สรุปยอดส่งในแชท ก่อนลูกค้า CF ชิ้นต่อไป</span>
+</label>
+<label class="flex items-center gap-2 text-body-sm font-body-sm text-on-surface cursor-pointer">
+<input checked="" class="rounded border-slate-800 text-primary focus:ring-0 font-bold" type="checkbox">
+<span class="text-emerald-900 font-bold">ระบบตรวจสลิปอัตโนมัติ (Slip Verify ด้วย AI บนเครื่อง)</span>
+</label>
+</div>
+</div>
+</div>
+<!-- STICKY NOTE TIP / CHEATSHEET -->
+<div class="p-5 bg-amber-100 sketch-border sketch-shadow rotate-1 relative">
+<div class="w-4 h-4 rounded-full bg-red-500 border border-slate-900 absolute -top-2 left-1/2 -translate-x-1/2 shadow"></div>
+<h4 class="text-title-sm font-title-sm text-amber-950 font-bold flex items-center gap-1.5 mb-2">
+<span class="">📝 สมุดบันทึกเทคนิคแม่ค้า Live สด</span>
+</h4>
+<ul class="space-y-2 text-body-sm font-body-sm text-amber-900">
+<li class="flex items-start gap-1.5">
+<span class="text-base leading-tight">📌</span>
+<span class=""><strong>ร้านค้ามือ 2:</strong> สร้างสินค้าครั้งเดียว 200 รหัส (รหัสละ 1 ตัว ไม่ซ้ำกัน เช่น A1, A2... จบในคลิกเดียว)</span>
+</li>
+<li class="flex items-start gap-1.5">
+<span class="text-base leading-tight">📌</span>
+<span class=""><strong>ร้านค้ามือ 1:</strong> สร้างรหัสสินค้าแบบมีหลายสี หลายไซส์ เช่น S-แดง, M-ขาว</span>
+</li>
+<li class="flex items-start gap-1.5">
+<span class="text-base leading-tight">📌</span>
+<span class=""><strong>นำเข้าสินค้า:</strong> จัดการข้อมูลสต็อกผ่านไฟล์ Excel ครั้งละหลายรายการรวดเดียว</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+<!-- POP-UP MODAL / DOCKED CREATOR PANEL: "เพิ่มข้อมูลสินค้าไลฟ์สด (Live Product Creator & CF System)" -->
+<div class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4" id="product-modal">
+<div class="bg-surface-container-lowest sketch-border sketch-shadow w-full max-w-2xl max-h-[92vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200">
+<!-- Top Washi Header -->
+<div class="sticky top-0 bg-yellow-100 p-4 border-b-2 border-slate-800 flex items-center justify-between z-10">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-amber-300 sketch-border flex items-center justify-center text-slate-900">
+<span class="material-symbols-outlined text-[18px]" data-icon="videocam">videocam</span>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">✦ เพิ่มสินค้าสำหรับขึ้น Live สด (พิมพ์รหัส CF) ✦</h3>
+<p class="text-body-sm font-body-sm text-outline">สร้างรหัสดูดของ ระบบจะตัดสต็อกอัตโนมัติเมื่อพิมพ์ตรง</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-white hover:bg-slate-200 sketch-border flex items-center justify-center text-slate-800" id="close-modal-btn" title="ปิดหน้าต่าง">
+<span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
+</button>
+</div>
+<div class="p-6 space-y-5">
+<!-- Product Name Input -->
+<div>
+<label class="block text-title-sm font-title-sm text-on-surface mb-1">
+<span class="">ชื่อสินค้า (Product Name)</span>
+<span class="text-error font-bold">*</span>
+</label>
+<div class="relative">
+<input class="w-full px-3.5 py-2.5 bg-surface-bright sketch-border sketch-shadow-sm font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20" type="text" value="ถั่วลายเสือคั่วธรรมชาติ (OTOP แม่ฮ่องสอน - ถุงซิปล็อค 500g)">
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline text-[18px]" data-icon="label">label</span>
+</div>
+</div>
+<!-- CF Code & Price & Stock Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<div>
+<label class="block text-title-sm font-title-sm text-on-surface mb-1">
+<span class="">รหัสพิมพ์ CF ในแชท</span>
+<span class="text-error font-bold">*</span>
+</label>
+<div class="relative">
+<input class="w-full px-3.5 py-2 bg-yellow-50 sketch-border font-mono-code font-bold text-headline-md text-primary focus:outline-none" type="text" value="CF10">
+<span class="absolute right-2.5 top-2 text-[11px] font-bold bg-primary text-white px-1.5 py-0.5 rounded">AUTO</span>
+</div>
+</div>
+<div>
+<label class="block text-title-sm font-title-sm text-on-surface mb-1">
+<span class="">ราคาขายต่อหน่วย (฿)</span>
+<span class="text-error font-bold">*</span>
+</label>
+<input class="w-full px-3.5 py-2 bg-surface-bright sketch-border font-mono-code font-bold text-headline-md text-on-surface focus:outline-none" type="number" value="150">
+</div>
+<div>
+<label class="block text-title-sm font-title-sm text-on-surface mb-1">
+<span class="">จำนวนสต็อกทั้งหมด</span>
+<span class="text-error font-bold">*</span>
+</label>
+<input class="w-full px-3.5 py-2 bg-surface-bright sketch-border font-mono-code font-bold text-headline-md text-on-surface focus:outline-none" type="number" value="50">
+</div>
+</div>
+<!-- Image Upload: Dashed hand-sketched box with cute doodle camera/upload icon -->
+<div>
+<label class="block text-title-sm font-title-sm text-on-surface mb-1">
+<span class="">รูปภาพสินค้าสำหรับขึ้นจอบิล</span>
+</label>
+<div class="border-2 border-dashed border-slate-800 rounded-2xl bg-surface-container-low/40 p-6 flex flex-col items-center justify-center text-center hover:bg-yellow-50/50 transition-colors cursor-pointer">
+<div class="w-14 h-14 rounded-2xl bg-white sketch-border flex items-center justify-center sketch-shadow-sm mb-2 rotate-[-2deg]">
+<span class="material-symbols-outlined text-[28px] text-primary" data-icon="photo_camera">photo_camera</span>
+</div>
+<div class="text-title-sm font-title-sm text-on-surface font-bold">ลากและวางรูปภาพที่นี่ หรือคลิกเพื่ออัปโหลด</div>
+<p class="text-body-sm font-body-sm text-outline mt-0.5">รองรับไฟล์ JPG, PNG, WebP ขนาดไม่เกิน 5MB (แสดงผลในแชทลูกค้า)</p>
+<button class="mt-3 px-4 py-1.5 bg-white sketch-border sketch-shadow-sm text-on-surface font-label-md text-label-md hover:bg-slate-100 flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="upload_file">upload_file</span>
+<span class="">เลือกรูปภาพสินค้า</span>
+</button>
+</div>
+</div>
+<!-- Description: Hand-sketched Rich Text Editor -->
+<div>
+<label class="block text-title-sm font-title-sm text-on-surface mb-1">
+<span class="">รายละเอียดสินค้า &amp; หมายเหตุส่งให้ลูกค้า</span>
+</label>
+<div class="sketch-border rounded-xl bg-white overflow-hidden">
+<!-- Mini doodle editor toolbar -->
+<div class="bg-slate-100 p-2 border-b border-slate-800 flex items-center gap-2">
+<button class="p-1 hover:bg-white rounded border border-transparent hover:border-slate-800 font-bold px-2 text-xs">B</button>
+<button class="p-1 hover:bg-white rounded border border-transparent hover:border-slate-800 italic px-2 text-xs">I</button>
+<button class="p-1 hover:bg-white rounded border border-transparent hover:border-slate-800 underline px-2 text-xs">U</button>
+<span class="text-slate-300">|</span>
+<button class="p-1 hover:bg-white rounded border border-transparent hover:border-slate-800 text-xs flex items-center">
+<span class="material-symbols-outlined text-[14px]" data-icon="format_align_left">format_align_left</span>
+</button>
+<button class="p-1 hover:bg-white rounded border border-transparent hover:border-slate-800 text-xs flex items-center">
+<span class="material-symbols-outlined text-[14px]" data-icon="format_list_bulleted">format_list_bulleted</span>
+</button>
+<span class="text-slate-300">|</span>
+<span class="text-xs text-outline font-mono-code">Doodle Rich Text</span>
+</div>
+<textarea class="w-full p-3 text-body-md font-body-md focus:outline-none border-none resize-none" placeholder="ใส่ข้อมูลสินค้า เช่น 'คั่วสดใหม่ทุกเช้า ปลูกบนดอยสูงแม่ฮ่องสอน กรอบ หอม มัน ไม่เหม็นหืน เก็บได้นาน 6 เดือน'" rows="3"></textarea>
+</div>
+</div>
+<!-- Sticky note tip / Cheatsheet inside modal -->
+<div class="p-3 bg-amber-50 sketch-border-subtle rounded-xl flex items-start gap-2 text-body-sm font-body-sm text-amber-900">
+<span class="text-lg">💡</span>
+<div class="">
+<strong>คำแนะนำการไลฟ์:</strong> สามารถสร้างสินค้าครั้งเดียวหลายรหัสด้วยไฟล์ Excel ได้ โดยกดปุ่มด้านล่าง
+          </div>
+</div>
+<!-- Modal Actions -->
+<div class="pt-4 border-t-2 border-dashed border-slate-200 flex items-center justify-between">
+<button class="px-4 py-2 bg-surface-bright sketch-border sketch-shadow-sm font-label-md text-label-md hover:bg-slate-100 flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="table_view">table_view</span>
+<span class="">นำเข้าจากไฟล์ Excel (Import Excel)</span>
+</button>
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 font-label-md text-label-md hover:underline text-on-surface-variant" id="cancel-modal-btn" type="button">
+              ยกเลิก
+            </button>
+<button class="px-5 py-2 bg-primary text-white font-headline-md text-headline-md sketch-border sketch-shadow-accent hover:bg-primary-container active:scale-95 transition-all flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+<span class="">สร้างสินค้า (Create Product)</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- FOOTER (Shared Component JSON Source of Truth) -->
+<footer class="bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant/30 dark:border-outline-variant/10 mt-12">
+<div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+<!-- Footer Copyright Text -->
+<div class="text-body-sm font-body-sm text-on-surface-variant dark:text-outline-variant text-center md:text-left flex flex-col gap-1">
+<div class="text-title-sm font-title-sm font-bold text-on-surface dark:text-inverse-on-surface flex items-center gap-2 justify-center md:justify-start">
+<span class="w-6 h-6 rounded bg-yellow-200 border border-slate-800 flex items-center justify-center text-xs">✏️</span>
+<span class="">TOOLS WORKSPACE • SAM MOK CODING</span>
+</div>
+<p class="">© 2025 TOOLS WORKSPACE โดย SAM MOK CODING • ประมวลผลบนเครื่องของคุณ 100% ปลอดภัย ไม่ส่งไฟล์ขึ้นเซิร์ฟเวอร์ • Made in Mae Hong Son</p>
+</div>
+<!-- Footer Nav Links -->
+<div class="flex flex-wrap items-center justify-center gap-6 text-label-sm font-label-sm">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">นโยบายความเป็นส่วนตัว</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">เกี่ยวกับโปรเจกต์</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">แจ้งบั๊ก / เสนอเครื่องมือใหม่</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">บริจาคสนับสนุน</a>
+</div>
+</div>
+</footer>
+<!-- Inline Script for Micro-interactions (Modal Open/Close & Doodle Toggles) -->
+<script>
+    const modal = document.getElementById('product-modal');
+    const openBtn = document.getElementById('open-product-modal-btn');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const cancelBtn = document.getElementById('cancel-modal-btn');
+
+    if (openBtn && modal) {
+      openBtn.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      });
+    }
+
+    const closeModal = () => {
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    };
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+
+    // Close on outer click
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+    }
+  </script>
+
+
+</body></html>

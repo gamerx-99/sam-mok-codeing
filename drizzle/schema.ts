@@ -117,6 +117,22 @@ export const auditLogs = pgTable("auditLogs", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 
+export const toolUsageLogs = pgTable("toolUsageLogs", {
+  id: serial("id").primaryKey(),
+  userId: integer("userId"),
+  toolId: varchar("toolId", { length: 80 }).notNull(),
+  toolName: varchar("toolName", { length: 160 }).notNull(),
+  toolKind: varchar("toolKind", { length: 40 }).notNull(),
+  fileCount: integer("fileCount").default(0).notNull(),
+  fileBytes: integer("fileBytes").default(0).notNull(),
+  status: text("status")
+    .$type<"success" | "error" | "cancelled">()
+    .default("success")
+    .notNull(),
+  detail: text("detail"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
 export const projects = pgTable("projects", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 180 }).notNull(),
@@ -169,4 +185,5 @@ export type MediaAsset = typeof mediaAssets.$inferSelect;
 export type InsertMediaAsset = typeof mediaAssets.$inferInsert;
 export type AuditLog = typeof auditLogs.$inferSelect;
 export type InsertAuditLog = typeof auditLogs.$inferInsert;
+export type ToolUsageLog = typeof toolUsageLogs.$inferSelect;
 export type CanvaAccount = typeof canvaAccounts.$inferSelect;

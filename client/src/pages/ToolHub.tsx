@@ -16,6 +16,7 @@ import {
   Plus,
   Search,
   Trash2,
+  Video,
   Wrench,
   X,
 } from "lucide-react";
@@ -72,6 +73,14 @@ const STATIC_TOOLS: WorkingTool[] = [
     external: true,
   },
   {
+    id: "live-shop",
+    title: "ระบบสร้างร้านค้า & ระบบ Live สด (Doodle Live)",
+    desc: "ตั้งค่าร้านค้า ดูดออเดอร์ CF อัตโนมัติ ทวงยอด ตัดยอด และจัดการคลังสินค้าไลฟ์สด",
+    href: "/tool/live/",
+    icon: Video,
+    external: true,
+  },
+  {
     id: "fee-calculator",
     title: "คำนวณค่าธรรมเนียมขายออนไลน์ 2569",
     desc: "สรุปและเปรียบเทียบค่าธรรมเนียม Shopee, TikTok Shop, Lazada พร้อมเครื่องคิดเลขกำไรสุทธิ",
@@ -84,6 +93,7 @@ const STATIC_TOOLS: WorkingTool[] = [
 const CATEGORY_OF_STATIC: Record<string, ToolCategory> = {
   "live-editor": "organize",
   "image-cropper": "organize",
+  "live-shop": "calculators",
   "fee-calculator": "calculators",
 };
 

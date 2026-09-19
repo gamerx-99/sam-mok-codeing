@@ -2,11 +2,12 @@ import { z } from "zod";
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { adminProcedure, publicProcedure, router } from "./_core/trpc";
+import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import {
   createLead,
   createProject,
   createMediaAsset,
+  createToolUsageLog,
   getUsageStats,
   listAdminUsers,
   listAppointments,
@@ -16,6 +17,7 @@ import {
   listProjects,
   listQuotes,
   listRecentAuditLogs,
+  listToolUsageLogs,
   updateAppointmentStatus,
   updateLeadStatus,
   updateProjectStatus,
@@ -147,6 +149,31 @@ export const appRouter = router({
         await updateUserRole(input.userId, input.role, ctx.user.id);
         return { success: true } as const;
       }),
+  }),
+  tools: router({
+    /** Log a tool run — supports both logged-in and anonymous runs. */
+    log: publicProcedure
+      .input(
+        z.object({
+          toolId: z.string().trim().min(1).max(80),
+          toolName: z.string().trim().min(1).max(160),
+          toolKind: z.enum(["pdf", "interactive", "static"]),
+          fileCount: z.number().int().min(0).max(200).default(0),
+          fileBytes: z.number().int().min(0).max(2_000_000_000).default(0),
+          status: z.enum(["success", "error", "cancelled"]),
+          detail: z.string().max(500).optional(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const id = await createToolUsageLog({
+          userId: ctx.user?.id ?? null,
+          ...input,
+          detail: input.detail ?? null,
+        });
+        return { success: true, id } as const;
+      }),
+    /** Admin-only: recent tool usage for the dashboard tab. */
+    list: adminProcedure.query(() => listToolUsageLogs(60)),
   }),
   media: router({
     publicList: publicProcedure.query(() => listMediaAssets()),

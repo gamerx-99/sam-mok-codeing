@@ -1404,7 +1404,7 @@ function MetaTagTool() {
     <div className="toolhub-tool-body">
       <div className="toolhub-option-grid">
         {field("title", "ชื่อหน้า", "ชื่อเว็บ/หน้าของคุณ")}
-        {field("siteName", "ชื่อเว็บไซต์", "Coding Mueang Sam Mok")}
+        {field("siteName", "ชื่อเว็บไซต์", "Sam Mok Coding")}
       </div>
       <label className="toolhub-option-field">
         <span>คำอธิบาย</span>

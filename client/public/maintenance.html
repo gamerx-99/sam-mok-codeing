@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+<html class="light" lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TOOLS WORKSPACE - ปิดปรับปรุงชั่วคราว (Under Maintenance)</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Fonts: Plus Jakarta Sans & Space Grotesk + Thai Handwriting/Friendly Fonts (Mali & Itim & Sarabun) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Itim&amp;family=Mali:ital,wght@0,400;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Sarabun:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-lowest": "#ffffff",
+            "on-primary-fixed-variant": "#3323cc",
+            "tertiary": "#005338",
+            "error-container": "#ffdad6",
+            "secondary": "#ae2f34",
+            "surface-container-low": "#f0f3ff",
+            "on-tertiary-fixed-variant": "#005236",
+            "on-error-container": "#93000a",
+            "background": "#f9f9ff",
+            "surface-container-high": "#dee8ff",
+            "surface-container-highest": "#d8e3fb",
+            "on-tertiary": "#ffffff",
+            "inverse-surface": "#263143",
+            "primary": "#3525cd",
+            "primary-container": "#4f46e5",
+            "primary-fixed": "#e2dfff",
+            "surface-tint": "#4d44e3",
+            "on-error": "#ffffff",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed": "#0f0069",
+            "outline": "#777587",
+            "tertiary-fixed": "#6ffbbe",
+            "surface": "#f9f9ff",
+            "outline-variant": "#c7c4d8",
+            "on-tertiary-container": "#67f4b7",
+            "on-primary-container": "#dad7ff",
+            "error": "#ba1a1a",
+            "on-secondary-container": "#6d0010",
+            "surface-container": "#e7eeff",
+            "surface-dim": "#cfdaf2",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed": "#002113",
+            "inverse-on-surface": "#ecf1ff",
+            "on-surface": "#111c2d",
+            "primary-fixed-dim": "#c3c0ff",
+            "surface-bright": "#f9f9ff",
+            "inverse-primary": "#c3c0ff",
+            "tertiary-container": "#006e4b",
+            "on-secondary-fixed-variant": "#8c1520",
+            "tertiary-fixed-dim": "#4edea3",
+            "secondary-fixed": "#ffdad8",
+            "on-secondary-fixed": "#410006",
+            "on-surface-variant": "#464555",
+            "surface-variant": "#d8e3fb",
+            "secondary-container": "#ff6b6b",
+            "secondary-fixed-dim": "#ffb3b0",
+            "on-background": "#111c2d"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-lg": "3.5rem",
+            "space-xl": "2rem",
+            "gutter": "1.25rem",
+            "space-sm": "0.5rem",
+            "margin-md": "2rem",
+            "gutter-lg": "1.5rem",
+            "margin": "1.25rem",
+            "space-lg": "1.25rem",
+            "space-2xl": "3rem",
+            "space-md": "0.875rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Mali", "Sarabun", "Plus Jakarta Sans"],
+            "headline-xl": ["Mali", "Plus Jakarta Sans"],
+            "display-hero": ["Mali", "Plus Jakarta Sans"],
+            "display-hero-mobile": ["Mali", "Plus Jakarta Sans"],
+            "mono-code": ["Space Grotesk"],
+            "title-sm": ["Mali", "Plus Jakarta Sans"],
+            "label-sm": ["Itim", "Mali", "Plus Jakarta Sans"],
+            "body-md": ["Mali", "Sarabun", "Plus Jakarta Sans"],
+            "headline-md": ["Mali", "Plus Jakarta Sans"],
+            "headline-lg": ["Mali", "Plus Jakarta Sans"],
+            "label-md": ["Mali", "Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-xl": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display-hero": ["44px", { "lineHeight": "54px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "display-hero-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "mono-code": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "title-sm": ["15px", { "lineHeight": "20px", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "headline-md": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-lg": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "label-md": ["13px", { "lineHeight": "16px", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    /* Hand-drawn Sketchbook Styles & Textures */
+    .sketch-bg-grid {
+      background-color: #faf8f5;
+      background-image: radial-gradient(#d5d1c8 1px, transparent 1px), radial-gradient(#e4dfd5 1px, #faf8f5 1px);
+      background-size: 24px 24px;
+      background-position: 0 0, 12px 12px;
+    }
+
+    .sketch-border {
+      border: 2px solid #111c2d;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+      box-shadow: 4px 5px 0px 0px #111c2d;
+    }
+
+    .sketch-card {
+      border: 2.5px solid #111c2d;
+      border-radius: 22px 18px 24px 16px;
+      box-shadow: 6px 7px 0px 0px #111c2d;
+    }
+
+    .sketch-btn {
+      border: 2px solid #111c2d;
+      border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
+      box-shadow: 3px 3px 0px 0px #111c2d;
+      transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .sketch-btn:hover {
+      transform: translate(-1px, -2px);
+      box-shadow: 5px 5px 0px 0px #111c2d;
+    }
+    .sketch-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px 0px #111c2d;
+    }
+
+    .washi-tape-coral {
+      background: rgba(255, 107, 107, 0.9);
+      clip-path: polygon(4% 0%, 96% 2%, 100% 98%, 0% 96%);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    }
+
+    .washi-tape-yellow {
+      background: #fde047;
+      clip-path: polygon(2% 4%, 98% 0%, 97% 95%, 0% 100%);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    }
+
+    .doodle-float {
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(2deg); }
+    }
+
+    .doodle-spin-slow {
+      animation: spin 16s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col justify-between selection:bg-primary-fixed selection:text-on-primary-fixed sketch-bg-grid relative overflow-x-hidden">
+<!-- ========================================================================= -->
+<!-- TOP NAV BAR (Shared Component: TopNavBar)                                -->
+<!-- ========================================================================= -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant/30 dark:border-outline-variant/10 shadow-sm sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<!-- Brand Logo / Product Name -->
+<a class="text-headline-md font-headline-md font-extrabold text-primary dark:text-inverse-primary flex items-center gap-2 tracking-tight group" href="#">
+<div class="w-9 h-9 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center sketch-border border-[1.5px] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="terminal">terminal</span>
+</div>
+<div class="flex flex-col">
+<span class="leading-none text-primary dark:text-inverse-primary tracking-wide">TOOLS WORKSPACE</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-normal tracking-normal -mt-0.5">by SAM MOK CODING</span>
+</div>
+</a>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center space-x-6">
+<a class="text-body-md font-body-md text-on-surface-variant dark:text-outline-variant hover:text-on-surface transition-colors" href="#">
+          PDF &amp; เอกสาร
+        </a>
+<a class="text-body-md font-body-md text-on-surface-variant dark:text-outline-variant hover:text-on-surface transition-colors" href="#">
+          กราฟิก &amp; สตูดิโอ
+        </a>
+<a class="text-body-md font-body-md text-on-surface-variant dark:text-outline-variant hover:text-on-surface transition-colors" href="#">
+          คำนวณภาษี &amp; ร้านค้า
+        </a>
+<a class="text-body-md font-body-md text-on-surface-variant dark:text-outline-variant hover:text-on-surface transition-colors" href="#">
+          เครื่องมือ Dev
+        </a>
+</nav>
+<!-- Trailing Primary Action & Icons -->
+<div class="flex items-center gap-3">
+<!-- Search bar mock (search_bar: on_right) -->
+<div class="hidden lg:flex items-center gap-2 bg-surface-container-lowest px-3 py-1.5 rounded-full border border-outline-variant/40 text-on-surface-variant text-label-md font-label-md shadow-xs">
+<span class="material-symbols-outlined text-[18px] text-outline" data-icon="search">search</span>
+<span class="text-outline">ค้นหาเครื่องมือ...</span>
+<kbd class="text-[10px] font-mono-code bg-surface-container px-1.5 py-0.5 rounded border border-outline-variant/50 text-outline">⌘K</kbd>
+</div>
+<button class="sketch-btn bg-surface-container-lowest text-on-surface hover:bg-surface-container-low px-3.5 py-1.5 text-label-md font-label-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="chat_bubble">chat_bubble</span>
+<span>ส่งข้อเสนอแนะ</span>
+</button>
+<div class="flex items-center border-l border-outline-variant/40 pl-2 gap-1 text-on-surface-variant">
+<button class="p-2 rounded-full hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all duration-150 active:scale-95" title="สลับโหมดมืด">
+<span class="material-symbols-outlined text-[20px]" data-icon="dark_mode">dark_mode</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all duration-150 active:scale-95" title="ช่วยเหลือ">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- ========================================================================= -->
+<!-- MAIN MAINTENANCE CONTENT CANVAS (Doodle & Sketchbook Theme)                -->
+<!-- ========================================================================= -->
+<main class="flex-grow max-w-5xl mx-auto w-full px-6 py-10 md:py-14 relative z-10 flex flex-col items-center justify-center">
+<!-- FLOATING SKETCH DOODLES (Scattered sketchbook elements) -->
+<!-- Doodle 1: Wrench & Gear top left -->
+<div class="absolute -top-3 left-4 md:left-2 lg:-left-12 hidden sm:flex flex-col items-center pointer-events-none doodle-float opacity-85">
+<div class="w-14 h-14 bg-surface-container-lowest rounded-full sketch-border flex items-center justify-center -rotate-12 bg-amber-100/60">
+<span class="material-symbols-outlined text-primary text-[28px] doodle-spin-slow" data-icon="settings">settings</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline mt-1 font-mono-code rotate-6 bg-surface-container-lowest px-1 border border-outline-variant/60 rounded">git pull...</span>
+</div>
+<!-- Doodle 2: Coffee Cup & Pencil top right -->
+<div class="absolute top-2 right-4 md:right-2 lg:-right-10 hidden sm:flex flex-col items-center pointer-events-none doodle-float opacity-85" style="animation-delay: 1.5s;">
+<div class="w-16 h-16 bg-surface-container-lowest sketch-border flex items-center justify-center rotate-6 bg-rose-50">
+<span class="material-symbols-outlined text-secondary text-[32px]" data-icon="coffee">coffee</span>
+</div>
+<div class="washi-tape-yellow px-2 py-0.5 text-[10px] font-label-sm font-bold text-on-surface -rotate-3 mt-1">
+        เติมกาแฟก่อนแก้บัก ☕
+      </div>
+</div>
+<!-- Doodle 3: Cute Construction Cone Bottom Left -->
+<div class="absolute -bottom-6 left-6 hidden lg:flex items-center gap-2 pointer-events-none opacity-80 rotate-[-8deg]">
+<div class="w-12 h-12 bg-amber-200 sketch-border flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface text-[26px]" data-icon="construction">construction</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline bg-surface-container-lowest px-2 py-1 rounded border border-outline/30">
+        Work in progress!
+      </span>
+</div>
+<!-- Doodle 4: Server Rack & Cloud Bottom Right -->
+<div class="absolute -bottom-4 right-8 hidden lg:flex items-center gap-2 pointer-events-none opacity-85 rotate-6">
+<div class="w-12 h-12 bg-emerald-100 sketch-border flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-[26px]" data-icon="dns">dns</span>
+</div>
+<span class="font-mono-code text-[11px] text-tertiary-container bg-surface-container-lowest px-2 py-1 sketch-border">
+        status: 200 (soon)
+      </span>
+</div>
+<!-- ========================================================================= -->
+<!-- CENTRAL HEROIC MAINTENANCE CARD                                           -->
+<!-- ========================================================================= -->
+<div class="w-full bg-surface-container-lowest sketch-card p-6 md:p-10 relative overflow-visible transition-all">
+<!-- Top Decorative Paper Washi Tape -->
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 washi-tape-coral text-on-secondary px-6 py-1.5 text-label-md font-label-md font-bold uppercase tracking-wider flex items-center gap-2 -rotate-1 z-20">
+<span class="material-symbols-outlined text-[16px]" data-icon="bolt">bolt</span>
+<span>✦ SYSTEM UPGRADE IN PROGRESS • ปิดปรับปรุงชั่วคราว ✦</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="bolt">bolt</span>
+</div>
+<!-- Top Mini Status Header -->
+<div class="flex flex-wrap items-center justify-between gap-3 pt-3 pb-4 border-b-2 border-dashed border-outline-variant/50">
+<div class="flex items-center gap-2">
+<span class="relative flex h-3.5 w-3.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-container opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-secondary"></span>
+</span>
+<span class="font-label-md text-label-md font-bold text-secondary">
+            กำลังอัปเกรดระบบหลัก (Maintenance Mode)
+          </span>
+</div>
+<div class="bg-surface-container-low px-3 py-1 rounded-full border border-outline-variant/60 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[16px]" data-icon="schedule">schedule</span>
+<span class="font-mono-code text-body-sm font-bold text-on-surface">
+            กำหนดการแล้วเสร็จ: วันนี้ เวลา 18:00 น.
+          </span>
+</div>
+</div>
+<!-- Hero Header & Illustration Section -->
+<div class="mt-6 text-center max-w-3xl mx-auto">
+<!-- Cute hand-drawn tech icon cluster -->
+<div class="inline-flex items-center justify-center p-3 bg-surface-container-low rounded-2xl sketch-border mb-4 rotate-1">
+<div class="flex items-center gap-2 text-primary">
+<div class="w-10 h-10 rounded-xl bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" data-icon="handyman">handyman</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+<div class="w-10 h-10 rounded-xl bg-secondary-container text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" data-icon="verified">verified</span>
+</div>
+</div>
+</div>
+<h1 class="text-headline-xl md:text-display-hero font-headline-xl md:font-display-hero text-on-surface leading-tight tracking-tight">
+          ขออภัยในความไม่สะดวก <br class="hidden sm:inline"/>ระบบกำลังปิดปรับปรุงชั่วคราว
+        </h1>
+<p class="text-body-md md:text-headline-md font-body-md text-on-surface-variant mt-3 max-w-2xl mx-auto leading-relaxed">
+          ทีมงานกำลังอัปเกรดเซิร์ฟเวอร์และเพิ่มเครื่องมือใหม่เพื่อประสบการณ์การใช้งานที่ดียิ่งขึ้น คาดว่าจะกลับมาเปิดให้บริการเร็วๆ นี้
+        </p>
+</div>
+<!-- ========================================================================= -->
+<!-- PROGRESS & ESTIMATION BAR                                                 -->
+<!-- ========================================================================= -->
+<div class="mt-8 bg-surface-container-low/70 border-2 border-on-surface rounded-xl p-5 relative">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="sync">sync</span>
+<span class="font-title-sm text-title-sm text-on-surface font-bold">ความคืบหน้าในการอัปเกรด (System Progress)</span>
+</div>
+<span class="font-mono-code text-title-sm font-bold text-primary bg-primary-fixed px-2 py-0.5 rounded border border-primary/30">
+            75% Completed
+          </span>
+</div>
+<!-- Custom Sketchy Progress Bar -->
+<div class="w-full h-5 bg-surface-container-lowest border-2 border-on-surface rounded-full overflow-hidden p-0.5 shadow-inner">
+<div class="h-full bg-primary-container rounded-full relative overflow-hidden transition-all duration-500" style="width: 75%;">
+<!-- Striped paper pattern -->
+<div class="absolute inset-0 opacity-25 bg-[linear-gradient(45deg,rgba(255,255,255,0.4)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.4)_50%,rgba(255,255,255,0.4)_75%,transparent_75%,transparent)] bg-[length:16px_16px]"></div>
+</div>
+</div>
+<!-- Steps Timeline Indicators -->
+<div class="grid grid-cols-3 text-center mt-3 pt-2 border-t border-outline-variant/40 text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex flex-col items-center">
+<span class="text-tertiary font-bold flex items-center gap-1 text-[13px]">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              สำรองข้อมูล 100%
+            </span>
+<span class="text-[11px] text-outline">เสร็จสิ้นเมื่อ 14:30 น.</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-primary font-bold flex items-center gap-1 text-[13px] animate-pulse">
+<span class="material-symbols-outlined text-[16px]" data-icon="hourglass_top">hourglass_top</span>
+              กำลังอัปเกรดสคริปต์
+            </span>
+<span class="text-[11px] text-outline">กำลังดำเนินการ (75%)</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-outline font-bold flex items-center gap-1 text-[13px]">
+<span class="material-symbols-outlined text-[16px]" data-icon="pending">pending</span>
+              ทดสอบระบบก่อนเปิด
+            </span>
+<span class="text-[11px] text-outline">กำหนดการ 17:45 น.</span>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- QUICK MAINTENANCE DETAILS (สิ่งที่กำลังดำเนินการ)                          -->
+<!-- ========================================================================= -->
+<div class="mt-8">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary text-[22px]" data-icon="edit_note">edit_note</span>
+<h2 class="text-headline-md font-headline-md text-on-surface">สิ่งที่กำลังดำเนินการปรับปรุงในเวอร์ชันนี้:</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Item 1: Tax & Platform -->
+<div class="bg-surface-container-lowest p-4 rounded-xl sketch-border flex flex-col justify-between hover:bg-surface-container-low transition-colors">
+<div>
+<div class="w-8 h-8 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center mb-2.5 font-mono-code font-bold text-[14px]">
+                01
+              </div>
+<h3 class="font-title-sm text-title-sm text-on-surface mb-1 flex items-center gap-1.5">
+<span>อัปเดตฐานภาษี &amp; ค่าธรรมเนียม</span>
+</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                ปรับสูตรภาษีเงินได้บุคคลธรรมดา และค่าธรรมเนียมแพลตฟอร์ม Shopee / TikTok Shop ปี 2569 ให้แม่นยำยิ่งขึ้น
+              </p>
+</div>
+<div class="mt-3 pt-2 border-t border-dashed border-outline-variant/60 flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">โมดูลการเงิน</span>
+<span class="text-tertiary font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="done">done</span> เสร็จแล้ว 90%
+              </span>
+</div>
+</div>
+<!-- Item 2: PDF Processing -->
+<div class="bg-surface-container-lowest p-4 rounded-xl sketch-border flex flex-col justify-between hover:bg-surface-container-low transition-colors">
+<div>
+<div class="w-8 h-8 rounded-lg bg-primary-fixed text-on-primary-fixed flex items-center justify-center mb-2.5 font-mono-code font-bold text-[14px]">
+                02
+              </div>
+<h3 class="font-title-sm text-title-sm text-on-surface mb-1 flex items-center gap-1.5">
+<span>เพิ่มสปีดประมวลผล PDF</span>
+</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                อัปเกรด WebAssembly Engine สำหรับรวมไฟล์ บีบอัด และแปลงเอกสารในบราวเซอร์ เร็วขึ้นกว่าเดิม 3 เท่า
+              </p>
+</div>
+<div class="mt-3 pt-2 border-t border-dashed border-outline-variant/60 flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">โมดูลเอกสาร</span>
+<span class="text-primary font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="cached">cached</span> อยู่ในขั้นตอน Build
+              </span>
+</div>
+</div>
+<!-- Item 3: Privacy & Security -->
+<div class="bg-surface-container-lowest p-4 rounded-xl sketch-border flex flex-col justify-between hover:bg-surface-container-low transition-colors">
+<div>
+<div class="w-8 h-8 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center mb-2.5 font-mono-code font-bold text-[14px]">
+                03
+              </div>
+<h3 class="font-title-sm text-title-sm text-on-surface mb-1 flex items-center gap-1.5">
+<span>ความเป็นส่วนตัว 100%</span>
+</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                การันตีระบบ Zero-Server Upload ประมวลผลบนเครื่องของคุณแบบออฟไลน์ พร้อมระบบเคลียร์ Cache อัตโนมัติ
+              </p>
+</div>
+<div class="mt-3 pt-2 border-t border-dashed border-outline-variant/60 flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">ความปลอดภัย</span>
+<span class="text-tertiary font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="shield">shield</span> ผ่านการตรวจสอบ
+              </span>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- NOTIFICATION SUBSCRIBE BOX (Doodle Hand-Drawn Form)                       -->
+<!-- ========================================================================= -->
+<div class="mt-8 p-5 md:p-6 bg-surface-container rounded-2xl sketch-border relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-primary-fixed-dim/30 pointer-events-none"></div>
+<div class="max-w-xl mx-auto text-center">
+<div class="inline-flex items-center gap-1.5 bg-surface-container-lowest px-3 py-1 rounded-full border border-on-surface text-label-md font-label-md mb-2 shadow-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="notifications_active">notifications_active</span>
+<span class="text-on-surface font-bold">ไม่พลาดทุกการอัปเดต</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface">
+            กรอกอีเมลเพื่อรับการแจ้งเตือนเมื่อระบบพร้อมใช้งาน
+          </h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1 mb-4">
+            เราจะส่งข้อความแจ้งทันทีที่ระบบเปิด และไม่มีการส่งสแปมใดๆ ทั้งสิ้น
+          </p>
+<form class="flex flex-col sm:flex-row gap-2.5 max-w-md mx-auto" onsubmit="event.preventDefault(); alert('ขอบคุณครับ! ระบบได้บันทึกอีเมลของคุณแล้ว');">
+<div class="relative flex-grow">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[18px]" data-icon="mail">mail</span>
+</div>
+<input class="w-full pl-10 pr-4 py-2.5 bg-surface-container-lowest border-2 border-on-surface rounded-xl text-body-md font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:border-primary transition-colors" placeholder="ระบุอีเมลของคุณที่นี่ (เช่น dev@sammok.me)" required="" type="email"/>
+</div>
+<button class="sketch-btn bg-primary-container text-on-primary hover:bg-primary px-6 py-2.5 text-title-sm font-title-sm font-bold flex items-center justify-center gap-1.5 whitespace-nowrap" type="submit">
+<span>แจ้งเตือนฉัน</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
+</button>
+</form>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- SECONDARY ACTIONS & COMMUNITY LINKS                                       -->
+<!-- ========================================================================= -->
+<div class="mt-8 pt-6 border-t-2 border-dashed border-outline-variant/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex flex-wrap items-center gap-3">
+<a class="sketch-btn bg-surface-container-lowest text-on-surface px-4 py-2 text-label-md font-label-md flex items-center gap-1.5" href="#">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="refresh">refresh</span>
+<span>ลองรีเฟรชหน้านี้ใหม่</span>
+</a>
+<a class="sketch-btn bg-surface-container-lowest text-on-surface px-4 py-2 text-label-md font-label-md flex items-center gap-1.5" href="#">
+<span class="material-symbols-outlined text-[18px] text-tertiary" data-icon="query_stats">query_stats</span>
+<span>เช็คสถานะระบบ (System Status)</span>
+</a>
+</div>
+<div class="flex items-center gap-3 text-label-md font-label-md text-on-surface-variant">
+<span class="text-outline">พูดคุยกับผู้พัฒนา:</span>
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="https://github.com" target="_blank">
+<span class="material-symbols-outlined text-[16px]" data-icon="code">code</span> GitHub
+          </a>
+<span>•</span>
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="group">group</span> Sam Mok Coding Hub
+          </a>
+</div>
+</div>
+</div>
+</main>
+<!-- ========================================================================= -->
+<!-- FOOTER (Shared Component: Footer)                                        -->
+<!-- ========================================================================= -->
+<footer class="bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant/30 dark:border-outline-variant/10 mt-10">
+<div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+<!-- Copyright & Brand info -->
+<div class="flex flex-col text-center md:text-left gap-1">
+<div class="text-title-sm font-title-sm font-bold text-on-surface dark:text-inverse-on-surface flex items-center justify-center md:justify-start gap-2">
+<span>TOOLS WORKSPACE</span>
+<span class="washi-tape-yellow px-2 py-0.2 text-[10px] text-on-surface font-mono-code font-bold rounded">v2.5 Release Prep</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant dark:text-outline-variant max-w-xl">
+          © 2025 TOOLS WORKSPACE โดย SAM MOK CODING • ประมวลผลบนเครื่องของคุณ 100% ปลอดภัย ไม่ส่งไฟล์ขึ้นเซิร์ฟเวอร์ • Made in Mae Hong Son
+        </p>
+</div>
+<!-- Footer Navigation Links -->
+<div class="flex flex-wrap justify-center items-center gap-6 text-label-md font-label-md">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">
+          นโยบายความเป็นส่วนตัว
+        </a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">
+          เกี่ยวกับโปรเจกต์
+        </a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">
+          แจ้งบั๊ก / เสนอเครื่องมือใหม่
+        </a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">
+          บริจาคสนับสนุน
+        </a>
+</div>
+</div>
+</footer>
+</body></html>

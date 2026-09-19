@@ -15,6 +15,7 @@ import {
   InsertMediaAsset,
   projects,
   quotes,
+  toolUsageLogs,
   users,
 } from "../drizzle/schema";
 import { ENV } from "./_core/env";
@@ -26,6 +27,7 @@ export async function getDb() {
     process.env.DATABASE_POOLER_URL ??
     process.env.DATABASE_URL ??
     process.env.SUPABASE_DATABASE_URL ??
+    process.env.SUPABASE_DATABESE_URL ??
     process.env.SUPABASE_DATABESE ??
     "";
   if (!_db && databaseUrl) {
@@ -174,6 +176,58 @@ export async function createAuditLog(input: {
   const db = await getDb();
   if (!db) return;
   await db.insert(auditLogs).values(input);
+}
+
+export async function createToolUsageLog(input: {
+  userId: number | null;
+  toolId: string;
+  toolName: string;
+  toolKind: string;
+  fileCount: number;
+  fileBytes: number;
+  status: "success" | "error" | "cancelled";
+  detail?: string | null;
+}): Promise<number | null> {
+  const db = await getDb();
+  if (!db) return null;
+  const result = await db
+    .insert(toolUsageLogs)
+    .values({
+      userId: input.userId,
+      toolId: input.toolId.slice(0, 80),
+      toolName: input.toolName.slice(0, 160),
+      toolKind: input.toolKind.slice(0, 40),
+      fileCount: input.fileCount,
+      fileBytes: input.fileBytes,
+      status: input.status,
+      detail: input.detail ? input.detail.slice(0, 500) : null,
+    })
+    .returning({ id: toolUsageLogs.id });
+  return result[0]?.id ?? null;
+}
+
+export async function listToolUsageLogs(limit = 50) {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select({
+      id: toolUsageLogs.id,
+      userId: toolUsageLogs.userId,
+      toolId: toolUsageLogs.toolId,
+      toolName: toolUsageLogs.toolName,
+      toolKind: toolUsageLogs.toolKind,
+      fileCount: toolUsageLogs.fileCount,
+      fileBytes: toolUsageLogs.fileBytes,
+      status: toolUsageLogs.status,
+      detail: toolUsageLogs.detail,
+      createdAt: toolUsageLogs.createdAt,
+      userName: users.name,
+      userEmail: users.email,
+    })
+    .from(toolUsageLogs)
+    .leftJoin(users, eq(toolUsageLogs.userId, users.id))
+    .orderBy(desc(toolUsageLogs.createdAt))
+    .limit(limit);
 }
 
 export async function listRecentAuditLogs(limit = 20) {

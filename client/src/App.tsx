@@ -13,23 +13,37 @@ import AdminInsights from "./pages/AdminInsights";
 import SystemFlow from "./pages/SystemFlow";
 import Login from "./pages/Login";
 
+import MaintenancePage from "./pages/MaintenancePage";
+
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/admin" component={AdminDashboard} />
-      <Route path="/admin/settings" component={AdminSettings} />
-      <Route path="/admin/analytics" component={AdminInsights} />
-      <Route path="/flow" component={SystemFlow} />
-      <Route path="/tool" component={ToolHub} />
+      {/* Active Illustrated Doodle Tools */}
+      <Route path="/live">
+        {() => {
+          window.location.replace("/tool/live/");
+          return null;
+        }}
+      </Route>
       <Route path="/fees">
         {() => {
           window.location.replace("/tool/fee-calculator/");
           return null;
         }}
       </Route>
+      <Route path="/tool" component={ToolHub} />
+
+      {/* Admin, Workflow & Auth routes are always accessible */}
+      <Route path="/admin" component={AdminDashboard} />
+      <Route path="/admin/settings" component={AdminSettings} />
+      <Route path="/admin/analytics" component={AdminInsights} />
+      <Route path="/flow" component={SystemFlow} />
       <Route path="/login" component={Login} />
+
+      {/* Public Home: Under Maintenance */}
+      <Route path="/" component={MaintenancePage} />
+
+      {/* Fallback */}
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

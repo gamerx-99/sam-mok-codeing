@@ -3575,6 +3575,66 @@
   line-height: 1.7;
 }
 
+/* Tool usage logs (admin dashboard) */
+
+.admin-toollog-filters {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.admin-toollog-filters button {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #ffffff;
+  padding: 0.35rem 0.85rem;
+  color: var(--color-ink-soft);
+  font-size: 0.72rem;
+  font-weight: 600;
+  transition:
+    border-color 130ms ease,
+    background 130ms ease;
+}
+
+.admin-toollog-filters button:hover {
+  border-color: rgba(32, 80, 224, 0.45);
+}
+
+.admin-toollog-filters button.active {
+  background: var(--color-cobalt);
+  border-color: var(--color-cobalt);
+  color: #ffffff;
+}
+
+.admin-toollog-status {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.admin-toollog-status.success {
+  background: rgba(26, 127, 78, 0.12);
+  color: var(--color-success);
+}
+
+.admin-toollog-status.error {
+  background: rgba(208, 61, 46, 0.12);
+  color: var(--color-danger);
+}
+
+.admin-toollog-status.cancelled {
+  background: rgba(180, 83, 9, 0.12);
+  color: #b45309;
+}
+
+.admin-toollog-id {
+  display: block;
+  color: var(--color-ink-muted);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+}
+
 /* Canva integration card (C1) */
 
 .toolhub-canva-card {

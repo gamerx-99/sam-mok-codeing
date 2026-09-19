@@ -18,11 +18,13 @@ import {
   Settings2,
   ShieldCheck,
   Users,
+  Wrench,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
+import { formatBytes } from "./useToolUsageLogger";
 import {
   cropPresets,
   estimateBase64Bytes,
@@ -108,7 +110,7 @@ const starterContent: ContentRow[] = [
     id: 0,
     contentKey: "heroTitle",
     language: "en",
-    value: "Coding\\nMueang Sam Mok",
+    value: "Sam Mok\\nCoding",
   },
   {
     id: 0,
@@ -158,17 +160,19 @@ export default function AdminDashboard() {
   const adminUsers = trpc.admin.users.useQuery();
   const recentActivity = trpc.admin.recentActivity.useQuery();
   const usageStats = trpc.admin.usageStats.useQuery();
+  const toolLogs = trpc.tools.list.useQuery();
   const { user: currentUser } = useAuth();
   const utils = trpc.useUtils();
   const [location] = useLocation();
   const [activeTab, setActiveTab] = useState<
-    "leads" | "projects" | "quotes" | "appointments" | "content" | "settings"
+    "leads" | "projects" | "quotes" | "appointments" | "content" | "toolLogs" | "settings"
   >(() => {
     const tab = new URLSearchParams(window.location.search).get("tab");
     return tab === "projects" ||
       tab === "quotes" ||
       tab === "appointments" ||
-      tab === "content"
+      tab === "content" ||
+      tab === "toolLogs"
       ? tab
       : "leads";
   });
@@ -179,6 +183,7 @@ export default function AdminDashboard() {
       tab === "quotes" ||
       tab === "appointments" ||
       tab === "content" ||
+      tab === "toolLogs" ||
       tab === "leads"
     )
       setActiveTab(tab);
@@ -441,6 +446,13 @@ export default function AdminDashboard() {
                   (mediaAssets.data?.length ?? 0)}
               </span>
             </button>
+            <button
+              className={activeTab === "toolLogs" ? "active" : ""}
+              onClick={() => setActiveTab("toolLogs")}
+            >
+              <Wrench size={16} /> Tool Logs{" "}
+              <span>{toolLogs.data?.length ?? 0}</span>
+            </button>
             {activeTab === "projects" && (
               <button
                 className="admin-primary"
@@ -521,6 +533,11 @@ export default function AdminDashboard() {
                 updateAppointment.mutate({ id, status })
               }
             />
+          ) : activeTab === "toolLogs" ? (
+            <ToolLogsTable
+              rows={(toolLogs.data ?? []) as ToolLogRow[]}
+              loading={toolLogs.isLoading}
+            />
           ) : (
             <ContentManager
               settings={(contentSettings.data ?? []) as ContentRow[]}
@@ -565,6 +582,114 @@ function Stat({
       </div>
       <ArrowUpRight className="admin-stat-arrow" size={16} />
     </article>
+  );
+}
+
+type ToolLogRow = import("../../../drizzle/schema").ToolUsageLog & {
+  userName: string | null;
+  userEmail: string | null;
+};
+
+const TOOL_KIND_LABELS: Record<string, string> = {
+  pdf: "PDF",
+  interactive: "โต้ตอบ",
+  static: "หน้าเต็ม",
+};
+
+function ToolLogsTable({
+  rows,
+  loading,
+}: {
+  rows: ToolLogRow[];
+  loading: boolean;
+}) {
+  const [kindFilter, setKindFilter] = useState<"all" | "pdf" | "interactive" | "static">("all");
+  const filtered =
+    kindFilter === "all" ? rows : rows.filter(row => row.toolKind === kindFilter);
+  const totalBytes = rows.reduce((sum, row) => sum + row.fileBytes, 0);
+  return (
+    <div className="admin-table-card">
+      <div className="admin-table-head">
+        <div>
+          <h2>บันทึกการใช้งานเครื่องมือ</h2>
+          <p>
+            รวม {rows.length} รายการล่าสุด · ประมวลผลไฟล์{" "}
+            {rows.reduce((sum, row) => sum + row.fileCount, 0)} ไฟล์ ·{" "}
+            {formatBytes(totalBytes)}
+          </p>
+        </div>
+        <div className="admin-toollog-filters">
+          {(["all", "pdf", "interactive", "static"] as const).map(kind => (
+            <button
+              key={kind}
+              className={kindFilter === kind ? "active" : ""}
+              onClick={() => setKindFilter(kind)}
+            >
+              {kind === "all" ? "ทั้งหมด" : TOOL_KIND_LABELS[kind]}
+            </button>
+          ))}
+        </div>
+      </div>
+      {loading ? (
+        <LoadingRows />
+      ) : filtered.length === 0 ? (
+        <EmptyState text="ยังไม่มีการใช้งานเครื่องมือ — log จะปรากฏเมื่อมีการประมวลผลในหน้า /tool (เฉพาะผู้ใช้ที่ล็อกอิน)" />
+      ) : (
+        <div className="admin-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>เครื่องมือ</th>
+                <th>ประเภท</th>
+                <th>ผู้ใช้</th>
+                <th>ไฟล์</th>
+                <th>ขนาดรวม</th>
+                <th>สถานะ</th>
+                <th>เมื่อ</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map(row => (
+                <tr key={row.id}>
+                  <td>
+                    <strong>{row.toolName}</strong>
+                    {row.detail && <small>{row.detail}</small>}
+                    <small className="admin-toollog-id">{row.toolId}</small>
+                  </td>
+                  <td>{TOOL_KIND_LABELS[row.toolKind] ?? row.toolKind}</td>
+                  <td>
+                    {row.userName ? (
+                      <>
+                        <strong>{row.userName}</strong>
+                        {row.userEmail && <small>{row.userEmail}</small>}
+                      </>
+                    ) : (
+                      <span>ไม่ระบุ</span>
+                    )}
+                  </td>
+                  <td>{row.fileCount > 0 ? `${row.fileCount} ไฟล์` : "—"}</td>
+                  <td>{row.fileBytes > 0 ? formatBytes(row.fileBytes) : "—"}</td>
+                  <td>
+                    <span
+                      className={`admin-toollog-status ${row.status}`}
+                    >
+                      {row.status === "success"
+                        ? "สำเร็จ"
+                        : row.status === "error"
+                          ? "ผิดพลาด"
+                          : "ยกเลิก"}
+                    </span>
+                  </td>
+                  <td>
+                    <small>{new Date(row.createdAt).toLocaleString("th-TH")}</small>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
   );
 }
 

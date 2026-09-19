@@ -111,12 +111,12 @@ export default function Home() {
     <main className="code-home">
       <header className="code-topbar">
         <div className="code-container code-topbar-inner">
-          <a href="#top" className="code-brand" aria-label="Coding Mueang Sam Mok home">
+          <a href="#top" className="code-brand" aria-label="Sam Mok Coding home">
             <span className="code-brand-mark">
               <Mountain size={19} />
             </span>
             <span>
-              <strong>CODING MUEANG SAM MOK</strong>
+              <strong>SAM MOK CODING</strong>
               <small>Local Dev · Local Solution</small>
             </span>
           </a>
@@ -406,7 +406,7 @@ export default function Home() {
           </div>
         </div>
         <div className="code-container code-footer-bottom">
-          <span>© 2026 Coding Mueang Sam Mok</span>
+          <span>© 2026 Sam Mok Coding</span>
           <span>
             <Sparkles size={11} /> Made with care in Mae Hong Son
           </span>

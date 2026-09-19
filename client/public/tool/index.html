@@ -1,0 +1,1424 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="th"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TOOLS WORKSPACE - เครื่องมือช่วยงาน ใช้งานได้ทันทีในเบราว์เซอร์</title>
+<!-- Google Fonts: Mali & Itim (Thai Casual Marker & Playful Handwritten) & Kalam & Space Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Itim&amp;family=Kalam:wght@400;700&amp;family=Mali:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: '#FAF8F3',
+            'paper-warm': '#F6F2E9',
+            'paper-card': '#FFFFFF',
+            ink: '#23201D',
+            'ink-muted': '#5D5852',
+            'ink-light': '#8E8880',
+            pencil: '#332E29',
+            highlighter: '#FFF385',
+            'highlighter-green': '#D1FADF',
+            'highlighter-orange': '#FFE4D6',
+            'highlighter-blue': '#D9ECFF',
+            'highlighter-purple': '#EAE5FF',
+            doodle: '#36312B',
+            tape: 'rgba(253, 230, 138, 0.75)'
+          },
+          fontFamily: {
+            sans: ['"Itim"', '"Mali"', 'cursive', 'sans-serif'],
+            display: ['"Mali"', '"Itim"', 'cursive', 'sans-serif'],
+            hand: ['"Kalam"', '"Mali"', '"Itim"', 'cursive'],
+            mono: ['"Space Grotesk"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Hand-drawn organic border and hard ink-shadow styles */
+    .doodle-border {
+      border: 2px solid #282420;
+      border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    }
+    .doodle-box {
+      border: 2px solid #282420;
+      border-radius: 18px 24px 16px 22px / 22px 16px 24px 18px;
+      box-shadow: 3px 3px 0px 0px #282420;
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
+      will-change: transform, box-shadow;
+    }
+    .doodle-box:hover {
+      transform: translateY(-5px) rotate(-0.75deg);
+      box-shadow: 6px 6px 0px 0px #282420;
+    }
+    .doodle-box:nth-child(even):hover {
+      transform: translateY(-5px) rotate(0.85deg);
+    }
+    .doodle-box:active {
+      transform: translate(2px, 2px) scale(0.985);
+      box-shadow: 1px 1px 0px 0px #282420;
+    }
+    .doodle-badge {
+      border: 1.5px solid #282420;
+      border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
+    }
+    .tape-strip {
+      background: linear-gradient(135deg, rgba(254, 240, 138, 0.85) 0%, rgba(253, 224, 71, 0.8) 100%);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      transform: rotate(-3deg);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .tape-strip-alt {
+      background: linear-gradient(135deg, rgba(219, 234, 254, 0.85) 0%, rgba(191, 219, 254, 0.8) 100%);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      transform: rotate(2.5deg);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .quick-launch-card:hover .tape-strip {
+      transform: rotate(-5deg) translateY(-2px);
+    }
+    .quick-launch-card:hover .tape-strip-alt {
+      transform: rotate(4deg) translateY(-2px);
+    }
+    .marker-highlight {
+      background: linear-gradient(104deg, rgba(255,243,133,0) 0.9%, rgba(255,243,133,0.92) 2.4%, rgba(255,243,133,0.85) 94%, rgba(255,243,133,0) 98%);
+      border-radius: 4px 8px 6px 3px;
+      padding: 0 4px;
+    }
+    .marker-pink {
+      background: linear-gradient(104deg, rgba(254,205,211,0) 0.9%, rgba(254,205,211,0.9) 2.4%, rgba(254,205,211,0.85) 94%, rgba(254,205,211,0) 98%);
+      border-radius: 6px 3px 5px 8px;
+    }
+    .sketch-underline {
+      position: relative;
+    }
+    .sketch-underline::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 4px;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='6' viewBox='0 0 100 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3C15 1 35 5 50 2.5C65 0 85 4.5 99 2' stroke='%23282420' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+    /* Subtle paper texture dot grid */
+    .paper-grid {
+      background-color: #FAF8F3;
+      background-image: radial-gradient(#D6CEC2 0.75px, transparent 0.75px);
+      background-size: 20px 20px;
+    }
+
+    /* Headings and titles font styling */
+    h1, h2, h3, .font-display {
+      font-family: 'Mali', 'Itim', cursive, sans-serif;
+    }
+
+    /* ==================== DELIGHTFUL MICRO-ANIMATIONS ==================== */
+    @keyframes doodle-float {
+      0%, 100% {
+        transform: translateY(0px) rotate(1deg);
+      }
+      50% {
+        transform: translateY(-7px) rotate(1.8deg);
+      }
+    }
+
+    @keyframes doodle-bob {
+      0%, 100% {
+        transform: translateY(0px) rotate(-4deg);
+      }
+      50% {
+        transform: translateY(-5px) rotate(-3deg);
+      }
+    }
+
+    @keyframes doodle-bob-alt {
+      0%, 100% {
+        transform: translateY(0px) rotate(3deg);
+      }
+      50% {
+        transform: translateY(-5px) rotate(4deg);
+      }
+    }
+
+    @keyframes doodle-wiggle {
+      0%, 100% {
+        transform: rotate(-1deg) scale(1);
+      }
+      50% {
+        transform: rotate(2deg) scale(1.05);
+      }
+    }
+
+    @keyframes doodle-twinkle {
+      0%, 100% {
+        opacity: 0.9;
+        transform: scale(1) rotate(0deg);
+      }
+      50% {
+        opacity: 0.45;
+        transform: scale(0.85) rotate(12deg);
+      }
+    }
+
+    @keyframes doodle-twinkle-alt {
+      0%, 100% {
+        opacity: 0.5;
+        transform: scale(0.85) rotate(-6deg);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.1) rotate(6deg);
+      }
+    }
+
+    @keyframes fade-in-up {
+      0% {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .anim-float-art {
+      animation: doodle-float 5s ease-in-out infinite;
+    }
+    .anim-badge-left {
+      animation: doodle-bob 4s ease-in-out infinite;
+    }
+    .anim-badge-right {
+      animation: doodle-bob-alt 4.5s ease-in-out infinite 0.5s;
+    }
+    .anim-wiggle {
+      animation: doodle-wiggle 3s ease-in-out infinite;
+    }
+    .anim-twinkle-1 {
+      animation: doodle-twinkle 3s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .anim-twinkle-2 {
+      animation: doodle-twinkle-alt 2.6s ease-in-out infinite 0.4s;
+      transform-origin: center;
+    }
+    .fade-in-entry {
+      animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    /* Staggered entrance animations */
+    .stagger-1 { animation-delay: 0.05s; }
+    .stagger-2 { animation-delay: 0.15s; }
+    .stagger-3 { animation-delay: 0.25s; }
+    .stagger-4 { animation-delay: 0.35s; }
+
+    /* Interactive tool card micro-animations */
+    .tool-card .arrow-indicator {
+      transition: transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.15s ease;
+    }
+    .tool-card:hover .arrow-indicator {
+      transform: translate(3px, -2px);
+    }
+    .tool-card .action-label-arrow {
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .tool-card:hover .action-label-arrow {
+      transform: translateX(4px);
+    }
+
+    /* Tactile buttons & pills */
+    .filter-pill {
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .filter-pill:active {
+      transform: scale(0.95) translate(1px, 1px);
+    }
+
+    /* Search input focus effect */
+    .search-container {
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .search-container:focus-within {
+      transform: translateY(-2px) scale(1.008);
+      box-shadow: 5px 5px 0px 0px #282420;
+    }
+    .search-container:focus-within .search-kbd {
+      background-color: #FFF385;
+      transform: scale(1.05);
+    }
+
+    /* Status dot ping animation */
+    .pulse-dot {
+      position: relative;
+    }
+    .pulse-dot::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 9999px;
+      background-color: inherit;
+      opacity: 0.6;
+      animation: ping-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes ping-pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+      75%, 100% {
+        transform: scale(2.2);
+        opacity: 0;
+      }
+    }
+
+    /* Accessibility: Respect prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .anim-float-art,
+      .anim-badge-left,
+      .anim-badge-right,
+      .anim-wiggle,
+      .anim-twinkle-1,
+      .anim-twinkle-2 {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="paper-grid text-ink min-h-screen flex flex-col antialiased selection:bg-highlighter selection:text-ink font-sans">
+<!-- ==================== SHARED HEADER: Sketched TopNavBar ==================== -->
+<header class="bg-paper-warm/95 backdrop-blur-sm border-b-2 border-pencil sticky top-0 z-50 transition-shadow duration-300">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+<!-- Logo + Handwritten Tag -->
+<div class="flex items-center gap-3">
+<a class="flex items-center gap-2.5 group" href="#">
+<span class="w-10 h-10 rounded-xl bg-highlighter border-2 border-pencil text-pencil flex items-center justify-center shadow-[2px_2px_0px_0px_#282420] group-hover:rotate-6 group-active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-[24px]">handyman</span>
+</span>
+<div class="flex flex-col">
+<span class="font-extrabold tracking-tight text-lg text-ink flex items-center gap-1 font-mono group-hover:text-primary transition-colors">
+            TOOLS WORKSPACE
+            <span class="text-xs text-amber-600 font-hand font-bold inline-block hover:rotate-12 transition-transform">✎</span>
+</span>
+</div>
+</a>
+<span class="hidden sm:inline-block font-mono text-[11px] font-bold text-ink bg-[#E8E1D5] px-2.5 py-0.5 rounded-md border border-pencil shadow-[1px_1px_0px_0px_#282420] rotate-[-1deg] hover:rotate-1 transition-transform cursor-default">
+        SAM MOK CODING ✏️
+      </span>
+</div>
+<!-- Navigation Links with hand-drawn tabs -->
+<nav class="hidden md:flex items-center gap-2 lg:gap-4">
+<a class="px-3 py-1 text-sm font-bold bg-highlighter border-2 border-pencil rounded-lg shadow-[2px_2px_0px_0px_#282420] rotate-[-1deg] text-ink font-display hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_#282420] active:scale-95 transition-all" href="#pdf-section">
+        PDF &amp; เอกสาร
+      </a>
+<a class="px-3 py-1 text-sm font-semibold text-ink-muted hover:text-ink hover:bg-white/80 rounded-lg transition-all hover:-translate-y-0.5 hover:rotate-1 font-display" href="#studio-section">
+        กราฟิก &amp; สตูดิโอ
+      </a>
+<a class="px-3 py-1 text-sm font-semibold text-ink-muted hover:text-ink hover:bg-white/80 rounded-lg transition-all hover:-translate-y-0.5 hover:rotate-[-1deg] font-display" href="#tools-calc">
+        คำนวณภาษี &amp; ร้านค้า
+      </a>
+<a class="px-3 py-1 text-sm font-semibold text-ink-muted hover:text-ink hover:bg-white/80 rounded-lg transition-all hover:-translate-y-0.5 font-display" href="#tools-dev">
+        เครื่องมือ Dev
+      </a>
+</nav>
+<!-- Trailing Action Cluster with hand-drawn doodle buttons -->
+<div class="flex items-center gap-2">
+<button aria-label="Dark Mode" class="w-9 h-9 rounded-xl bg-white border-2 border-pencil text-ink flex items-center justify-center hover:bg-paper-warm hover:-translate-y-0.5 shadow-[2px_2px_0px_0px_#282420] active:translate-x-0.5 active:translate-y-0.5 active:scale-95 active:shadow-none transition-all" type="button">
+<span class="material-symbols-outlined text-[20px] transition-transform hover:rotate-45">dark_mode</span>
+</button>
+<button aria-label="Help" class="w-9 h-9 rounded-xl bg-white border-2 border-pencil text-ink flex items-center justify-center hover:bg-paper-warm hover:-translate-y-0.5 shadow-[2px_2px_0px_0px_#282420] active:translate-x-0.5 active:translate-y-0.5 active:scale-95 active:shadow-none transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+<button class="hidden sm:flex items-center gap-1.5 px-4 py-1.5 bg-[#FFE17D] hover:bg-[#FFD752] hover:-translate-y-0.5 border-2 border-pencil text-ink rounded-xl font-bold text-sm shadow-[3px_3px_0px_0px_#282420] hover:shadow-[4px_4px_0px_0px_#282420] active:translate-x-0.5 active:translate-y-0.5 active:scale-95 active:shadow-[1px_1px_0px_0px_#282420] transition-all font-display" type="button">
+<span class="material-symbols-outlined text-[18px]">chat_bubble</span>
+<span>ส่งข้อเสนอแนะ</span>
+</button>
+</div>
+</div>
+</header>
+<!-- ==================== MAIN SKETCHBOOK CANVAS ==================== -->
+<main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 w-full py-8 space-y-12">
+<!-- HERO SECTION: Kraft Paper Doodle Card -->
+<section class="fade-in-entry stagger-1 relative rounded-3xl bg-white border-2 border-pencil p-6 md:p-10 lg:p-12 shadow-[6px_6px_0px_0px_#282420] overflow-hidden">
+<!-- Decorative Washi Tape Effect at top -->
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 w-36 h-7 tape-strip z-10 border border-pencil/30 flex items-center justify-center text-[11px] font-hand font-bold text-ink/70 tracking-widest uppercase cursor-default hover:scale-105 transition-transform">
+      ★ HANDMADE UTILITY ★
+    </div>
+<div class="absolute -top-3 right-8 w-20 h-6 tape-strip-alt z-10 border border-pencil/30 hidden sm:block"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-2">
+<!-- Left Hero Content -->
+<div class="lg:col-span-7 space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-highlighter-green border-2 border-pencil text-ink font-bold text-xs shadow-[2px_2px_0px_0px_#282420] rotate-[-1deg] hover:rotate-0 transition-transform cursor-default font-display">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 border border-pencil pulse-dot"></span>
+<span>✦ UTILITY WORKSPACE • 100% Client-Side In-Browser</span>
+</div>
+<div class="space-y-3">
+<h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-ink tracking-tight leading-tight">
+            เครื่องมือช่วยงาน<br>
+<span class="relative inline-block mt-1 group">
+<span class="relative z-10 marker-highlight inline-block transition-transform group-hover:scale-[1.02]">ใช้งานได้ทันทีในเบราว์เซอร์</span>
+</span>
+</h1>
+<p class="text-base text-ink-muted max-w-xl font-medium leading-relaxed">
+            ทุกเครื่องมือประมวลผลบนเครื่องของคุณ ไฟล์ไม่ถูกอัปโหลดไปไหน ปลอดภัย รวดเร็ว กดที่การ์ดเพื่อเริ่มใช้งานได้เลย
+          </p>
+</div>
+<!-- Hand-Drawn Search Bar with Dynamic Micro-interactions -->
+<div class="relative max-w-xl">
+<div class="search-container flex items-center bg-[#FCFBF7] hover:bg-white rounded-2xl px-4 py-3 border-2 border-pencil shadow-[3px_3px_0px_0px_#282420]">
+<span class="material-symbols-outlined text-pencil mr-3 text-[24px] transition-transform group-focus-within:rotate-12">search</span>
+<input class="w-full bg-transparent border-0 focus:outline-none focus:ring-0 text-base text-ink placeholder:text-ink-light font-medium" id="search-input" placeholder="ค้นหาเครื่องมือ เช่น รวมไฟล์, แปลง, หมุนหน้า, ลายน้ำ..." type="text">
+<span class="search-kbd font-mono px-2.5 py-1 rounded-lg bg-[#EFECE4] border border-pencil text-ink text-xs font-bold shadow-[1px_1px_0px_0px_#282420] select-none transition-all duration-200">
+              ⌘K
+            </span>
+</div>
+</div>
+<!-- Notebook Category Filter Chips -->
+<div class="flex flex-wrap gap-2 pt-1" id="filter-chips">
+<button class="filter-pill active px-3.5 py-1.5 rounded-xl font-bold text-xs bg-ink text-white border-2 border-pencil shadow-[2px_2px_0px_0px_#282420] font-display hover:scale-105" data-category="all">
+            ทั้งหมด (50+)
+          </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-xl font-bold text-xs bg-[#FAF7EE] text-ink border-2 border-pencil hover:bg-highlighter shadow-[2px_2px_0px_0px_#282420] font-display hover:scale-105" data-category="pdf">
+            PDF &amp; เอกสาร
+          </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-xl font-bold text-xs bg-[#FAF7EE] text-ink border-2 border-pencil hover:bg-highlighter-orange shadow-[2px_2px_0px_0px_#282420] font-display hover:scale-105" data-category="graphic">
+            รูปภาพ &amp; โซเชียล
+          </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-xl font-bold text-xs bg-[#FAF7EE] text-ink border-2 border-pencil hover:bg-highlighter-purple shadow-[2px_2px_0px_0px_#282420] font-display hover:scale-105" data-category="color">
+            สี &amp; ดีไซน์
+          </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-xl font-bold text-xs bg-[#FAF7EE] text-ink border-2 border-pencil hover:bg-highlighter-blue shadow-[2px_2px_0px_0px_#282420] font-display hover:scale-105" data-category="calc">
+            เครื่องมือคำนวณ
+          </button>
+<button class="filter-pill px-3.5 py-1.5 rounded-xl font-bold text-xs bg-[#FAF7EE] text-ink border-2 border-pencil hover:bg-highlighter-green shadow-[2px_2px_0px_0px_#282420] font-display hover:scale-105" data-category="ai">
+            AI &amp; ฟังก์ชันพิเศษ
+          </button>
+</div>
+</div>
+<!-- Right Hero Sketched Illustration Canvas with Physics & Ambient Float -->
+<div class="lg:col-span-5 relative flex justify-center items-center">
+<div class="anim-float-art relative w-full max-w-md rounded-3xl border-2 border-pencil bg-[#F8F5ED] p-4 shadow-[5px_5px_0px_0px_#282420] group">
+<!-- Cute Hand-Drawn Doodle SVG Composition -->
+<div class="w-full bg-white rounded-2xl border-2 border-pencil p-4 relative overflow-hidden flex flex-col items-center justify-center min-h-[260px]">
+<!-- Notebook ruled lines background -->
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: repeating-linear-gradient(#282420 0 1px, transparent 1px 24px);"></div>
+<!-- Hand-drawn cute SVG art -->
+<svg class="w-64 h-48 relative z-10" fill="none" viewBox="0 0 260 190" xmlns="http://www.w3.org/2000/svg">
+<!-- Desk line -->
+<path d="M15 160C80 159 180 161 245 160" stroke="#282420" stroke-linecap="round" stroke-width="3"></path>
+<path d="M25 168C90 167 190 169 235 168" stroke="#8E8880" stroke-dasharray="4 4" stroke-width="1.5"></path>
+<!-- Cute Sketched Laptop -->
+<rect fill="#FFFDF8" height="75" rx="6" stroke="#282420" stroke-width="2.5" width="120" x="70" y="70"></rect>
+<rect fill="#D9ECFF" height="58" rx="3" stroke="#282420" stroke-width="2" width="104" x="78" y="78"></rect>
+<!-- Screen smiley face & sparkles -->
+<circle cx="118" cy="104" fill="#282420" r="3.5"></circle>
+<circle cx="142" cy="104" fill="#282420" r="3.5"></circle>
+<path d="M125 116C128 120 132 120 135 116" stroke="#282420" stroke-linecap="round" stroke-width="2.5"></path>
+<circle cx="113" cy="111" fill="#FFC0CB" opacity="0.8" r="3"></circle>
+<circle cx="147" cy="111" fill="#FFC0CB" opacity="0.8" r="3"></circle>
+<!-- Laptop base -->
+<path d="M50 148C55 145 70 145 70 145L190 145C190 145 205 145 210 148C210 152 205 154 195 154H65C55 154 50 152 50 148Z" fill="#E8E2D5" stroke="#282420" stroke-width="2.5"></path>
+<!-- Happy PDF Paper Sheet Floating Left -->
+<g class="transition-transform duration-300 hover:rotate-[-6deg]" transform="rotate(-12 40 70)">
+<rect fill="#FFEFEA" height="60" rx="4" stroke="#282420" stroke-width="2.5" width="46" x="25" y="40"></rect>
+<path d="M55 40L71 56H55V40Z" fill="#FF8A8A" stroke="#282420" stroke-width="2"></path>
+<rect fill="#E02424" height="5" rx="1" width="18" x="32" y="58"></rect>
+<text fill="white" font-family="'Space Grotesk', sans-serif" font-size="4" font-weight="bold" x="34" y="62">PDF</text>
+<!-- Eyes & cute smile -->
+<circle cx="38" cy="74" fill="#282420" r="2"></circle>
+<circle cx="48" cy="74" fill="#282420" r="2"></circle>
+<path d="M41 80C43 83 45 83 47 80" stroke="#282420" stroke-linecap="round" stroke-width="1.8"></path>
+</g>
+<!-- Color Palette Floating Right -->
+<g class="transition-transform duration-300 hover:rotate-[18deg]" transform="rotate(14 200 65)">
+<path d="M190 40C215 40 230 55 230 75C230 90 215 100 195 98C185 96 180 88 178 80C176 70 170 65 174 52C178 43 184 40 190 40Z" fill="#FFF385" stroke="#282420" stroke-width="2.5"></path>
+<circle cx="188" cy="52" fill="#3B82F6" r="4.5" stroke="#282420" stroke-width="1.5"></circle>
+<circle cx="204" cy="50" fill="#EF4444" r="4.5" stroke="#282420" stroke-width="1.5"></circle>
+<circle cx="218" cy="62" fill="#10B981" r="4.5" stroke="#282420" stroke-width="1.5"></circle>
+<circle cx="212" cy="78" fill="#F59E0B" r="4.5" stroke="#282420" stroke-width="1.5"></circle>
+<circle cx="192" cy="85" fill="#F8F5ED" r="4" stroke="#282420" stroke-width="1.5"></circle>
+</g>
+<!-- Doodled Pencil -->
+<g class="transition-transform duration-300 hover:rotate-[-40deg]" transform="rotate(-35 210 145)">
+<rect fill="#FBBF24" height="8" stroke="#282420" stroke-width="2" width="38" x="200" y="125"></rect>
+<path d="M238 125L248 129L238 133V125Z" fill="#FDE68A" stroke="#282420" stroke-width="2"></path>
+<path d="M245 127.8L248 129L245 130.2V127.8Z" fill="#282420"></path>
+<rect fill="#F472B6" height="8" rx="1" stroke="#282420" stroke-width="2" width="6" x="194" y="125"></rect>
+</g>
+<!-- Cute Doodle Stars and Sparkles with Shimmer/Twinkle Animation -->
+<path class="anim-twinkle-1" d="M80 35L82 42L89 44L82 46L80 53L78 46L71 44L78 42L80 35Z" fill="#FBBF24" stroke="#282420" stroke-width="1.5"></path>
+<path class="anim-twinkle-2" d="M170 25L171.5 30L176.5 31.5L171.5 33L170 38L168.5 33L163.5 31.5L168.5 30L170 25Z" fill="#60A5FA" stroke="#282420" stroke-width="1.5"></path>
+<path d="M125 45Q132 40 138 46" stroke="#282420" stroke-linecap="round" stroke-width="2"></path>
+<path d="M128 40L131 43M135 41L137 44" stroke="#282420" stroke-linecap="round" stroke-width="1.5"></path>
+</svg>
+<!-- Handwritten note below illustration -->
+<p class="font-hand font-bold text-sm text-ink-muted mt-2 rotate-[-1deg]">
+              ~ วาดด้วยใจ รันในเบราว์เซอร์ 100% ~
+            </p>
+</div>
+<!-- Sticky Note Badge: Quick Processing with gentle bobbing -->
+<div class="anim-badge-left absolute -bottom-3 -left-3 bg-[#D1FADF] px-3.5 py-2 rounded-xl border-2 border-pencil shadow-[3px_3px_0px_0px_#282420] flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95 transition-all">
+<span class="w-7 h-7 rounded-lg bg-white border border-pencil flex items-center justify-center text-emerald-700">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</span>
+<div>
+<p class="text-xs font-bold text-ink font-display">ประมวลผลไว</p>
+<p class="text-[10px] text-ink-muted">ไม่พึ่งพาเซิร์ฟเวอร์</p>
+</div>
+</div>
+<!-- Sticky Note Badge: Privacy with gentle bobbing -->
+<div class="anim-badge-right absolute -top-3 -right-3 bg-[#FFE4D6] px-3.5 py-2 rounded-xl border-2 border-pencil shadow-[3px_3px_0px_0px_#282420] flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95 transition-all">
+<span class="w-7 h-7 rounded-lg bg-white border border-pencil flex items-center justify-center text-orange-700">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</span>
+<div>
+<p class="text-xs font-bold text-ink font-display">ข้อมูลส่วนตัว 100%</p>
+<p class="text-[10px] text-ink-muted">ไฟล์ปลอดภัยบนเครื่อง</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== SECTION: เปิดใช้ได้เลย (Quick Access Hero Tools) ==================== -->
+<section class="fade-in-entry stagger-2 space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="anim-wiggle w-8 h-8 rounded-xl bg-highlighter-orange border-2 border-pencil text-ink flex items-center justify-center shadow-[2px_2px_0px_0px_#282420] rotate-[-3deg]">
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+</span>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-xl sm:text-2xl font-extrabold text-ink tracking-tight">เปิดใช้ได้เลย</h2>
+<span class="font-hand font-bold text-base text-rose-600 inline-block hover:scale-110 transition-transform">⚡ (คลิกแล้วเริ่มเลย!)</span>
+</div>
+<p class="text-xs sm:text-sm text-ink-muted font-medium">เครื่องมือแบบหน้าจอเต็ม กดแล้วเปิดหน้าเครื่องมือทันที</p>
+</div>
+</div>
+<span class="text-xs font-bold text-ink bg-white border-2 border-pencil px-3 py-1 rounded-full shadow-[2px_2px_0px_0px_#282420] rotate-1 hover:rotate-3 hover:scale-105 transition-all font-display cursor-default">
+        3 สตูดิโอไฮไลต์ ✦
+      </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Hero Card 1: Live Stream System (Doodle Live) -->
+<div onclick="window.location.href='/tool/live/'" class="doodle-box quick-launch-card tool-card relative bg-white p-4 flex flex-col justify-between cursor-pointer group hover:border-primary">
+<div class="absolute -top-2 left-6 w-16 h-4 bg-[#FDE047] border border-pencil/40 tape-strip"></div>
+<div class="flex items-start justify-between mb-3 mt-1">
+<div class="w-11 h-11 rounded-xl bg-[#FEF08A] border-2 border-pencil flex items-center justify-center text-amber-900 shadow-[2px_2px_0px_0px_#282420] group-hover:rotate-6 transition-transform duration-200">
+<span class="material-symbols-outlined text-[24px]">live_tv</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-rose-100 border border-rose-400 text-[10px] font-bold text-rose-800 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-rose-600 pulse-dot"></span> NEW LIVE
+</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-sm text-ink group-hover:text-amber-800 transition-colors">ระบบสร้างร้านค้า &amp; Live สด</h3>
+<span class="material-symbols-outlined text-pencil arrow-indicator text-[16px]">north_east</span>
+</div>
+<p class="text-xs text-ink-muted font-medium leading-relaxed">
+ตั้งค่าร้านค้า ดูดออเดอร์ CF อัตโนมัติ ทวงยอด ตัดยอด และจัดการคลังสินค้าไลฟ์สด
+</p>
+</div>
+<div class="mt-3 pt-2.5 border-t-2 border-pencil/20 border-dashed flex items-center justify-between text-xs font-bold text-amber-800 font-display">
+<span>✓ เปิดระบบ Live สด</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow">arrow_forward</span>
+</div>
+</div>
+<!-- Hero Card 2: Online Fee Calculator -->
+<div onclick="window.location.href='/tool/fee-calculator/'" class="doodle-box quick-launch-card tool-card relative bg-white p-4 flex flex-col justify-between cursor-pointer group hover:border-amber-600">
+<div class="absolute -top-2 left-6 w-16 h-4 bg-[#FED7AA] border border-pencil/40 tape-strip"></div>
+<div class="flex items-start justify-between mb-3 mt-1">
+<div class="w-11 h-11 rounded-xl bg-[#FFF7ED] border-2 border-pencil flex items-center justify-center text-amber-700 shadow-[2px_2px_0px_0px_#282420] group-hover:rotate-6 transition-transform duration-200">
+<span class="material-symbols-outlined text-[24px]">calculate</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[10px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-sm text-ink group-hover:text-amber-800 transition-colors">คำนวณค่าธรรมเนียมออนไลน์ 2569</h3>
+<span class="material-symbols-outlined text-pencil arrow-indicator text-[16px]">north_east</span>
+</div>
+<p class="text-xs text-ink-muted font-medium leading-relaxed">
+คำนวณกำไรสุทธิ Shopee, TikTok Shop, Lazada สไตล์ Doodle
+</p>
+</div>
+<div class="mt-3 pt-2.5 border-t-2 border-pencil/20 border-dashed flex items-center justify-between text-xs font-bold text-amber-700 font-display">
+<span>✓ กดเพื่อคำนวณทันที</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow">arrow_forward</span>
+</div>
+</div>
+<!-- Hero Card 3: HTML Editor -->
+<div onclick="window.location.href='/tool/live-editor/index.html'" class="doodle-box quick-launch-card tool-card relative bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="absolute -top-2 left-6 w-16 h-4 bg-[#C7D2FE] border border-pencil/40 tape-strip"></div>
+<div class="flex items-start justify-between mb-3 mt-1">
+<div class="w-11 h-11 rounded-xl bg-[#EEF2FF] border-2 border-pencil flex items-center justify-center text-indigo-700 shadow-[2px_2px_0px_0px_#282420] group-hover:rotate-6 transition-transform duration-200">
+<span class="material-symbols-outlined text-[24px]">code</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[10px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-sm text-ink group-hover:text-indigo-800 transition-colors">Live HTML Editor</h3>
+<span class="material-symbols-outlined text-pencil arrow-indicator text-[16px]">north_east</span>
+</div>
+<p class="text-xs text-ink-muted font-medium leading-relaxed">
+แก้ไข HTML สดพร้อม Inspector ชี้องค์ประกอบได้ทันที บันทึก/เปิดไฟล์ได้
+</p>
+</div>
+<div class="mt-3 pt-2.5 border-t-2 border-pencil/20 border-dashed flex items-center justify-between text-xs font-bold text-indigo-700 font-display">
+<span>✓ เปิดสตูดิโอ</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow">arrow_forward</span>
+</div>
+</div>
+<!-- Hero Card 4: Image Cropper -->
+<div onclick="window.location.href='/tool/image-cropper/index.html'" class="doodle-box quick-launch-card tool-card relative bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="absolute -top-2 left-6 w-16 h-4 bg-[#BBF7D0] border border-pencil/40 tape-strip-alt"></div>
+<div class="flex items-start justify-between mb-3 mt-1">
+<div class="w-11 h-11 rounded-xl bg-[#F0FDF4] border-2 border-pencil flex items-center justify-center text-emerald-700 shadow-[2px_2px_0px_0px_#282420] group-hover:rotate-6 transition-transform duration-200">
+<span class="material-symbols-outlined text-[24px]">crop</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[10px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-sm text-ink group-hover:text-emerald-800 transition-colors">Image Cropper &amp; Sprite</h3>
+<span class="material-symbols-outlined text-pencil arrow-indicator text-[16px]">north_east</span>
+</div>
+<p class="text-xs text-ink-muted font-medium leading-relaxed">
+ตัดรูป ครอปอัตโนมัติ และแยกสไปรท์ออกจากภาพชุด
+</p>
+</div>
+<div class="mt-3 pt-2.5 border-t-2 border-pencil/20 border-dashed flex items-center justify-between text-xs font-bold text-emerald-700 font-display">
+<span>✓ เปิดเครื่องมือ</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== SECTION: เครื่องมือ PDF & เอกสาร (31 รายการ) ==================== -->
+<section class="fade-in-entry stagger-3 space-y-5 pt-4" id="pdf-section">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b-2 border-pencil">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-[#FEE2E2] border-2 border-pencil text-rose-700 flex items-center justify-center shadow-[2px_2px_0px_0px_#282420] rotate-[-2deg] hover:rotate-3 transition-transform">
+<span class="material-symbols-outlined text-[22px]">picture_as_pdf</span>
+</div>
+<div>
+<div class="flex items-center gap-2.5">
+<h2 class="text-xl sm:text-2xl font-extrabold text-ink">เครื่องมือ PDF &amp; เอกสาร</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-highlighter border border-pencil font-mono font-bold text-xs text-ink shadow-[1px_1px_0px_0px_#282420] hover:scale-105 transition-transform cursor-default">
+              31 รายการ
+            </span>
+</div>
+<p class="text-xs sm:text-sm text-ink-muted font-medium">
+            กดที่การ์ดเพื่อเลือกไฟล์ — การ์ดที่พร้อมใช้งานจะเปิดหน้าต่างทำงานทันที ส่วนที่ยังไม่ถึงจะแจ้งสถานะให้ทราบ
+          </p>
+</div>
+</div>
+</div>
+<!-- 4 Columns Tool Grid (Doodle Index Cards) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="pdf-tools-grid">
+<!-- 1. รวมไฟล์ PDF -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#FEE2E2] border-2 border-pencil text-rose-700 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[22px]">merge</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-rose-700 transition-colors">รวมไฟล์ PDF</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            รวมไฟล์ PDF หลายไฟล์ตามลำดับที่คุณต้องการได้อย่างง่ายดายและรวดเร็ว
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-rose-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 2. แยกหน้า PDF -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#FFE4E6] border-2 border-pencil text-rose-600 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[22px]">call_split</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-rose-600 transition-colors">แยกหน้า PDF</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            แยกหน้าเฉพาะที่ต้องการ หรือแยกทุกหน้าออกเป็นไฟล์ PDF อิสระแต่ละไฟล์
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-rose-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 3. บีบอัดไฟล์ PDF -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#D1FADF] border-2 border-pencil text-emerald-800 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[22px]">compress</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-emerald-700 transition-colors">บีบอัดไฟล์ PDF</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            ลดขนาดไฟล์ PDF ให้เล็กลงโดยยังคงรักษาคุณภาพเอกสารให้คมชัดสูงสุด
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-emerald-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 4. PDF เป็น Word -->
+<div class="doodle-box tool-card bg-[#FAF8F5] p-4 flex flex-col justify-between opacity-90 group cursor-default">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#DBEAFE] border-2 border-pencil text-blue-700 flex items-center justify-center font-bold text-[15px] font-mono shadow-[1px_1px_0px_0px_#282420]">
+            W
+          </div>
+<span class="px-2 py-0.5 rounded-full bg-[#EFECE4] border border-pencil text-[11px] font-bold text-ink-muted font-display">
+            อยู่ระหว่างพัฒนา ⏳
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1">PDF เป็น Word</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            แปลงไฟล์ PDF เป็นเอกสาร Word (DOC, DOCX) แก้ไขง่าย จัดหน้าแม่นยำ
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-ink-light font-display">
+<span>อยู่ระหว่างพัฒนา</span>
+</div>
+</div>
+<!-- 5. PDF เป็น PowerPoint -->
+<div class="doodle-box tool-card bg-[#FAF8F5] p-4 flex flex-col justify-between opacity-90 group cursor-default">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#FFE4D6] border-2 border-pencil text-orange-700 flex items-center justify-center font-bold text-[15px] font-mono shadow-[1px_1px_0px_0px_#282420]">
+            P
+          </div>
+<span class="px-2 py-0.5 rounded-full bg-[#EFECE4] border border-pencil text-[11px] font-bold text-ink-muted font-display">
+            อยู่ระหว่างพัฒนา ⏳
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1">PDF เป็น PowerPoint</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            แปลงไฟล์ PDF ให้กลายเป็นสไลด์นำเสนอ PowerPoint (PPT, PPTX) ที่แก้ไขได้
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-ink-light font-display">
+<span>อยู่ระหว่างพัฒนา</span>
+</div>
+</div>
+<!-- 6. PDF เป็น Excel -->
+<div class="doodle-box tool-card bg-[#FAF8F5] p-4 flex flex-col justify-between opacity-90 group cursor-default">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#DCFCE7] border-2 border-pencil text-emerald-700 flex items-center justify-center font-bold text-[15px] font-mono shadow-[1px_1px_0px_0px_#282420]">
+            X
+          </div>
+<span class="px-2 py-0.5 rounded-full bg-[#EFECE4] border border-pencil text-[11px] font-bold text-ink-muted font-display">
+            อยู่ระหว่างพัฒนา ⏳
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1">PDF เป็น Excel</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            ดึงข้อมูลตารางจากไฟล์ PDF เข้าสู่สเปรดชีต Excel (XLS, XLSX) ได้ในไม่กี่วินาที
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-ink-light font-display">
+<span>อยู่ระหว่างพัฒนา</span>
+</div>
+</div>
+<!-- 7. Word เป็น PDF -->
+<div class="doodle-box tool-card bg-[#FAF8F5] p-4 flex flex-col justify-between opacity-90 group cursor-default">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#DBEAFE] border-2 border-pencil text-blue-700 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420]">
+<span class="material-symbols-outlined text-[22px]">description</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-[#EFECE4] border border-pencil text-[11px] font-bold text-ink-muted font-display">
+            อยู่ระหว่างพัฒนา ⏳
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1">Word เป็น PDF</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            แปลงเอกสาร Word (DOC, DOCX) เป็นไฟล์ PDF เปิดอ่านง่ายและคงรูปแบบเดิม
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-ink-light font-display">
+<span>อยู่ระหว่างพัฒนา</span>
+</div>
+</div>
+<!-- 8. PowerPoint เป็น PDF -->
+<div class="doodle-box tool-card bg-[#FAF8F5] p-4 flex flex-col justify-between opacity-90 group cursor-default">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#FFE4D6] border-2 border-pencil text-orange-700 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420]">
+<span class="material-symbols-outlined text-[22px]">slideshow</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-[#EFECE4] border border-pencil text-[11px] font-bold text-ink-muted font-display">
+            อยู่ระหว่างพัฒนา ⏳
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1">PowerPoint เป็น PDF</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            แปลงสไลด์งานนำเสนอ PPT และ PPTX ให้เป็นไฟล์ PDF เพื่อการแชร์และเปิดดูที่สะดวก
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-ink-light font-display">
+<span>อยู่ระหว่างพัฒนา</span>
+</div>
+</div>
+<!-- 9. PDF เป็น JPG -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#E0E7FF] border-2 border-pencil text-indigo-700 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[22px]">image</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-indigo-700 transition-colors">PDF เป็น JPG</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            แปลงแต่ละหน้า PDF ให้เป็นรูปภาพ JPG หรือแยกภาพทั้งหมดออกจาก PDF
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-indigo-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 10. JPG เป็น PDF -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#FEF3C7] border-2 border-pencil text-amber-800 flex items-center justify-center font-bold text-[12px] font-mono shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+            JPG
+          </div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-amber-800 transition-colors">JPG เป็น PDF</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            แปลงรูปภาพ JPG เป็น PDF ในไม่กี่วินาที ปรับแนวนอนและขนาดกระดาษได้ง่าย
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-amber-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 11. ใส่ลายน้ำ -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#E0E7FF] border-2 border-pencil text-indigo-700 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[22px]">branding_watermark</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-indigo-700 transition-colors">ใส่ลายน้ำ</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            ประทับตราหรือใส่ข้อความ/รูปภาพลงเอกสาร PDF กำหนดความโปร่งใสและตำแหน่งได้
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-indigo-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 12. หมุนหน้า PDF -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#D1FADF] border-2 border-pencil text-emerald-800 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[22px]">rotate_right</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-emerald-700 transition-colors">หมุนหน้า PDF</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            หมุนทิศทางหน้ากระดาษ PDF ตามที่ต้องการ สามารถหมุนหลายไฟล์ได้พร้อมกัน
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-emerald-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 13. ปลดล็อค PDF -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#E0E7FF] border-2 border-pencil text-indigo-700 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[22px]">lock_open</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-indigo-700 transition-colors">ปลดล็อค PDF</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            ปลดล็อครหัสผ่านและความปลอดภัย เพื่อให้คุณใช้งานและแก้ไขไฟล์ PDF ได้อย่างอิสระ
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-indigo-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 14. ตั้งรหัสผ่าน PDF -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#E0E7FF] border-2 border-pencil text-indigo-700 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[22px]">shield</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-indigo-700 transition-colors">ตั้งรหัสผ่าน PDF</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            ปกป้องไฟล์ PDF ด้วยการเข้ารหัสและตั้งรหัสผ่าน ป้องกันการเข้าถึงโดยไม่ได้รับอนุญาต
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-indigo-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 15. ซ่อมแซมไฟล์ PDF -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#D1FADF] border-2 border-pencil text-emerald-800 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[22px]">build</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-emerald-700 transition-colors">ซ่อมแซมไฟล์ PDF</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            ซ่อมแซมและกู้คืนข้อมูลจากไฟล์ PDF ที่เสียหายหรือไม่สามารถเปิดอ่านได้
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-emerald-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 16. ใส่เลขหน้า -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#E0E7FF] border-2 border-pencil text-indigo-700 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[22px]">format_list_numbered</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-indigo-700 transition-colors">ใส่เลขหน้า</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            ใส่หมายเลขหน้าลงในเอกสาร PDF เลือกตำแหน่ง ขนาดตัวอักษร และรูปแบบได้ตามต้องการ
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-indigo-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 17. ฟอร์ม PDF กรอกได้ (Badge: ใหม่) -->
+<div class="doodle-box tool-card relative bg-[#FFFBEB] p-4 flex flex-col justify-between cursor-pointer overflow-hidden group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#FEE2E2] border-2 border-pencil text-rose-700 flex items-center justify-center font-bold font-mono text-[13px] shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+            Abi
+          </div>
+<span class="px-2.5 py-0.5 rounded-full bg-[#FF7676] text-white border border-pencil font-bold text-[11px] shadow-[1px_1px_0px_0px_#282420] rotate-2 group-hover:rotate-6 transition-transform font-display">
+            ใหม่ ★
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-rose-700 transition-colors">ฟอร์ม PDF กรอกได้</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            ตรวจจับช่องฟอร์มอัตโนมัติ สร้างแบบฟอร์ม PDF แบบอินเทอร์แอคทีฟ หรือกรอกข้อมูลลงฟอร์มออนไลน์
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-rose-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อเริ่มสร้างฟอร์ม</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 18. AI สรุปเนื้อหาเอกสาร (Badge: ใหม่) -->
+<div class="doodle-box tool-card relative bg-[#F5F3FF] p-4 flex flex-col justify-between cursor-pointer overflow-hidden group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#DDD6FE] border-2 border-pencil text-indigo-800 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-[#8B5CF6] text-white border border-pencil font-bold text-[11px] shadow-[1px_1px_0px_0px_#282420] rotate-[-2deg] group-hover:rotate-[-6deg] transition-transform font-display">
+            ใหม่ ★
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-indigo-800 transition-colors">AI สรุปเนื้อหาเอกสาร</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            สรุปบทความและเอกสาร PDF ขนาดยาวให้ได้ใจความสกัดประเด็นสำคัญได้อย่างรวดเร็วด้วย AI
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-indigo-800 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อวิเคราะห์ไฟล์</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 19. AI แปลภาษาเอกสาร PDF (Badge: ใหม่) -->
+<div class="doodle-box tool-card relative bg-[#F5F3FF] p-4 flex flex-col justify-between cursor-pointer overflow-hidden group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#DDD6FE] border-2 border-pencil text-indigo-800 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[20px]">translate</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-[#8B5CF6] text-white border border-pencil font-bold text-[11px] shadow-[1px_1px_0px_0px_#282420] rotate-2 group-hover:rotate-6 transition-transform font-display">
+            ใหม่ ★
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-indigo-800 transition-colors">AI แปลภาษาเอกสาร PDF</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            แปลเอกสาร PDF ทั้งฉบับด้วย AI อัจฉริยะ รักษาฟอนต์ การจัดวาง และเลย์เอาต์เดิมอย่างแม่นยำ
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-indigo-800 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อแปลภาษา</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 20. PDF เป็น Markdown (Badge: ใหม่) -->
+<div class="doodle-box tool-card relative bg-[#FFFBEB] p-4 flex flex-col justify-between cursor-pointer overflow-hidden group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#FED7AA] border-2 border-pencil text-amber-800 flex items-center justify-center font-mono font-bold text-[13px] shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+            {#}
+          </div>
+<span class="px-2.5 py-0.5 rounded-full bg-[#F59E0B] text-white border border-pencil font-bold text-[11px] shadow-[1px_1px_0px_0px_#282420] rotate-[-2deg] group-hover:rotate-[-6deg] transition-transform font-display">
+            ใหม่ ★
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-amber-800 transition-colors">PDF เป็น Markdown</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            แปลงไฟล์ PDF เป็น Markdown (.md) รองรับหัวข้อ ตาราง ลิสต์ และลิงก์ เหมาะสำหรับทำเอกสารและส่งต่อให้ AI/LLM
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-amber-800 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อแปลง Markdown</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== SECTION: สตูดิโอเครื่องมือ: กราฟิก สี ตัวอักษร และคำนวณ (22+ รายการ) ==================== -->
+<section class="fade-in-entry stagger-4 space-y-5 pt-4" id="studio-section">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b-2 border-pencil">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-highlighter border-2 border-pencil text-ink flex items-center justify-center shadow-[2px_2px_0px_0px_#282420] rotate-2 hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[22px]">palette</span>
+</div>
+<div>
+<div class="flex items-center gap-2.5">
+<h2 class="text-xl sm:text-2xl font-extrabold text-ink">สตูดิโอเครื่องมือ (ใช้งานทันที ไม่ต้องอัปโหลด)</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-highlighter-blue border border-pencil font-mono font-bold text-xs text-ink shadow-[1px_1px_0px_0px_#282420] hover:scale-105 transition-transform cursor-default">
+              22+ รายการ
+            </span>
+</div>
+<p class="text-xs sm:text-sm text-ink-muted font-medium">
+            เครื่องมือสี รูปภาพ ตัวอักษร และคำนวณ — กดการ์ดแล้วใช้ได้เลย ข้อมูลไม่ออกจากเครื่องคุณ
+          </p>
+</div>
+</div>
+</div>
+<!-- Studio Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="studio-tools-grid">
+<!-- 1. แปลงรหัสสี -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#D1FADF] border-2 border-pencil text-emerald-800 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[20px]">colorize</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-emerald-800 transition-colors">แปลงรหัสสี</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            แปลงสีระหว่าง HEX / RGB / HSL พร้อมคัดลอกได้ทันที
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-emerald-800 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 2. ชุดเฉดสี 50–950 -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#E0E7FF] border-2 border-pencil text-indigo-700 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[20px]">gradient</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-indigo-700 transition-colors">ชุดเฉดสี 50–950</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            สร้างเฉดสีจากสีหลักแบบ Tailwind 11 ระดับ พร้อมคัดลอกทุกเฉด
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-indigo-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 3. สีฮาร์โมนี -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#FFE4E6] border-2 border-pencil text-rose-700 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[20px]">donut_large</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-rose-700 transition-colors">สีฮาร์โมนี</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            หาคู่สี สีสามเหลี่ยม สีข้างเคียง และสีแยกจากสีหลัก
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-rose-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 4. ตรวจ Contrast WCAG -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#E2E8F0] border-2 border-pencil text-slate-800 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[20px]">contrast</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-slate-900 transition-colors">ตรวจ Contrast WCAG</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            ตรวจความตัดกันของสีตัวอักษร/พื้นหลังตามเกณฑ์ AA / AAA
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-slate-800 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 5. จำลองตาบอดสี -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#E0E7FF] border-2 border-pencil text-indigo-700 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-indigo-700 transition-colors">จำลองตาบอดสี</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            ดูมุมมองคุณผ่านสายตาของคนตาบอดสี 3 ประเภท
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-indigo-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 6. สกัดถาดสีจากรูป -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#FFE4E6] border-2 border-pencil text-rose-700 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-rose-700 transition-colors">สกัดถาดสีจากรูป</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            ดึงสีเด่นจากไฟล์รูปภาพเป็นพาเลตพร้อมสัดส่วน
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-rose-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 7. ครอปรูปโซเชียล -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#E2E8F0] border-2 border-pencil text-slate-800 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[20px]">aspect_ratio</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-slate-900 transition-colors">ครอปรูปโซเชียล</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            ครอปรูปเป็นสัดส่วน IG/Feed (1:1, 4:5, 9:16, 16:9) เลือกจุดตัดได้
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-slate-800 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 8. สร้างชุด Favicon & App Icon -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#D1FADF] border-2 border-pencil text-emerald-800 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-emerald-800 transition-colors">สร้างชุด Favicon</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            ตัดรูปเป็น Favicon 16/32/48 + Apple Touch + PWA ในคลิกเดียว
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-emerald-800 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 9. PX ⇄ REM Converter -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#E0E7FF] border-2 border-pencil text-indigo-700 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[20px]">sync_alt</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-indigo-700 transition-colors">PX ⇄ REM</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            แปลงพิกเซลเป็น rem และสลับกัน กำหนด root size เองได้
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-indigo-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 10. คำนวณ Line-height -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#E2E8F0] border-2 border-pencil text-slate-800 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[20px]">format_line_spacing</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-slate-900 transition-colors">คำนวณ Line-height</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            ได้ระยะบรรทัดจริงเป็น px พร้อมคำแนะนำว่าเหมาะหัวเรื่องหรือเนื้อความ
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-slate-800 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 11. นับคำ (รองรับไทย) -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#D1FADF] border-2 border-pencil text-emerald-800 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[20px]">pin</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-emerald-800 transition-colors">นับคำ (รองรับไทย)</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            นับคำ/ตัวอักษร/ประโยค + เวลาอ่าน โดยตัดคำไทยด้วย Intl.Segmenter
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-emerald-800 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+<!-- 12. สร้าง Meta Tags (OG) -->
+<div class="doodle-box tool-card bg-white p-4 flex flex-col justify-between cursor-pointer group">
+<div class="flex items-start justify-between mb-3">
+<div class="w-10 h-10 rounded-xl bg-[#FFE4E6] border-2 border-pencil text-rose-700 flex items-center justify-center shadow-[1px_1px_0px_0px_#282420] group-hover:rotate-6 transition-transform">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</div>
+<span class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-highlighter-green border border-pencil text-[11px] font-bold text-emerald-900 shadow-[1px_1px_0px_0px_#282420] font-display">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> ใช้งานได้
+          </span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink mb-1 group-hover:text-rose-700 transition-colors">สร้าง Meta Tags (OG)</h3>
+<p class="text-xs text-ink-muted line-clamp-2 font-medium">
+            กรอกข้อมูลเว็บ ได้ชุด meta Open Graph / Twitter พร้อมคัดลอก
+          </p>
+</div>
+<div class="mt-4 pt-2 border-t border-pencil/20 border-dashed text-xs font-bold text-rose-700 flex items-center gap-1 font-display">
+<span>✓ กดเพื่อใช้งาน</span>
+<span class="material-symbols-outlined text-[15px] action-label-arrow opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- ==================== SHARED FOOTER: Sketched Note Footer ==================== -->
+<footer class="bg-paper-warm border-t-2 border-pencil mt-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+<!-- Brand & Security Reassurance -->
+<div class="flex flex-col sm:flex-row items-center sm:items-start gap-3 text-center sm:text-left">
+<div class="w-10 h-10 rounded-xl bg-highlighter border-2 border-pencil flex items-center justify-center text-ink shadow-[2px_2px_0px_0px_#282420] rotate-[-3deg] hover:rotate-3 hover:scale-105 transition-all">
+<span class="material-symbols-outlined text-[22px]">security</span>
+</div>
+<div>
+<p class="text-base font-extrabold text-ink flex items-center justify-center sm:justify-start gap-1 font-display">
+          TOOLS WORKSPACE <span class="text-xs font-hand text-ink-muted">(In-Browser Notebook)</span>
+</p>
+<p class="text-xs sm:text-sm text-ink-muted max-w-xl font-medium">
+          © 2025 TOOLS WORKSPACE โดย SAM MOK CODING • ประมวลผลบนเครื่องของคุณ 100% ปลอดภัย ไม่ส่งไฟล์ขึ้นเซิร์ฟเวอร์ • Made in Mae Hong Son
+        </p>
+</div>
+</div>
+<!-- Footer Navigation Links -->
+<div class="flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm font-bold font-display">
+<a class="text-ink-muted hover:text-ink hover:underline hover:-translate-y-0.5 transition-all" href="#">
+        นโยบายความเป็นส่วนตัว
+      </a>
+<span class="text-pencil/40">•</span>
+<a class="text-ink-muted hover:text-ink hover:underline hover:-translate-y-0.5 transition-all" href="#">
+        เกี่ยวกับโปรเจกต์
+      </a>
+<span class="text-pencil/40">•</span>
+<a class="text-ink-muted hover:text-ink hover:underline hover:-translate-y-0.5 transition-all" href="#">
+        แจ้งบั๊ก / เสนอเครื่องมือใหม่
+      </a>
+<span class="text-pencil/40">•</span>
+<a class="text-ink-muted hover:text-ink hover:underline hover:-translate-y-0.5 transition-all" href="#">
+        บริจาคสนับสนุน
+      </a>
+</div>
+</div>
+</footer>
+<!-- Inline Vanilla Interactive Logic (Search Filter + Keyboard shortcut) -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search-input');
+    const allCards = document.querySelectorAll('.tool-card');
+    const filterPills = document.querySelectorAll('.filter-pill');
+
+    // Live search input filtering with dynamic smooth reaction
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      allCards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = 'flex';
+          card.style.opacity = '1';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+
+    // Quick keyboard shortcut ⌘K or Ctrl+K focus
+    window.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        searchInput.focus();
+        searchInput.parentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
+    // Pill Filter interactions
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        filterPills.forEach(p => {
+          p.classList.remove('bg-ink', 'text-white');
+          p.classList.add('bg-[#FAF7EE]', 'text-ink');
+        });
+        pill.classList.add('bg-ink', 'text-white');
+        pill.classList.remove('bg-[#FAF7EE]', 'text-ink');
+
+        const category = pill.getAttribute('data-category');
+        if (category === 'all') {
+          allCards.forEach(c => c.style.display = 'flex');
+        } else if (category === 'pdf') {
+          document.getElementById('pdf-section').scrollIntoView({ behavior: 'smooth' });
+        } else if (category === 'color' || category === 'graphic') {
+          document.getElementById('studio-section').scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  });
+</script>
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>

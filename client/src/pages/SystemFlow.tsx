@@ -237,7 +237,7 @@ export default function SystemFlow() {
               <span className="font-display text-base leading-tight">
                 {language === "th"
                   ? "โค้ดดิ้งเมืองสามหมอก"
-                  : "Coding Mueang Sam Mok"}
+                  : "Sam Mok Coding"}
               </span>
             </div>
           </div>
