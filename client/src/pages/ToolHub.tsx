@@ -106,6 +106,8 @@ export default function ToolHub() {
   const catalogTools = useMemo(() => {
     const q = query.trim().toLowerCase();
     return CATALOG_TOOLS.filter(tool => {
+      // Exclude tools that are under development (not yet functional)
+      if (!isWorkingTool(tool.id)) return false;
       const inCategory = filter === "all" || tool.category === filter;
       if (!inCategory) return false;
       if (!q) return true;
