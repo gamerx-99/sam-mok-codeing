@@ -25,7 +25,7 @@ function Router() {
       <Route path="/tool" component={ToolHub} />
       <Route path="/fees">
         {() => {
-          window.location.replace("/tool/khumkhai/");
+          window.location.replace("/tool/fee-calculator/");
           return null;
         }}
       </Route>

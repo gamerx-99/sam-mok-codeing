@@ -72,10 +72,10 @@ const STATIC_TOOLS: WorkingTool[] = [
     external: true,
   },
   {
-    id: "khumkhai-calculator",
-    title: "คำนวณค่าธรรมเนียมออนไลน์ 2569 (KhumKhai)",
+    id: "fee-calculator",
+    title: "คำนวณค่าธรรมเนียมขายออนไลน์ 2569",
     desc: "สรุปและเปรียบเทียบค่าธรรมเนียม Shopee, TikTok Shop, Lazada พร้อมเครื่องคิดเลขกำไรสุทธิ",
-    href: "/tool/khumkhai/",
+    href: "/tool/fee-calculator/",
     icon: Calculator,
     external: true,
   },
@@ -84,7 +84,7 @@ const STATIC_TOOLS: WorkingTool[] = [
 const CATEGORY_OF_STATIC: Record<string, ToolCategory> = {
   "live-editor": "organize",
   "image-cropper": "organize",
-  "khumkhai-calculator": "calculators",
+  "fee-calculator": "calculators",
 };
 
 type Filter = ToolCategory | "all";
