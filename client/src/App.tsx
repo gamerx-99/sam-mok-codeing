@@ -23,6 +23,12 @@ function Router() {
       <Route path="/admin/analytics" component={AdminInsights} />
       <Route path="/flow" component={SystemFlow} />
       <Route path="/tool" component={ToolHub} />
+      <Route path="/fees">
+        {() => {
+          window.location.replace("/tool/khumkhai/");
+          return null;
+        }}
+      </Route>
       <Route path="/login" component={Login} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />

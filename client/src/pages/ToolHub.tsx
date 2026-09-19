@@ -6,6 +6,7 @@ import {
   ArrowLeft,
   ArrowUp,
   ArrowUpRight,
+  Calculator,
   Check,
   Code2,
   Crop,
@@ -70,11 +71,20 @@ const STATIC_TOOLS: WorkingTool[] = [
     icon: Crop,
     external: true,
   },
+  {
+    id: "khumkhai-calculator",
+    title: "คำนวณค่าธรรมเนียมออนไลน์ 2569 (KhumKhai)",
+    desc: "สรุปและเปรียบเทียบค่าธรรมเนียม Shopee, TikTok Shop, Lazada พร้อมเครื่องคิดเลขกำไรสุทธิ",
+    href: "/tool/khumkhai/",
+    icon: Calculator,
+    external: true,
+  },
 ];
 
 const CATEGORY_OF_STATIC: Record<string, ToolCategory> = {
   "live-editor": "organize",
   "image-cropper": "organize",
+  "khumkhai-calculator": "calculators",
 };
 
 type Filter = ToolCategory | "all";
@@ -127,7 +137,7 @@ export default function ToolHub() {
             </span>
             <span>
               <strong>TOOLS WORKSPACE</strong>
-              <small>Coding Mueang Sam Mok</small>
+              <small>Sam Mok Coding</small>
             </span>
           </Link>
           <nav className="toolhub-nav" aria-label="Tool navigation">
@@ -270,7 +280,7 @@ export default function ToolHub() {
 
       <footer className="toolhub-footer">
         <div className="code-container toolhub-footer-inner">
-          <span>© 2026 Coding Mueang Sam Mok</span>
+          <span>© 2026 Sam Mok Coding</span>
           <span>
             เครื่องมือทั้งหมดประมวลผลในเบราว์เซอร์ของคุณ · Made in Mae Hong Son
           </span>
