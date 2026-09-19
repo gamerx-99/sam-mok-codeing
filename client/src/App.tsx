@@ -33,12 +33,12 @@ function Router() {
       </Route>
       <Route path="/tool" component={ToolHub} />
 
-      {/* Admin, Workflow & Auth routes are always accessible */}
-      <Route path="/admin" component={AdminDashboard} />
-      <Route path="/admin/settings" component={AdminSettings} />
-      <Route path="/admin/analytics" component={AdminInsights} />
-      <Route path="/flow" component={SystemFlow} />
-      <Route path="/login" component={Login} />
+      {/* Tools only — admin/workflow/login closed this round */}
+      <Route path="/admin" component={MaintenancePage} />
+      <Route path="/admin/settings" component={MaintenancePage} />
+      <Route path="/admin/analytics" component={MaintenancePage} />
+      <Route path="/flow" component={MaintenancePage} />
+      <Route path="/login" component={MaintenancePage} />
 
       {/* Public Home: Under Maintenance */}
       <Route path="/" component={MaintenancePage} />
