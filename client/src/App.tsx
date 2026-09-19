@@ -31,7 +31,12 @@ function Router() {
           return null;
         }}
       </Route>
-      <Route path="/tool" component={ToolHub} />
+      <Route path="/tool">
+        {() => {
+          window.location.replace("/tool/index.html");
+          return null;
+        }}
+      </Route>
 
       {/* Tools only — admin/workflow/login closed this round */}
       <Route path="/admin" component={MaintenancePage} />
