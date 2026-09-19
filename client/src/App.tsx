@@ -18,7 +18,7 @@ import MaintenancePage from "./pages/MaintenancePage";
 function Router() {
   return (
     <Switch>
-      {/* Active Illustrated Doodle Tools */}
+      {/* Active Illustrated Doodle Tools - External static pages */}
       <Route path="/live">
         {() => {
           window.location.replace("/tool/live/");
@@ -31,22 +31,21 @@ function Router() {
           return null;
         }}
       </Route>
+
+      {/* Main Tools Workspace */}
+      <Route path="/" component={ToolHub} />
+      
+      {/* Legacy /tool route redirects to root */}
       <Route path="/tool">
-        {() => {
-          window.location.replace("/tool/index.html");
-          return null;
-        }}
+        {() => <Redirect to="/" />}
       </Route>
 
-      {/* Tools only — admin/workflow/login closed this round */}
+      {/* Admin/workflow/login routes - currently hidden/maintenance */}
       <Route path="/admin" component={MaintenancePage} />
       <Route path="/admin/settings" component={MaintenancePage} />
       <Route path="/admin/analytics" component={MaintenancePage} />
       <Route path="/flow" component={MaintenancePage} />
       <Route path="/login" component={MaintenancePage} />
-
-      {/* Public Home: Under Maintenance */}
-      <Route path="/" component={MaintenancePage} />
 
       {/* Fallback */}
       <Route path="/404" component={NotFound} />
