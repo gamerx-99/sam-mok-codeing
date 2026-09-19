@@ -3,619 +3,745 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ค่าธรรมเนียมขายของออนไลน์ 2569 (2026) - Shopee, TikTok Shop, Lazada | สามหมอกโค้ดดิ้ง</title>
-  <meta name="description" content="สรุปและเปรียบเทียบค่าธรรมเนียม Shopee, TikTok Shop, Lazada อัปเดตล่าสุด 2569 พร้อมเครื่องคิดเลขคำนวณกำไรสุทธิต่อชิ้น - Sammok Coding Tool">
+  <title>E-Commerce Profit Studio 2569 | สามหมอก เครื่องมือคำนวณกำไร & ค่าธรรมเนียม</title>
+  <meta name="description" content="เครื่องมือวิเคราะห์ต้นทุนและเปรียบเทียบกำไรสุทธิ Shopee, TikTok Shop, Lazada อัปเดต 2569 - Sam Mok Studio">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Prompt', sans-serif; }
-    .tab-active { border-color: #ea580c; color: #ea580c; background-color: #fff7ed; }
+    .font-mono-num { font-family: 'JetBrains Mono', monospace; }
+    .loft-border { border-color: #E7E3DA; }
+    .loft-card { background: #FFFFFF; border: 1px solid #E5E0D8; box-shadow: 0 4px 20px -2px rgba(45, 35, 20, 0.04); }
+    .loft-card-active { border-color: #EA580C; background: #FFFBF7; }
+    .loft-bg { background-color: #F8F5EF; background-image: radial-gradient(#E5DFD3 0.75px, transparent 0.75px); background-size: 18px 18px; }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen">
+<body class="loft-bg text-stone-850 min-h-screen flex flex-col antialiased selection:bg-orange-500 selection:text-white">
 
-  <!-- Top Navbar -->
-  <nav class="bg-white/95 backdrop-blur border-b border-slate-200 sticky top-0 z-50">
+  <!-- Minimal Loft Top Bar -->
+  <header class="bg-stone-900 text-stone-200 border-b border-stone-800 sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <a href="/tool" class="text-xs text-slate-500 hover:text-slate-800 flex items-center gap-1 font-medium bg-slate-100 hover:bg-slate-200 px-2.5 py-1.5 rounded-lg transition mr-2">
-          ← กลับหน้าเครื่องมือ
+      <div class="flex items-center gap-4">
+        <a href="/tool" class="text-xs text-stone-400 hover:text-white flex items-center gap-1.5 transition font-medium border border-stone-700 bg-stone-800/80 px-3 py-1.5 rounded-lg">
+          <span>←</span> กลับหน้าเครื่องมือ
         </a>
-        <div class="w-10 h-10 bg-gradient-to-tr from-orange-500 via-rose-500 to-amber-500 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-md shadow-orange-500/20">
-          ฿
-        </div>
-        <div class="leading-none">
-          <span class="text-xl font-black tracking-tight text-slate-900">Khum<span class="text-orange-600">Khai</span></span>
-          <span class="block text-[10px] text-slate-400 font-medium mt-0.5">เครื่องคิดเลขค่าธรรมเนียมออนไลน์ 2569</span>
+        <div class="h-4 w-px bg-stone-700 hidden sm:block"></div>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-orange-600 flex items-center justify-center text-white font-black text-sm shadow-sm">
+            SM
+          </div>
+          <div>
+            <div class="text-sm font-bold text-white tracking-wide uppercase flex items-center gap-2">
+              Sam Mok <span class="text-orange-400 text-xs px-2 py-0.2 bg-orange-950/80 border border-orange-700/50 rounded">COMMERCE LAB</span>
+            </div>
+            <div class="text-[10px] text-stone-400 hidden sm:block">ระบบวิเคราะห์กำไร & ค่าธรรมเนียม 3 มาร์เก็ตเพลส 2569</div>
+          </div>
         </div>
       </div>
-      <div class="hidden md:flex items-center gap-6 text-xs font-medium text-slate-600">
-        <a href="#fee-types-section" class="hover:text-orange-600 transition">ประเภทค่าธรรมเนียม</a>
-        <a href="#platform-overview-section" class="hover:text-orange-600 transition">สรุปแพลตฟอร์ม</a>
-        <a href="#compare-section" class="hover:text-orange-600 transition">ตารางเปรียบเทียบ</a>
-        <a href="#calculator-section" class="hover:text-orange-600 transition">เครื่องคิดเลข</a>
-        <a href="#faq-section" class="hover:text-orange-600 transition">คำถามที่พบบ่อย</a>
+
+      <div class="flex items-center gap-3 text-xs">
+        <span class="hidden md:inline-block text-stone-400 font-mono-num text-[11px] bg-stone-800/80 px-2.5 py-1 rounded border border-stone-700">
+          VAT: 7% INCLUDED
+        </span>
+        <a href="#quick-compare" class="text-xs bg-orange-600 hover:bg-orange-500 text-white font-semibold px-3.5 py-1.5 rounded-lg transition shadow">
+          เปรียบเทียบ 3 แพลตฟอร์ม
+        </a>
       </div>
-      <a href="#calculator-section" class="bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-sm hover:shadow">
-        คำนวณกำไรทันที
-      </a>
     </div>
-  </nav>
+  </header>
 
-  <div class="max-w-5xl mx-auto px-4 py-8 space-y-12">
-
-    <!-- Hero Header -->
-    <header class="text-center space-y-4">
-      <div class="inline-flex items-center gap-2 bg-orange-100/90 text-orange-800 text-xs px-4 py-1.5 rounded-full font-semibold border border-orange-200">
-        <span class="animate-pulse">🔴</span> อัปเดตล่าสุด 2569 (2026) ครบทั้ง 3 แพลตฟอร์ม
-      </div>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-        ค่าธรรมเนียมขายของออนไลน์ 2569 (2026)
-      </h1>
-      <p class="text-slate-600 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-        สรุปและเปรียบเทียบค่าธรรมเนียม Shopee, TikTok Shop, Lazada อัปเดตล่าสุด พร้อมเครื่องคิดเลขคำนวณต้นทุน ยอดเงินสุทธิ และกำไรต่อชิ้น
-      </p>
-
-      <!-- Platform Stat Highlights -->
-      <div class="inline-flex flex-wrap items-center justify-center gap-2 md:gap-4 bg-white border border-slate-200 shadow-sm rounded-2xl px-6 py-3 text-xs text-slate-600 mt-2">
-        <span class="font-medium text-slate-400">ค่าธรรมเนียมเฉลี่ยรวม:</span>
-        <span class="font-bold text-orange-600">Shopee 7.49 - 11.24%</span>
-        <span class="text-slate-300">•</span>
-        <span class="font-bold text-slate-900">TikTok Shop สูงสุด 11.24%</span>
-        <span class="text-slate-300">•</span>
-        <span class="font-bold text-indigo-600">Lazada สูงสุด 12.31%</span>
-      </div>
-    </header>
-
-    <!-- Section 1: ประเภทค่าธรรมเนียม (6 Cards) -->
-    <section id="fee-types-section" class="space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-        <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-          <span class="w-2.5 h-5 bg-orange-500 rounded-full"></span> ค่าธรรมเนียมแต่ละประเภท
-        </h2>
-        <span class="text-xs text-slate-400">หักจากยอดขายของผู้ขาย</span>
+  <!-- Hero Header (Loft Minimal Style) -->
+  <section class="max-w-6xl mx-auto px-4 pt-10 pb-6 w-full">
+    <div class="border-b loft-border pb-8 flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+      <div class="space-y-2.5 max-w-2xl">
+        <div class="inline-flex items-center gap-2 bg-stone-200/80 text-stone-700 text-xs px-3 py-1 rounded-md font-semibold tracking-wider uppercase">
+          <span class="w-2 h-2 rounded-full bg-orange-600 animate-pulse"></span>
+          อัปเดตฐานคำนวณปี 2569 (2026)
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-stone-900 tracking-tight leading-tight">
+          เครื่องคิดเลขกำไร <span class="text-orange-600 font-black">&</span> ค่าธรรมเนียมขายออนไลน์
+        </h1>
+        <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+          เช็กเงินเข้ากระเป๋าจริงต่อชิ้น คำนวณค่าคอมมิชชั่น ค่าธุรกรรม โปรแกรมส่งฟรี และ VAT 7% พร้อมโหมดเปรียบเทียบ <strong>Shopee vs TikTok Shop vs Lazada</strong> ในคลิกเดียว
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Card 1: Commission -->
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition">
-          <div class="w-11 h-11 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center text-xl mb-3">🛍️</div>
-          <h3 class="font-bold text-slate-900 text-sm">ค่าคอมมิชชั่น (Commission Fee)</h3>
-          <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
-            ค่าธรรมเนียมที่แพลตฟอร์มหักจากยอดขายสินค้าตามแต่ละหมวดหมู่ เช่น แฟชั่น สินค้าทั่วไป อิเล็กทรอนิกส์ (คิดจากราคาสินค้าหลังหักส่วนลดร้าน)
-          </p>
-          <div class="mt-4 flex flex-wrap gap-1 text-[11px]">
-            <span class="bg-orange-50 text-orange-700 px-2 py-0.5 rounded font-medium">Shopee</span>
-            <span class="bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-medium">TikTok</span>
-            <span class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-medium">Lazada</span>
+      <!-- Quick Platform Rate Strip -->
+      <div class="bg-white border loft-border rounded-xl p-4 shadow-sm space-y-2 lg:min-w-[320px]">
+        <div class="text-[11px] font-bold text-stone-400 uppercase tracking-wider">เรตหักเฉลี่ยปี 2569</div>
+        <div class="grid grid-cols-3 gap-2 text-center text-xs">
+          <div class="bg-stone-50 border loft-border p-2 rounded-lg">
+            <div class="font-bold text-orange-600 flex items-center justify-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span> Shopee
+            </div>
+            <div class="font-mono-num font-bold text-stone-800 text-sm mt-0.5">7.5–11.2%</div>
           </div>
-        </div>
-
-        <!-- Card 2: Transaction -->
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition">
-          <div class="w-11 h-11 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl mb-3">💳</div>
-          <h3 class="font-bold text-slate-900 text-sm">ค่าธรรมเนียมชำระเงิน (Payment Fee)</h3>
-          <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
-            ค่าดำเนินการรับชำระเงินผ่านทุกช่องทาง (บัตร, โอน, QR, SPayLater/LazPayLater) คิด 3% + VAT 7% = <strong>3.21%</strong>
-          </p>
-          <div class="mt-4 flex flex-wrap gap-1 text-[11px]">
-            <span class="bg-orange-50 text-orange-700 px-2 py-0.5 rounded font-medium">Shopee 3.21%</span>
-            <span class="bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-medium">TikTok 3.21%</span>
-            <span class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-medium">Lazada 3.21%</span>
+          <div class="bg-stone-50 border loft-border p-2 rounded-lg">
+            <div class="font-bold text-stone-900 flex items-center justify-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-stone-800"></span> TikTok
+            </div>
+            <div class="font-mono-num font-bold text-stone-800 text-sm mt-0.5">สูงสุด 11.2%</div>
           </div>
-        </div>
-
-        <!-- Card 3: Free Shipping / Voucher -->
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition">
-          <div class="w-11 h-11 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl mb-3">🎟️</div>
-          <h3 class="font-bold text-slate-900 text-sm">โค้ดส่งฟรี / เงินคืน (Program Fee)</h3>
-          <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
-            ค่าบริการเมื่อร้านเข้าร่วมแคมเปญแจกโค้ดส่งฟรี (FSS) หรือโค้ดเงินคืน (Coins Cashback CCB) เพื่อดึงดูดลูกค้าและเพิ่มยอดขาย
-          </p>
-          <div class="mt-4 flex flex-wrap gap-1 text-[11px]">
-            <span class="bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded font-medium">Shopee CCB+FSS</span>
-            <span class="bg-indigo-50 text-indigo-800 px-2 py-0.5 rounded font-medium">LazCoins / FS Max</span>
-          </div>
-        </div>
-
-        <!-- Card 4: Growth Fee -->
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition">
-          <div class="w-11 h-11 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-xl mb-3">📈</div>
-          <h3 class="font-bold text-slate-900 text-sm">Growth Fee / ค่าพัฒนาบริการ</h3>
-          <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
-            ค่าธรรมเนียมสนับสนุนการเติบโตและการบริการ เช่น TikTok Shop คิดเพิ่มประมาณ 2% + VAT 7% = <strong>2.14%</strong>
-          </p>
-          <div class="mt-4 flex flex-wrap gap-1 text-[11px]">
-            <span class="bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-medium">TikTok Shop ~2.14%</span>
-          </div>
-        </div>
-
-        <!-- Card 5: Affiliate -->
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition">
-          <div class="w-11 h-11 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center text-xl mb-3">🤝</div>
-          <h3 class="font-bold text-slate-900 text-sm">ค่า Affiliate (ค่านายหน้าพันธมิตร)</h3>
-          <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
-            ค่านายหน้าที่ร้านค้ากำหนดให้ครีเอเตอร์/อินฟลูเอนเซอร์ที่ช่วยปักตะกร้าหรือทำคลิปโปรโมทสินค้าให้ (ตาม % ที่ร้านระบุ)
-          </p>
-          <div class="mt-4 flex flex-wrap gap-1 text-[11px]">
-            <span class="bg-purple-50 text-purple-800 px-2 py-0.5 rounded font-medium">TikTok Shop Affiliate</span>
-            <span class="bg-orange-50 text-orange-700 px-2 py-0.5 rounded font-medium">Shopee Affiliate</span>
-          </div>
-        </div>
-
-        <!-- Card 6: VAT 7% -->
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition">
-          <div class="w-11 h-11 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center text-xl mb-3">📑</div>
-          <h3 class="font-bold text-slate-900 text-sm">VAT 7% ของค่าธรรมเนียม</h3>
-          <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
-            ภาษีมูลค่าเพิ่มที่กฎหมายกำหนดให้แพลตฟอร์มเรียกเก็บ 7% บน <strong>"ยอดรวมค่าธรรมเนียมที่แพลตฟอร์มหัก"</strong> (ไม่ใช่คิดจากราคาสินค้า)
-          </p>
-          <div class="mt-4 flex flex-wrap gap-1 text-[11px]">
-            <span class="bg-rose-50 text-rose-800 px-2 py-0.5 rounded font-medium">คิดจากยอดค่าธรรมเนียม × 7%</span>
+          <div class="bg-stone-50 border loft-border p-2 rounded-lg">
+            <div class="font-bold text-indigo-700 flex items-center justify-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span> Lazada
+            </div>
+            <div class="font-mono-num font-bold text-stone-800 text-sm mt-0.5">สูงสุด 12.3%</div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Section 2: Platform Overview Cards (3 Cards) -->
-    <section id="platform-overview-section" class="space-y-4">
-      <div class="border-b border-slate-200 pb-3">
-        <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-          <span class="w-2.5 h-5 bg-orange-500 rounded-full"></span> เลือกแพลตฟอร์มเพื่อดูรายละเอียด
-        </h2>
-        <p class="text-xs text-slate-400 mt-0.5">ภาพรวมเงื่อนไขและโปรแกรมหลักของแต่ละช่องทาง</p>
+  <!-- Main Workstation (Calculator + Live Breakdown) -->
+  <main class="max-w-6xl mx-auto px-4 py-6 w-full space-y-10 flex-grow">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+      <!-- LEFT: Controller Form (7 cols) -->
+      <div class="lg:col-span-7 loft-card rounded-2xl p-6 sm:p-7 space-y-6">
+
+        <div class="flex items-center justify-between border-b loft-border pb-4">
+          <div class="flex items-center gap-2">
+            <div class="w-3 h-3 bg-orange-600 rounded-sm"></div>
+            <h2 class="text-lg font-bold text-stone-900 tracking-tight">พารามิเตอร์การขาย (Input)</h2>
+          </div>
+          <span class="text-xs text-stone-400 font-mono-num">STEP 01</span>
+        </div>
+
+        <!-- 1. Platform Selector with REAL SVG LOGOS -->
+        <div>
+          <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-2.5">
+            เลือกแพลตฟอร์มที่ต้องการขาย
+          </label>
+          <div class="grid grid-cols-3 gap-3">
+
+            <!-- Shopee Tab -->
+            <button type="button" onclick="selectPlatform('shopee')" id="tab-shopee" class="loft-card-active p-3.5 rounded-xl border-2 transition flex flex-col items-center text-center gap-2 group">
+              <div class="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 shadow-sm border border-orange-200">
+                <!-- Shopee Bag SVG -->
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 7h-2.2a4.8 4.8 0 0 0-9.6 0H5a1.5 1.5 0 0 0-1.5 1.5v11A1.5 1.5 0 0 0 5 21h14a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 19 7zm-7-3.2a3.2 3.2 0 0 1 3.1 2.7H8.9A3.2 3.2 0 0 1 12 3.8zm1.5 12.8c-.4.3-1 .5-1.6.5-.8 0-1.4-.3-1.8-.8l.8-.8c.3.3.7.5 1.1.5.5 0 .8-.2.8-.5s-.3-.4-.8-.6l-.5-.2c-.8-.3-1.3-.7-1.3-1.4 0-.8.6-1.3 1.5-1.3.7 0 1.2.2 1.6.5l-.7.8c-.3-.2-.7-.3-1-.3-.4 0-.7.2-.7.4 0 .2.2.4.6.5l.6.2c.9.3 1.4.8 1.4 1.5 0 .7-.4 1.2-1 1.5z"/>
+                </svg>
+              </div>
+              <div>
+                <span class="text-xs font-bold block text-stone-900">Shopee</span>
+                <span class="text-[10px] text-stone-500 font-mono-num">ธุรกรรม 3.21%</span>
+              </div>
+            </button>
+
+            <!-- TikTok Shop Tab -->
+            <button type="button" onclick="selectPlatform('tiktok')" id="tab-tiktok" class="p-3.5 rounded-xl border-2 border-stone-200 hover:border-stone-400 transition flex flex-col items-center text-center gap-2 group bg-white">
+              <div class="w-10 h-10 rounded-xl bg-stone-100 flex items-center justify-center text-stone-900 shadow-sm border border-stone-300">
+                <!-- TikTok Note SVG -->
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.41a6.33 6.33 0 0 0-.85-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 8.44 6 6.33 6.33 0 0 0 4.24-6.02V8.9a8.18 8.18 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.33z"/>
+                </svg>
+              </div>
+              <div>
+                <span class="text-xs font-bold block text-stone-900">TikTok Shop</span>
+                <span class="text-[10px] text-stone-500 font-mono-num">+Growth 2.14%</span>
+              </div>
+            </button>
+
+            <!-- Lazada Tab -->
+            <button type="button" onclick="selectPlatform('lazada')" id="tab-lazada" class="p-3.5 rounded-xl border-2 border-stone-200 hover:border-stone-400 transition flex flex-col items-center text-center gap-2 group bg-white">
+              <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-700 shadow-sm border border-indigo-200">
+                <!-- Lazada Heart SVG -->
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+              </div>
+              <div>
+                <span class="text-xs font-bold block text-stone-900">Lazada</span>
+                <span class="text-[10px] text-stone-500 font-mono-num">คอมฯ ~4.28%</span>
+              </div>
+            </button>
+
+          </div>
+        </div>
+
+        <!-- 2. Price & Cost Inputs -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-stone-50 border loft-border rounded-xl p-4 space-y-1.5 focus-within:border-orange-500 focus-within:bg-white transition">
+            <div class="flex justify-between items-center">
+              <label for="input-price" class="text-xs font-bold text-stone-700">ราคาขายสินค้า (Selling Price)</label>
+              <span class="text-[10px] font-mono-num text-stone-400">บาท / ชิ้น</span>
+            </div>
+            <div class="relative flex items-center">
+              <span class="text-stone-400 font-mono-num font-bold text-lg mr-2">฿</span>
+              <input type="number" id="input-price" value="200" min="1" step="1" oninput="calculateAll()" class="w-full bg-transparent font-mono-num text-2xl font-bold text-stone-900 focus:outline-none">
+            </div>
+          </div>
+
+          <div class="bg-stone-50 border loft-border rounded-xl p-4 space-y-1.5 focus-within:border-orange-500 focus-within:bg-white transition">
+            <div class="flex justify-between items-center">
+              <label for="input-cost" class="text-xs font-bold text-stone-700">ต้นทุนสินค้า (Cost of Goods)</label>
+              <span class="text-[10px] font-mono-num text-stone-400">บาท / ชิ้น</span>
+            </div>
+            <div class="relative flex items-center">
+              <span class="text-stone-400 font-mono-num font-bold text-lg mr-2">฿</span>
+              <input type="number" id="input-cost" value="100" min="0" step="1" oninput="calculateAll()" class="w-full bg-transparent font-mono-num text-2xl font-bold text-stone-900 focus:outline-none">
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Category Selector -->
+        <div>
+          <label for="input-category" class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-2">
+            หมวดหมู่สินค้า (มีผลต่อค่าคอมมิชชั่น)
+          </label>
+          <div class="relative">
+            <select id="input-category" onchange="calculateAll()" class="w-full bg-stone-50 border loft-border rounded-xl px-4 py-3 text-xs font-medium text-stone-900 focus:outline-none focus:border-orange-500 focus:bg-white transition cursor-pointer appearance-none">
+              <option value="general">สินค้าทั่วไป / อุปโภคบริโภค (ค่าคอมมิชชั่น ~4.28%)</option>
+              <option value="fashion">แฟชั่น เสื้อผ้า รองเท้า กระเป๋า (ค่าคอมมิชชั่น ~5.35%)</option>
+              <option value="electronics">เครื่องใช้ไฟฟ้า อุปกรณ์ไอที Gadget (ค่าคอมมิชชั่น ~3.21%)</option>
+              <option value="beauty">ความงาม สกินแคร์ ของใช้ส่วนบุคคล (ค่าคอมมิชชั่น ~4.82%)</option>
+              <option value="food">อาหาร ขนม เครื่องดื่ม (ค่าคอมมิชชั่น ~4.28%)</option>
+            </select>
+            <span class="absolute right-4 top-3.5 pointer-events-none text-stone-400 text-xs">▼</span>
+          </div>
+        </div>
+
+        <!-- 4. Optional Programs & Marketing -->
+        <div class="bg-stone-50 border loft-border rounded-xl p-4 space-y-3">
+          <div class="text-xs font-bold text-stone-800 uppercase tracking-wider">โปรแกรมพิเศษ & ค่านายหน้า</div>
+
+          <!-- Special Program Toggle -->
+          <label class="flex items-start gap-3 text-xs text-stone-700 cursor-pointer select-none">
+            <input type="checkbox" id="check-program" checked onchange="calculateAll()" class="mt-0.5 h-4 w-4 rounded text-orange-600 focus:ring-orange-500 border-stone-300">
+            <div>
+              <span id="label-program-text" class="font-bold text-stone-900 block">โปรแกรมส่งฟรี + คืนคอยน์ (CCB / FSS) ~5.35%</span>
+              <span class="text-[11px] text-stone-500">ช่วยดันการมองเห็นและติดป้ายโค้ดส่งฟรี</span>
+            </div>
+          </label>
+
+          <!-- Affiliate Toggle -->
+          <label class="flex items-start gap-3 text-xs text-stone-700 cursor-pointer select-none border-t loft-border pt-3">
+            <input type="checkbox" id="check-affiliate" onchange="toggleAffiliateInput()" class="mt-0.5 h-4 w-4 rounded text-orange-600 focus:ring-orange-500 border-stone-300">
+            <div class="flex-grow">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-stone-900">หักค่านายหน้าพันธมิตร (Affiliate Creator)</span>
+                <span id="affiliate-pct-badge" class="font-mono-num font-bold text-orange-600 hidden">5%</span>
+              </div>
+              <span class="text-[11px] text-stone-500">สำหรับครีเอเตอร์ช่วยปักตะกร้าหรือรีวิว</span>
+            </div>
+          </label>
+
+          <!-- Affiliate Slider (hidden by default) -->
+          <div id="affiliate-slider-box" class="hidden pl-7 pt-1 pb-1">
+            <div class="flex items-center gap-3">
+              <input type="range" id="input-affiliate-rate" min="1" max="25" value="5" oninput="updateAffiliateSlider()" class="w-full accent-orange-600">
+              <span class="font-mono-num text-xs font-bold text-stone-800 w-12 text-right" id="slider-val-text">5%</span>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <!-- RIGHT: Financial Summary Receipt Slip (5 cols) -->
+      <div class="lg:col-span-5 bg-stone-900 text-stone-100 rounded-2xl p-6 sm:p-7 shadow-xl border border-stone-800 space-y-6 relative overflow-hidden">
+        <!-- Loft Accent Line -->
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-orange-600 via-amber-500 to-orange-400"></div>
+
+        <div class="flex items-center justify-between border-b border-stone-800 pb-4">
+          <div>
+            <div class="text-[10px] font-mono-num tracking-widest text-orange-400 uppercase">SUMMARY RECEIPT</div>
+            <h3 class="text-base font-bold text-white mt-0.5" id="receipt-platform-name">Shopee สรุปรายรับ</h3>
+          </div>
+          <span class="text-[10px] bg-stone-800 text-stone-300 px-2 py-1 rounded font-mono-num">NET PAYOUT</span>
+        </div>
+
+        <!-- Big Highlight Stat Cards -->
+        <div class="grid grid-cols-2 gap-3.5">
+          <div class="bg-stone-800/90 border border-stone-700/80 p-3.5 rounded-xl">
+            <div class="text-[10px] font-medium text-stone-400">เงินโอนเข้าร้านสุทธิ</div>
+            <div class="flex items-baseline gap-1 mt-1">
+              <span class="text-stone-400 font-mono-num text-sm">฿</span>
+              <span id="res-net-payout" class="text-2xl sm:text-3xl font-black font-mono-num text-white">174.32</span>
+            </div>
+            <div class="text-[10px] text-stone-400 mt-1 font-mono-num">ยอดจริงหลังหัก</div>
+          </div>
+
+          <div class="bg-stone-800/90 border border-stone-700/80 p-3.5 rounded-xl">
+            <div class="text-[10px] font-medium text-stone-400">กำไรสุทธิต่อชิ้น</div>
+            <div class="flex items-baseline gap-1 mt-1">
+              <span class="text-emerald-400 font-mono-num text-sm">฿</span>
+              <span id="res-net-profit" class="text-2xl sm:text-3xl font-black font-mono-num text-emerald-400">+74.32</span>
+            </div>
+            <div id="res-margin-badge" class="text-[10px] font-bold text-emerald-300 mt-1 font-mono-num">MARGIN 37.2%</div>
+          </div>
+        </div>
+
+        <!-- Detailed Itemized Receipt -->
+        <div class="space-y-2.5 text-xs font-mono-num border-t border-b border-stone-800 py-4 text-stone-300">
+          <div class="flex justify-between items-center text-white">
+            <span class="font-sans font-medium text-stone-200">ราคาขายตั้งต้น</span>
+            <span id="row-price" class="font-bold">200.00 บ.</span>
+          </div>
+
+          <div class="flex justify-between items-center text-stone-400">
+            <span class="font-sans">ต้นทุนสินค้า (Cost)</span>
+            <span id="row-cost">-100.00 บ.</span>
+          </div>
+
+          <div class="flex justify-between items-center text-orange-400">
+            <span class="font-sans">ค่าชำระเงิน (3.21%)</span>
+            <span id="row-fee-trans">-6.42 บ.</span>
+          </div>
+
+          <div class="flex justify-between items-center text-orange-400">
+            <span class="font-sans" id="lbl-fee-comm">ค่าคอมมิชชั่น (~4.28%)</span>
+            <span id="row-fee-comm">-8.56 บ.</span>
+          </div>
+
+          <div class="flex justify-between items-center text-orange-400 hidden" id="row-growth-box">
+            <span class="font-sans">Growth Fee (~2.14%)</span>
+            <span id="row-fee-growth">-4.28 บ.</span>
+          </div>
+
+          <div class="flex justify-between items-center text-orange-400" id="row-prog-box">
+            <span class="font-sans" id="lbl-fee-prog">โปรแกรมส่งฟรี/คืนคอยน์</span>
+            <span id="row-fee-prog">-10.70 บ.</span>
+          </div>
+
+          <div class="flex justify-between items-center text-orange-400 hidden" id="row-aff-box">
+            <span class="font-sans" id="lbl-fee-aff">ค่านายหน้า Affiliate</span>
+            <span id="row-fee-aff">-10.00 บ.</span>
+          </div>
+        </div>
+
+        <!-- Total Fees Summary -->
+        <div class="flex items-center justify-between text-xs">
+          <div>
+            <span class="text-stone-400 block">รวมค่าธรรมเนียมทั้งหมด</span>
+            <span class="text-[10px] text-stone-500 font-mono-num">(คำนวณรวม VAT 7% แล้ว)</span>
+          </div>
+          <div class="text-right">
+            <div id="res-total-fees" class="font-mono-num font-bold text-orange-400 text-base">-25.68 บ.</div>
+            <div id="res-fee-pct" class="font-mono-num text-[11px] text-stone-400">หัก 12.84% ของราคา</div>
+          </div>
+        </div>
+
+        <!-- Markup Pricing Formula Card -->
+        <div class="bg-stone-950/80 border border-stone-800 rounded-xl p-3.5 space-y-1.5 text-[11px]">
+          <div class="font-bold text-amber-400 flex items-center gap-1.5 font-sans">
+            <span>💡</span> ราคาแนะนำตั้งบนแอปเพื่อไม่ให้ขาดทุน:
+          </div>
+          <div class="flex justify-between items-center font-mono-num">
+            <span class="text-stone-400">ควรตั้งราคาขายบนแอปอย่างน้อย:</span>
+            <span id="res-recommended-markup" class="font-bold text-amber-300 text-sm">฿229</span>
+          </div>
+          <p class="text-[10px] text-stone-500 font-sans leading-tight">
+            *คำนวณจากสูตร Markup ป้องกันการถูกหักค่าธรรมเนียมจนกำไรต่ำกว่าหน้าร้าน
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Section 2: 3-Way Instant Live Comparison (เปรียบเทียบ 3 แพลตฟอร์มพร้อมกันทันที) -->
+    <section id="quick-compare" class="loft-card rounded-2xl p-6 sm:p-7 space-y-6">
+      <div class="border-b loft-border pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div>
+          <div class="inline-block bg-orange-100 text-orange-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase font-mono-num mb-1">
+            CROSS-PLATFORM BATTLE
+          </div>
+          <h2 class="text-lg sm:text-xl font-extrabold text-stone-900 tracking-tight">
+            เปรียบเทียบกำไรสุทธิ 3 แพลตฟอร์ม (ณ ราคาเดียวกัน)
+          </h2>
+        </div>
+        <div class="text-xs text-stone-500 font-mono-num">
+          BASE PRICE: <span id="comp-base-price" class="font-bold text-stone-800">฿200</span> | COST: <span id="comp-base-cost" class="font-bold text-stone-800">฿100</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
         <!-- Shopee Card -->
-        <div class="bg-white border border-orange-200 rounded-2xl p-5 shadow-sm space-y-3 relative overflow-hidden">
+        <div class="bg-stone-50 border loft-border rounded-xl p-5 space-y-4 hover:border-orange-400 transition" id="card-comp-shopee">
           <div class="flex justify-between items-center">
-            <span class="font-black text-base text-orange-600 flex items-center gap-1.5">
-              <span>🟠</span> Shopee
-            </span>
-            <span class="text-[10px] bg-orange-50 text-orange-700 px-2.5 py-0.5 rounded-full font-bold">รวม VAT แล้ว</span>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-orange-500"></span>
+              <span class="font-bold text-stone-900 text-sm">Shopee</span>
+            </div>
+            <span class="text-[10px] font-mono-num bg-orange-100 text-orange-800 px-2 py-0.5 rounded font-bold">มาร์เก็ตเพลส</span>
           </div>
-          <ul class="text-xs text-slate-600 space-y-2">
-            <li class="flex items-start gap-2">
-              <span class="text-orange-500 font-bold">•</span>
-              <span><strong>Transaction Fee:</strong> 3.21% (คิดจากยอดรวมที่ผู้ซื้อจ่าย)</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-orange-500 font-bold">•</span>
-              <span><strong>Commission:</strong> 4.28% - 6.42% ตามหมวดหมู่</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-orange-500 font-bold">•</span>
-              <span><strong>โปรแกรม CCB + FSS:</strong> ~5.35% (มีเพดาน Cap สูงสุด)</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-orange-500 font-bold">•</span>
-              <span><strong>Shopee Mall:</strong> ค่าคอมมิชชั่นสูงกว่าร้านทั่วไป (~6%-10%)</span>
-            </li>
-          </ul>
+
+          <div class="space-y-1">
+            <div class="text-[11px] text-stone-500 font-medium">กำไรสุทธิต่อชิ้น</div>
+            <div class="font-mono-num text-2xl font-extrabold text-stone-900" id="comp-shopee-profit">฿74.32</div>
+            <div class="text-[11px] text-stone-500 font-mono-num" id="comp-shopee-margin">Margin: 37.2%</div>
+          </div>
+
+          <div class="pt-3 border-t loft-border space-y-1.5 text-xs font-mono-num text-stone-600">
+            <div class="flex justify-between">
+              <span>เงินโอนเข้าร้าน:</span>
+              <span class="font-bold text-stone-900" id="comp-shopee-payout">฿174.32</span>
+            </div>
+            <div class="flex justify-between text-orange-600">
+              <span>โดนหักทั้งหมด:</span>
+              <span id="comp-shopee-fee">-฿25.68</span>
+            </div>
+          </div>
         </div>
 
         <!-- TikTok Shop Card -->
-        <div class="bg-white border border-slate-300 rounded-2xl p-5 shadow-sm space-y-3 relative overflow-hidden">
+        <div class="bg-stone-50 border loft-border rounded-xl p-5 space-y-4 hover:border-stone-500 transition" id="card-comp-tiktok">
           <div class="flex justify-between items-center">
-            <span class="font-black text-base text-slate-900 flex items-center gap-1.5">
-              <span>⚫</span> TikTok Shop
-            </span>
-            <span class="text-[10px] bg-slate-100 text-slate-800 px-2.5 py-0.5 rounded-full font-bold">รวม VAT แล้ว</span>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-stone-900"></span>
+              <span class="font-bold text-stone-900 text-sm">TikTok Shop</span>
+            </div>
+            <span class="text-[10px] font-mono-num bg-stone-200 text-stone-800 px-2 py-0.5 rounded font-bold">คอนเทนต์คอมเมิร์ซ</span>
           </div>
-          <ul class="text-xs text-slate-600 space-y-2">
-            <li class="flex items-start gap-2">
-              <span class="text-slate-900 font-bold">•</span>
-              <span><strong>Transaction Fee:</strong> 3.21% ต่อออเดอร์</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-slate-900 font-bold">•</span>
-              <span><strong>Marketplace Commission:</strong> 4.28% - 6.42%</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-slate-900 font-bold">•</span>
-              <span><strong>Growth Fee:</strong> ~2.14% สำหรับสนับสนุนการเติบโต</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-slate-900 font-bold">•</span>
-              <span><strong>Affiliate Program:</strong> ค่านายหน้าตามร้านตั้ง (เช่น 5%-15%)</span>
-            </li>
-          </ul>
+
+          <div class="space-y-1">
+            <div class="text-[11px] text-stone-500 font-medium">กำไรสุทธิต่อชิ้น</div>
+            <div class="font-mono-num text-2xl font-extrabold text-stone-900" id="comp-tiktok-profit">฿70.04</div>
+            <div class="text-[11px] text-stone-500 font-mono-num" id="comp-tiktok-margin">Margin: 35.0%</div>
+          </div>
+
+          <div class="pt-3 border-t loft-border space-y-1.5 text-xs font-mono-num text-stone-600">
+            <div class="flex justify-between">
+              <span>เงินโอนเข้าร้าน:</span>
+              <span class="font-bold text-stone-900" id="comp-tiktok-payout">฿170.04</span>
+            </div>
+            <div class="flex justify-between text-orange-600">
+              <span>โดนหักทั้งหมด:</span>
+              <span id="comp-tiktok-fee">-฿29.96</span>
+            </div>
+          </div>
         </div>
 
         <!-- Lazada Card -->
-        <div class="bg-white border border-indigo-200 rounded-2xl p-5 shadow-sm space-y-3 relative overflow-hidden">
+        <div class="bg-stone-50 border loft-border rounded-xl p-5 space-y-4 hover:border-indigo-400 transition" id="card-comp-lazada">
           <div class="flex justify-between items-center">
-            <span class="font-black text-base text-indigo-600 flex items-center gap-1.5">
-              <span>🔵</span> Lazada
-            </span>
-            <span class="text-[10px] bg-indigo-50 text-indigo-700 px-2.5 py-0.5 rounded-full font-bold">รวม VAT แล้ว</span>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-indigo-600"></span>
+              <span class="font-bold text-stone-900 text-sm">Lazada</span>
+            </div>
+            <span class="text-[10px] font-mono-num bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold">มาร์เก็ตเพลส</span>
           </div>
-          <ul class="text-xs text-slate-600 space-y-2">
-            <li class="flex items-start gap-2">
-              <span class="text-indigo-500 font-bold">•</span>
-              <span><strong>Payment Fee:</strong> 3.21% ทุกช่องทางชำระเงิน</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-indigo-500 font-bold">•</span>
-              <span><strong>Commission Fee:</strong> 4.28% - 5.35% (ตามหมวดหมู่)</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-indigo-500 font-bold">•</span>
-              <span><strong>Free Shipping Max:</strong> ~3% - 5% สนับสนุนค่าส่ง</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-indigo-500 font-bold">•</span>
-              <span><strong>LazCoins Program:</strong> เพิ่มสิทธิประโยชน์คืนเงิน</span>
-            </li>
-          </ul>
+
+          <div class="space-y-1">
+            <div class="text-[11px] text-stone-500 font-medium">กำไรสุทธิต่อชิ้น</div>
+            <div class="font-mono-num text-2xl font-extrabold text-stone-900" id="comp-lazada-profit">฿76.02</div>
+            <div class="text-[11px] text-stone-500 font-mono-num" id="comp-lazada-margin">Margin: 38.0%</div>
+          </div>
+
+          <div class="pt-3 border-t loft-border space-y-1.5 text-xs font-mono-num text-stone-600">
+            <div class="flex justify-between">
+              <span>เงินโอนเข้าร้าน:</span>
+              <span class="font-bold text-stone-900" id="comp-lazada-payout">฿176.02</span>
+            </div>
+            <div class="flex justify-between text-orange-600">
+              <span>โดนหักทั้งหมด:</span>
+              <span id="comp-lazada-fee">-฿23.98</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bg-amber-50/80 border border-amber-200/80 p-3.5 rounded-xl text-xs text-amber-900 flex items-start gap-2.5">
+        <span class="text-base">📌</span>
+        <div class="leading-relaxed">
+          <strong>ข้อสังเกตสำหรับผู้ขาย:</strong> แพลตฟอร์มที่มีการเก็บ Growth Fee (เช่น TikTok Shop) จะมียอดหักรวมสูงกว่าเล็กน้อย แต่ได้ประโยชน์ด้านทราฟฟิกคอนเทนต์ ในขณะที่ Shopee และ Lazada กำไรสุทธิจะผันแปรตามโปรแกรมแจกโค้ดส่งฟรี (CCB / Free Shipping Max) ที่ร้านค้าเลือกเข้าร่วม
         </div>
       </div>
     </section>
 
-    <!-- Section 3: Interactive Calculator -->
-    <section id="calculator-section" class="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm space-y-6">
-      <div class="border-b border-slate-100 pb-4">
-        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
-          <span class="p-1.5 bg-orange-100 text-orange-600 rounded-xl">🧮</span> ลองคำนวณดูเอง (Profit Calculator)
+    <!-- Section 3: Minimalist Fee Breakdown Matrix (4 Columns) -->
+    <section class="space-y-4">
+      <div class="border-b loft-border pb-3 flex items-center justify-between">
+        <h2 class="text-base font-bold text-stone-900 uppercase tracking-wide">
+          โครงสร้างค่าธรรมเนียม 4 รายการหลักที่ผู้ขายต้องรู้
         </h2>
-        <p class="text-xs text-slate-500 mt-1">ใส่ราคาขายและต้นทุนสินค้าเพื่อดูยอดเงินสุทธิที่จะได้รับ และกำไรต่อชิ้นทันที</p>
+        <span class="text-[11px] text-stone-400 font-mono-num">FEE GUIDE 2569</span>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <!-- Input Form (5 cols) -->
-        <div class="lg:col-span-5 space-y-5">
-          <!-- Platform Tabs -->
-          <div>
-            <label class="text-xs font-bold text-slate-700 block mb-2">เลือกแพลตฟอร์ม</label>
-            <div class="grid grid-cols-3 gap-2">
-              <button type="button" onclick="setCalcPlatform('shopee')" id="btn-plat-shopee" class="tab-active py-2.5 px-3 border-2 rounded-xl text-xs font-bold transition flex flex-col items-center gap-1">
-                <span>🟠 Shopee</span>
-              </button>
-              <button type="button" onclick="setCalcPlatform('tiktok')" id="btn-plat-tiktok" class="border-2 border-slate-200 text-slate-600 hover:border-slate-300 py-2.5 px-3 rounded-xl text-xs font-bold transition flex flex-col items-center gap-1">
-                <span>⚫ TikTok</span>
-              </button>
-              <button type="button" onclick="setCalcPlatform('lazada')" id="btn-plat-lazada" class="border-2 border-slate-200 text-slate-600 hover:border-slate-300 py-2.5 px-3 rounded-xl text-xs font-bold transition flex flex-col items-center gap-1">
-                <span>🔵 Lazada</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Price & Cost -->
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="text-xs font-bold text-slate-700 block mb-1.5">ราคาขายต่อชิ้น (บาท)</label>
-              <div class="relative">
-                <input type="number" id="inp-price" value="200" min="1" step="1" oninput="runCalculation()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-900 font-bold focus:outline-none focus:ring-2 focus:ring-orange-500">
-                <span class="absolute right-3.5 top-2.5 text-xs text-slate-400">บ.</span>
-              </div>
-            </div>
-            <div>
-              <label class="text-xs font-bold text-slate-700 block mb-1.5">ต้นทุนสินค้า (บาท)</label>
-              <div class="relative">
-                <input type="number" id="inp-cost" value="100" min="0" step="1" oninput="runCalculation()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-900 font-bold focus:outline-none focus:ring-2 focus:ring-orange-500">
-                <span class="absolute right-3.5 top-2.5 text-xs text-slate-400">บ.</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Category -->
-          <div>
-            <label class="text-xs font-bold text-slate-700 block mb-1.5">หมวดหมู่สินค้า</label>
-            <select id="inp-category" onchange="runCalculation()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500">
-              <option value="general">สินค้าทั่วไป / อุปโภคบริโภค (คอมฯ ~4.28%)</option>
-              <option value="fashion">แฟชั่น เสื้อผ้า กระเป๋า (คอมฯ ~5.35%)</option>
-              <option value="electronics">เครื่องใช้ไฟฟ้า & Gadget (คอมฯ ~3.21%)</option>
-              <option value="beauty">ความงามและของใช้ส่วนตัว (คอมฯ ~4.82%)</option>
-              <option value="food">อาหารและเครื่องดื่ม (คอมฯ ~4.28%)</option>
-            </select>
-          </div>
-
-          <!-- Special Programs Checkboxes -->
-          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-3">
-            <div class="text-xs font-bold text-slate-800">โปรแกรมส่งเสริมการขาย</div>
-            <label class="flex items-center gap-2.5 text-xs text-slate-700 cursor-pointer">
-              <input type="checkbox" id="chk-program" checked onchange="runCalculation()" class="rounded text-orange-600 focus:ring-orange-500 w-4 h-4">
-              <span id="label-program">เข้าร่วมโปรแกรมส่งฟรี + คืนคอยน์ (CCB / FSS) ~5.35%</span>
-            </label>
-            <label class="flex items-center gap-2.5 text-xs text-slate-700 cursor-pointer">
-              <input type="checkbox" id="chk-affiliate" onchange="runCalculation()" class="rounded text-orange-600 focus:ring-orange-500 w-4 h-4">
-              <span>หักค่า Affiliate ให้ครีเอเตอร์ (เช่น 5%)</span>
-            </label>
-          </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Item 1 -->
+        <div class="loft-card rounded-xl p-4 space-y-2">
+          <div class="text-xs font-bold text-orange-600 font-mono-num">01 / TRANSACTION</div>
+          <h3 class="font-bold text-stone-900 text-sm">ค่าธุรกรรมชำระเงิน</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            คิด 3% + VAT 7% = <strong>3.21%</strong> ทุกแพลตฟอร์มเท่ากัน คิดจากยอดเงินรวมที่ผู้ซื้อชำระจริง (รวมค่าส่งที่ลูกค้าจ่าย)
+          </p>
         </div>
 
-        <!-- Result Box (7 cols) -->
-        <div class="lg:col-span-7 bg-gradient-to-br from-slate-900 to-slate-850 text-white rounded-3xl p-6 md:p-7 shadow-lg flex flex-col justify-between space-y-6 relative overflow-hidden">
-          <div class="absolute -right-16 -bottom-16 w-56 h-56 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <!-- Item 2 -->
+        <div class="loft-card rounded-xl p-4 space-y-2">
+          <div class="text-xs font-bold text-orange-600 font-mono-num">02 / COMMISSION</div>
+          <h3 class="font-bold text-stone-900 text-sm">ค่าคอมมิชชั่นการขาย</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            คิดตามหมวดสินค้า (ทั่วไป ~4.28%, แฟชั่น ~5.35%, ไอที ~3.21%) คิดจากราคาสินค้าหลังหักส่วนลดร้านค้า
+          </p>
+        </div>
 
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-700/80 pb-3">
-              <div class="text-xs font-bold text-orange-400 uppercase tracking-wider flex items-center gap-1.5" id="result-platform-title">
-                <span>🟠</span> ผลลัพธ์: Shopee (ร้านค้าทั่วไป)
-              </div>
-              <span class="text-[11px] bg-slate-800 text-slate-300 px-2.5 py-1 rounded-full border border-slate-700">
-                รวม VAT 7% แล้วทุกรายการ
-              </span>
-            </div>
+        <!-- Item 3 -->
+        <div class="loft-card rounded-xl p-4 space-y-2">
+          <div class="text-xs font-bold text-orange-600 font-mono-num">03 / PROGRAMS</div>
+          <h3 class="font-bold text-stone-900 text-sm">โปรแกรมส่งฟรี & เงินคืน</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Shopee CCB+FSS (~5.35%) / LazCoins+FS Max (~4.5%) หรือ TikTok Extra Shipping ช่วยเพิ่มโอกาสปิดการขาย
+          </p>
+        </div>
 
-            <!-- Highlights Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
-              <div class="bg-slate-800/90 border border-slate-700 p-4 rounded-2xl">
-                <div class="text-[11px] text-slate-400">เงินที่จะได้รับสุทธิ (Net Payout):</div>
-                <div class="text-3xl font-black text-white mt-1">
-                  <span id="out-payout">174.32</span> <span class="text-xs font-normal text-slate-400">บาท</span>
-                </div>
-                <div class="text-[10px] text-slate-400 mt-1">โอนเข้าบัญชีร้านค้าหลังส่งสำเร็จ</div>
-              </div>
-
-              <div class="bg-slate-800/90 border border-slate-700 p-4 rounded-2xl">
-                <div class="text-[11px] text-slate-400">กำไรสุทธิต่อชิ้น (Net Profit):</div>
-                <div class="text-3xl font-black text-emerald-400 mt-1">
-                  <span id="out-profit">+74.32</span> <span class="text-xs font-normal text-slate-400">บาท</span>
-                </div>
-                <div class="text-[10px] text-emerald-300 mt-1 font-bold" id="out-margin">อัตรากำไร (Margin): 37.2%</div>
-              </div>
-            </div>
-
-            <!-- Breakdown Detail -->
-            <div class="mt-6 space-y-2.5 text-xs">
-              <div class="flex justify-between text-slate-300">
-                <span>ราคาขายสินค้า:</span>
-                <span id="out-price" class="font-bold text-white">200.00 บาท</span>
-              </div>
-              <div class="flex justify-between text-slate-400">
-                <span>ต้นทุนสินค้า:</span>
-                <span id="out-cost">-100.00 บาท</span>
-              </div>
-              <div class="flex justify-between text-rose-400">
-                <span id="out-fee-trans-lbl">1. ค่าชำระเงิน (3.21%):</span>
-                <span id="out-fee-trans" class="font-semibold">-6.42 บาท</span>
-              </div>
-              <div class="flex justify-between text-rose-400">
-                <span id="out-fee-comm-lbl">2. ค่าคอมมิชชั่น (~4.28%):</span>
-                <span id="out-fee-comm" class="font-semibold">-8.56 บาท</span>
-              </div>
-              <div class="flex justify-between text-rose-400" id="row-fee-growth">
-                <span>3. Growth Fee (~2.14%):</span>
-                <span id="out-fee-growth" class="font-semibold">-4.28 บาท</span>
-              </div>
-              <div class="flex justify-between text-rose-400" id="row-fee-prog">
-                <span id="out-fee-prog-lbl">4. โปรแกรมส่งฟรี/เงินคืน (~5.35%):</span>
-                <span id="out-fee-prog" class="font-semibold">-10.70 บาท</span>
-              </div>
-              <div class="flex justify-between text-rose-400 hidden" id="row-fee-affiliate">
-                <span>5. ค่านายหน้า Affiliate (5%):</span>
-                <span id="out-fee-affiliate" class="font-semibold">-10.00 บาท</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="pt-4 border-t border-slate-700/80 flex items-center justify-between text-xs text-slate-300">
-            <span class="font-medium">รวมค่าธรรมเนียมทั้งหมดที่โดนหัก:</span>
-            <span class="text-rose-400 font-extrabold text-base" id="out-total-fees">-25.68 บาท (12.84%)</span>
-          </div>
+        <!-- Item 4 -->
+        <div class="loft-card rounded-xl p-4 space-y-2">
+          <div class="text-xs font-bold text-orange-600 font-mono-num">04 / VAT 7%</div>
+          <h3 class="font-bold text-stone-900 text-sm">ภาษีมูลค่าเพิ่ม</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            กฎหมายกำหนดให้แพลตฟอร์มหัก VAT 7% จาก <strong>"ยอดรวมค่าธรรมเนียมทั้งหมด"</strong> ไม่ได้หักจากราคาสินค้าของร้าน
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Section 4: ตารางเปรียบเทียบ 3 แพลตฟอร์ม -->
-    <section id="compare-section" class="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm space-y-4">
-      <div class="border-b border-slate-100 pb-3">
-        <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-          <span>📊</span> ตารางสรุป 3 แพลตฟอร์ม (อัตราอ้างอิง 2569)
-        </h2>
-        <p class="text-xs text-slate-400 mt-0.5">เปรียบเทียบค่าธรรมเนียมต่อออเดอร์สำหรับร้านค้าทั่วไป</p>
-      </div>
-      <div class="overflow-x-auto">
-        <table class="w-full text-xs text-left border-collapse">
-          <thead>
-            <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 uppercase font-bold">
-              <th class="p-3.5">แพลตฟอร์ม</th>
-              <th class="p-3.5">ค่าธุรกรรมชำระเงิน</th>
-              <th class="p-3.5">ค่าคอมมิชชั่น (Commission)</th>
-              <th class="p-3.5">โปรแกรมพิเศษ / การตลาด</th>
-              <th class="p-3.5">รวมโดยเฉลี่ย</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-100 text-slate-700">
-            <tr class="hover:bg-slate-50/80">
-              <td class="p-3.5 font-bold text-orange-600 flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span> Shopee
-              </td>
-              <td class="p-3.5 font-semibold">3.21% (รวม VAT)</td>
-              <td class="p-3.5">4.28% – 6.42% (ตามหมวด)</td>
-              <td class="p-3.5">CCB + FSS ~5.35% (มีเพดาน)</td>
-              <td class="p-3.5 font-black text-slate-900">7.49% – 11.24%</td>
-            </tr>
-            <tr class="hover:bg-slate-50/80">
-              <td class="p-3.5 font-bold text-slate-900 flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-slate-900"></span> TikTok Shop
-              </td>
-              <td class="p-3.5 font-semibold">3.21% (รวม VAT)</td>
-              <td class="p-3.5">4.28% – 6.42% + Growth Fee 2.14%</td>
-              <td class="p-3.5">Affiliate ตะกร้าตามร้านกำหนด</td>
-              <td class="p-3.5 font-black text-slate-900">สูงสุด ~11.24%</td>
-            </tr>
-            <tr class="hover:bg-slate-50/80">
-              <td class="p-3.5 font-bold text-indigo-600 flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-indigo-600"></span> Lazada
-              </td>
-              <td class="p-3.5 font-semibold">3.21% (รวม VAT)</td>
-              <td class="p-3.5">4.28% – 5.35% (ตามหมวด)</td>
-              <td class="p-3.5">Free Shipping Max / LazCoins ~3-5%</td>
-              <td class="p-3.5 font-black text-slate-900">สูงสุด ~12.31%</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- Section 5: คำถามที่พบบ่อย (FAQ Accordion) -->
-    <section id="faq-section" class="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm space-y-4">
-      <div class="border-b border-slate-100 pb-3">
-        <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-          <span>❓</span> คำถามที่พบบ่อย (FAQ)
-        </h2>
-        <p class="text-xs text-slate-400 mt-0.5">ข้อสงสัยยอดฮิตเกี่ยวกับการคิดค่าธรรมเนียม</p>
-      </div>
+    <!-- Section 4: Clean FAQ Accordion -->
+    <section class="loft-card rounded-2xl p-6 sm:p-7 space-y-4">
+      <h2 class="text-base font-bold text-stone-900 uppercase tracking-wide border-b loft-border pb-3">
+        คำถามที่พบบ่อย (Seller FAQ)
+      </h2>
       <div class="space-y-3 text-xs">
-        <details class="bg-slate-50 border border-slate-200 rounded-2xl p-4 cursor-pointer group">
-          <summary class="font-bold text-slate-800 flex justify-between items-center select-none">
-            ค่าธรรมเนียมที่แสดงรวมภาษีมูลค่าเพิ่ม (VAT 7%) แล้วหรือยัง?
-            <span class="text-slate-400 group-open:rotate-180 transition font-mono">▼</span>
+        <details class="bg-stone-50 border loft-border rounded-xl p-4 cursor-pointer group">
+          <summary class="font-bold text-stone-900 flex justify-between items-center select-none">
+            ทำไมบวกราคาเพิ่ม 30% แล้วเวลาขายจริงถึงยังขาดทุนหรือได้เงินไม่เท่าหน้าร้าน?
+            <span class="text-stone-400 group-open:rotate-180 transition font-mono">▼</span>
           </summary>
-          <p class="mt-2.5 text-slate-600 leading-relaxed pl-3 border-l-2 border-orange-500">
-            รวมแล้วครับ ตัวเลขเช่น ค่าธุรกรรม 3.21% มาจากฐาน 3% + VAT 7% ของ 3% (= 0.21%) แพลตฟอร์มจะออกใบกำกับภาษี/ใบเสร็จค่าบริการให้ผู้ขายนำไปลงบัญชีค่าใช้จ่ายได้
+          <p class="mt-2.5 text-stone-600 leading-relaxed pl-3 border-l-2 border-orange-500">
+            เพราะเวลาแพลตฟอร์มหักค่าธรรมเนียม แพลตฟอร์มจะคิด % จาก <strong>"ราคาขายใหม่ที่บวกแล้ว"</strong> ไม่ได้คิดจากราคาต้นทุนเดิม เช่น ขาย 100 บาท โดนหัก 12% เหลือ 88 บาท แต่ถ้าตั้ง 112 บาท แล้วโดนหัก 12% ของ 112 บาท (= 13.44 บาท) จะเหลือเพียง 98.56 บาทเท่านั้น ทางแก้คือต้องใช้สูตร Markup: <code>ราคาตั้ง = ต้นทุนเป้าหมาย / (1 - %ค่าธรรมเนียมรวม)</code>
           </p>
         </details>
 
-        <details class="bg-slate-50 border border-slate-200 rounded-2xl p-4 cursor-pointer group">
-          <summary class="font-bold text-slate-800 flex justify-between items-center select-none">
-            ค่าธรรมเนียมคำนวณจากราคาไหน? คิดรวมค่าส่งของลูกค้าด้วยไหม?
-            <span class="text-slate-400 group-open:rotate-180 transition font-mono">▼</span>
+        <details class="bg-stone-50 border loft-border rounded-xl p-4 cursor-pointer group">
+          <summary class="font-bold text-stone-900 flex justify-between items-center select-none">
+            ค่าธรรมเนียมคำนวณจากราคาไหน คิดรวมค่าจัดส่งไหม?
+            <span class="text-stone-400 group-open:rotate-180 transition font-mono">▼</span>
           </summary>
-          <div class="mt-2.5 text-slate-600 leading-relaxed pl-3 border-l-2 border-orange-500 space-y-1">
-            <p>• <strong>ค่าคอมมิชชั่น & ค่าโปรแกรมพิเศษ:</strong> คิดจาก "ราคาสินค้าสุทธิ" หลังหักส่วนลดร้านค้า (ไม่รวมค่าจัดส่ง)</p>
-            <p>• <strong>ค่าธรรมเนียมการชำระเงิน (3.21%):</strong> คิดจาก "ยอดรวมเงินที่ลูกค้าจ่ายจริงทั้งหมด" ซึ่งรวมค่าจัดส่งที่ลูกค้าจ่ายด้วย</p>
+          <div class="mt-2.5 text-stone-600 leading-relaxed pl-3 border-l-2 border-orange-500 space-y-1">
+            <p>• <strong>ค่าคอมมิชชั่น & โปรแกรมพิเศษ:</strong> คิดเฉพาะราคาสินค้าสุทธิ (ไม่รวมค่าส่ง)</p>
+            <p>• <strong>ค่าธรรมเนียมการชำระเงิน (3.21%):</strong> คิดจากยอดเงินทั้งหมดที่ลูกค้าชำระผ่านระบบ ซึ่งรวมค่าจัดส่งที่ลูกค้าจ่ายจริงด้วย</p>
           </div>
-        </details>
-
-        <details class="bg-slate-50 border border-slate-200 rounded-2xl p-4 cursor-pointer group">
-          <summary class="font-bold text-slate-800 flex justify-between items-center select-none">
-            ร้านค้าทั่วไป vs ร้าน Mall (Shopee Mall / LazMall) คิดค่าธรรมเนียมต่างกันไหม?
-            <span class="text-slate-400 group-open:rotate-180 transition font-mono">▼</span>
-          </summary>
-          <p class="mt-2.5 text-slate-600 leading-relaxed pl-3 border-l-2 border-orange-500">
-            ต่างกันครับ ร้าน Mall จะมีอัตราค่าคอมมิชชั่นสูงกว่าร้านค้าทั่วไป (เช่น 6% - 10% + VAT) แต่จะได้รับสิทธิประโยชน์เรื่องความน่าเชื่อถือ ป้าย Mall และการจัดลำดับการค้นหาที่ดีกว่า
-          </p>
         </details>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="text-center text-xs text-slate-400 pt-6 pb-12 border-t border-slate-200 space-y-1">
-      <p class="font-semibold text-slate-600">Sammok Coding (สามหมอกโค้ดดิ้ง) — เครื่องมือคำนวณค่าธรรมเนียมขายของออนไลน์ 2569</p>
-      <p>© 2026 Powered by Sammok Studio</p>
-    </footer>
+  </main>
 
-  </div>
+  <!-- Loft Minimal Footer -->
+  <footer class="border-t loft-border bg-white py-6 mt-10">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-orange-600"></span>
+        <span class="font-bold text-stone-800">Sam Mok Commerce Lab</span> — ส่วนหนึ่งของชุดเครื่องมือ Sam Mok Coding
+      </div>
+      <div>
+        ประมวลผลบนเบราว์เซอร์ปลอดภัย 100% · ไม่มีระบบล็อกอิน · แม่ฮ่องสอน
+      </div>
+    </div>
+  </footer>
 
   <script>
-    let selectedPlatform = 'shopee';
+    let activePlatform = 'shopee';
 
-    const categoryRates = {
-      general: { name: 'สินค้าทั่วไป', shopeeComm: 4.28, tiktokComm: 4.28, lazadaComm: 4.28 },
-      fashion: { name: 'แฟชั่น', shopeeComm: 5.35, tiktokComm: 5.35, lazadaComm: 5.35 },
-      electronics: { name: 'อิเล็กทรอนิกส์', shopeeComm: 3.21, tiktokComm: 3.21, lazadaComm: 3.21 },
-      beauty: { name: 'ความงาม', shopeeComm: 4.82, tiktokComm: 4.82, lazadaComm: 4.82 },
-      food: { name: 'อาหารและเครื่องดื่ม', shopeeComm: 4.28, tiktokComm: 4.28, lazadaComm: 4.28 }
+    const CATEGORY_MAP = {
+      general: { name: 'สินค้าทั่วไป', shopee: 4.28, tiktok: 4.28, lazada: 4.28 },
+      fashion: { name: 'แฟชั่น', shopee: 5.35, tiktok: 5.35, lazada: 5.35 },
+      electronics: { name: 'เครื่องใช้ไฟฟ้า', shopee: 3.21, tiktok: 3.21, lazada: 3.21 },
+      beauty: { name: 'ความงาม', shopee: 4.82, tiktok: 4.82, lazada: 4.82 },
+      food: { name: 'อาหาร/เครื่องดื่ม', shopee: 4.28, tiktok: 4.28, lazada: 4.28 }
     };
 
-    function setCalcPlatform(plat) {
-      selectedPlatform = plat;
+    function selectPlatform(plat) {
+      activePlatform = plat;
       ['shopee', 'tiktok', 'lazada'].forEach(p => {
-        const btn = document.getElementById(`btn-plat-${p}`);
+        const tab = document.getElementById(`tab-${p}`);
         if (p === plat) {
-          btn.className = 'tab-active py-2.5 px-3 border-2 rounded-xl text-xs font-bold transition flex flex-col items-center gap-1';
+          tab.className = 'loft-card-active p-3.5 rounded-xl border-2 border-orange-500 transition flex flex-col items-center text-center gap-2 group';
         } else {
-          btn.className = 'border-2 border-slate-200 text-slate-600 hover:border-slate-300 py-2.5 px-3 rounded-xl text-xs font-bold transition flex flex-col items-center gap-1';
+          tab.className = 'p-3.5 rounded-xl border-2 border-stone-200 hover:border-stone-400 transition flex flex-col items-center text-center gap-2 group bg-white';
         }
       });
 
-      const labelProg = document.getElementById('label-program');
-      const rowGrowth = document.getElementById('row-fee-growth');
+      const progLabel = document.getElementById('label-program-text');
+      const growthRow = document.getElementById('row-growth-box');
 
       if (plat === 'shopee') {
-        labelProg.innerText = 'เข้าร่วมโปรแกรมส่งฟรี + คืนคอยน์ (CCB / FSS) ~5.35%';
-        rowGrowth.classList.add('hidden');
+        progLabel.innerText = 'โปรแกรมส่งฟรี + คืนคอยน์ (CCB / FSS) ~5.35%';
+        growthRow.classList.add('hidden');
+        document.getElementById('receipt-platform-name').innerText = 'Shopee สรุปรายรับ';
       } else if (plat === 'tiktok') {
-        labelProg.innerText = 'เข้าร่วม Extra Shipping / Voucher Program ~4.28%';
-        rowGrowth.classList.remove('hidden');
+        progLabel.innerText = 'เข้าร่วม Extra Shipping / Voucher Program ~4.28%';
+        growthRow.classList.remove('hidden');
+        document.getElementById('receipt-platform-name').innerText = 'TikTok Shop สรุปรายรับ';
       } else {
-        labelProg.innerText = 'เข้าร่วม Free Shipping Max + LazCoins ~4.50%';
-        rowGrowth.classList.add('hidden');
+        progLabel.innerText = 'เข้าร่วม Free Shipping Max + LazCoins ~4.50%';
+        growthRow.classList.add('hidden');
+        document.getElementById('receipt-platform-name').innerText = 'Lazada สรุปรายรับ';
       }
 
-      runCalculation();
+      calculateAll();
     }
 
-    function runCalculation() {
-      const price = parseFloat(document.getElementById('inp-price').value) || 0;
-      const cost = parseFloat(document.getElementById('inp-cost').value) || 0;
-      const catKey = document.getElementById('inp-category').value;
-      const hasProgram = document.getElementById('chk-program').checked;
-      const hasAffiliate = document.getElementById('chk-affiliate').checked;
+    function toggleAffiliateInput() {
+      const isChecked = document.getElementById('check-affiliate').checked;
+      const box = document.getElementById('affiliate-slider-box');
+      const badge = document.getElementById('affiliate-pct-badge');
+      if (isChecked) {
+        box.classList.remove('hidden');
+        badge.classList.remove('hidden');
+      } else {
+        box.classList.add('hidden');
+        badge.classList.add('hidden');
+      }
+      calculateAll();
+    }
 
-      const cat = categoryRates[catKey] || categoryRates.general;
+    function updateAffiliateSlider() {
+      const val = document.getElementById('input-affiliate-rate').value;
+      document.getElementById('slider-val-text').innerText = `${val}%`;
+      document.getElementById('affiliate-pct-badge').innerText = `${val}%`;
+      calculateAll();
+    }
 
+    function getPlatformCalculations(plat, price, cost, catKey, hasProgram, affiliateRate) {
+      const cat = CATEGORY_MAP[catKey] || CATEGORY_MAP.general;
       const transRate = 3.21;
-      let commRate = 4.28;
+      let commRate = cat[plat] || 4.28;
       let progRate = 0;
       let growthRate = 0;
 
-      if (selectedPlatform === 'shopee') {
-        commRate = cat.shopeeComm;
+      if (plat === 'shopee') {
         progRate = hasProgram ? 5.35 : 0;
-        document.getElementById('result-platform-title').innerHTML = '<span>🟠</span> ผลลัพธ์: Shopee (ร้านค้าทั่วไป)';
-      } else if (selectedPlatform === 'tiktok') {
-        commRate = cat.tiktokComm;
-        growthRate = 2.14; // Growth Fee
+      } else if (plat === 'tiktok') {
+        growthRate = 2.14;
         progRate = hasProgram ? 4.28 : 0;
-        document.getElementById('result-platform-title').innerHTML = '<span>⚫</span> ผลลัพธ์: TikTok Shop (รวม Growth Fee)';
       } else {
-        commRate = cat.lazadaComm;
         progRate = hasProgram ? 4.50 : 0;
-        document.getElementById('result-platform-title').innerHTML = '<span>🔵</span> ผลลัพธ์: Lazada (Marketplace)';
       }
 
-      const affiliateRate = hasAffiliate ? 5.0 : 0;
+      const feeTrans = price * (transRate / 100);
+      const feeComm = price * (commRate / 100);
+      const feeGrowth = price * (growthRate / 100);
+      const feeProg = price * (progRate / 100);
+      const feeAff = price * (affiliateRate / 100);
 
-      const feeTrans = (price * transRate / 100);
-      const feeComm = (price * commRate / 100);
-      const feeGrowth = (price * growthRate / 100);
-      const feeProg = (price * progRate / 100);
-      const feeAffiliate = (price * affiliateRate / 100);
-
-      const totalFees = feeTrans + feeComm + feeGrowth + feeProg + feeAffiliate;
+      const totalFees = feeTrans + feeComm + feeGrowth + feeProg + feeAff;
       const netPayout = price - totalFees;
       const netProfit = netPayout - cost;
       const margin = price > 0 ? (netProfit / price * 100) : 0;
-      const feePercent = price > 0 ? (totalFees / price * 100) : 0;
+      const feePct = price > 0 ? (totalFees / price * 100) : 0;
 
-      document.getElementById('out-price').innerText = `${price.toFixed(2)} บาท`;
-      document.getElementById('out-cost').innerText = `-${cost.toFixed(2)} บาท`;
-      document.getElementById('out-fee-trans').innerText = `-${feeTrans.toFixed(2)} บาท`;
-      document.getElementById('out-fee-comm').innerText = `-${feeComm.toFixed(2)} บาท`;
-      document.getElementById('out-fee-comm-lbl').innerText = `2. ค่าคอมมิชชั่น (${commRate.toFixed(2)}%):`;
-      document.getElementById('out-fee-growth').innerText = `-${feeGrowth.toFixed(2)} บาท`;
+      // Recommended Markup: target needed = cost * 1.35 or cost + 20% margin
+      const targetNet = cost > 0 ? cost * 1.3 : 100;
+      const effectiveRate = (totalFees / (price || 1));
+      const recommendedPrice = effectiveRate < 0.9 ? Math.ceil(targetNet / (1 - effectiveRate)) : Math.ceil(price * 1.25);
 
-      const rowProg = document.getElementById('row-fee-prog');
+      return {
+        transRate, commRate, growthRate, progRate, affiliateRate,
+        feeTrans, feeComm, feeGrowth, feeProg, feeAff,
+        totalFees, netPayout, netProfit, margin, feePct,
+        recommendedPrice
+      };
+    }
+
+    function calculateAll() {
+      const price = Math.max(0, parseFloat(document.getElementById('input-price').value) || 0);
+      const cost = Math.max(0, parseFloat(document.getElementById('input-cost').value) || 0);
+      const catKey = document.getElementById('input-category').value;
+      const hasProgram = document.getElementById('check-program').checked;
+      const hasAff = document.getElementById('check-affiliate').checked;
+      const affRate = hasAff ? (parseFloat(document.getElementById('input-affiliate-rate').value) || 0) : 0;
+
+      // Active Platform Calculation
+      const curr = getPlatformCalculations(activePlatform, price, cost, catKey, hasProgram, affRate);
+
+      // Render Active Summary Receipt
+      document.getElementById('res-net-payout').innerText = curr.netPayout.toFixed(2);
+      document.getElementById('res-net-profit').innerText = (curr.netProfit >= 0 ? '+' : '') + curr.netProfit.toFixed(2);
+      document.getElementById('res-net-profit').className = curr.netProfit >= 0
+        ? 'text-2xl sm:text-3xl font-black font-mono-num text-emerald-400'
+        : 'text-2xl sm:text-3xl font-black font-mono-num text-rose-400';
+
+      document.getElementById('res-margin-badge').innerText = `MARGIN ${curr.margin.toFixed(1)}%`;
+      document.getElementById('res-margin-badge').className = curr.margin >= 0
+        ? 'text-[10px] font-bold text-emerald-300 mt-1 font-mono-num'
+        : 'text-[10px] font-bold text-rose-300 mt-1 font-mono-num';
+
+      document.getElementById('row-price').innerText = `${price.toFixed(2)} บ.`;
+      document.getElementById('row-cost').innerText = `-${cost.toFixed(2)} บ.`;
+      document.getElementById('row-fee-trans').innerText = `-${curr.feeTrans.toFixed(2)} บ.`;
+      document.getElementById('lbl-fee-comm').innerText = `ค่าคอมมิชชั่น (${curr.commRate.toFixed(2)}%)`;
+      document.getElementById('row-fee-comm').innerText = `-${curr.feeComm.toFixed(2)} บ.`;
+      document.getElementById('row-fee-growth').innerText = `-${curr.feeGrowth.toFixed(2)} บ.`;
+
+      const rowProg = document.getElementById('row-prog-box');
       if (hasProgram) {
         rowProg.classList.remove('hidden');
-        document.getElementById('out-fee-prog').innerText = `-${feeProg.toFixed(2)} บาท`;
-        document.getElementById('out-fee-prog-lbl').innerText = `4. โปรแกรมส่งฟรี/คืนคอยน์ (${progRate.toFixed(2)}%):`;
+        document.getElementById('lbl-fee-prog').innerText = `โปรแกรมการตลาด (${curr.progRate.toFixed(2)}%)`;
+        document.getElementById('row-fee-prog').innerText = `-${curr.feeProg.toFixed(2)} บ.`;
       } else {
         rowProg.classList.add('hidden');
       }
 
-      const rowAff = document.getElementById('row-fee-affiliate');
-      if (hasAffiliate) {
+      const rowAff = document.getElementById('row-aff-box');
+      if (hasAff) {
         rowAff.classList.remove('hidden');
-        document.getElementById('out-fee-affiliate').innerText = `-${feeAffiliate.toFixed(2)} บาท`;
+        document.getElementById('lbl-fee-aff').innerText = `ค่านายหน้า (${affRate}%)`;
+        document.getElementById('row-fee-aff').innerText = `-${curr.feeAff.toFixed(2)} บ.`;
       } else {
         rowAff.classList.add('hidden');
       }
 
-      document.getElementById('out-total-fees').innerText = `-${totalFees.toFixed(2)} บาท (${feePercent.toFixed(2)}%)`;
-      document.getElementById('out-payout').innerText = netPayout.toFixed(2);
-      document.getElementById('out-profit').innerText = (netProfit >= 0 ? '+' : '') + netProfit.toFixed(2);
-      document.getElementById('out-margin').innerText = `อัตรากำไร (Margin): ${margin.toFixed(1)}%`;
-      document.getElementById('out-profit').className = netProfit >= 0 ? 'text-3xl font-black text-emerald-400 mt-1' : 'text-3xl font-black text-rose-400 mt-1';
+      document.getElementById('res-total-fees').innerText = `-${curr.totalFees.toFixed(2)} บ.`;
+      document.getElementById('res-fee-pct').innerText = `หัก ${curr.feePct.toFixed(2)}% ของราคาขาย`;
+      document.getElementById('res-recommended-markup').innerText = `฿${curr.recommendedPrice}`;
+
+      // Update 3-Platform Comparison Cards
+      document.getElementById('comp-base-price').innerText = `฿${price.toFixed(0)}`;
+      document.getElementById('comp-base-cost').innerText = `฿${cost.toFixed(0)}`;
+
+      const shopeeData = getPlatformCalculations('shopee', price, cost, catKey, hasProgram, affRate);
+      const tiktokData = getPlatformCalculations('tiktok', price, cost, catKey, hasProgram, affRate);
+      const lazadaData = getPlatformCalculations('lazada', price, cost, catKey, hasProgram, affRate);
+
+      // Shopee Comp Card
+      document.getElementById('comp-shopee-profit').innerText = `฿${shopeeData.netProfit.toFixed(2)}`;
+      document.getElementById('comp-shopee-margin').innerText = `Margin: ${shopeeData.margin.toFixed(1)}%`;
+      document.getElementById('comp-shopee-payout').innerText = `฿${shopeeData.netPayout.toFixed(2)}`;
+      document.getElementById('comp-shopee-fee').innerText = `-฿${shopeeData.totalFees.toFixed(2)}`;
+
+      // TikTok Comp Card
+      document.getElementById('comp-tiktok-profit').innerText = `฿${tiktokData.netProfit.toFixed(2)}`;
+      document.getElementById('comp-tiktok-margin').innerText = `Margin: ${tiktokData.margin.toFixed(1)}%`;
+      document.getElementById('comp-tiktok-payout').innerText = `฿${tiktokData.netPayout.toFixed(2)}`;
+      document.getElementById('comp-tiktok-fee').innerText = `-฿${tiktokData.totalFees.toFixed(2)}`;
+
+      // Lazada Comp Card
+      document.getElementById('comp-lazada-profit').innerText = `฿${lazadaData.netProfit.toFixed(2)}`;
+      document.getElementById('comp-lazada-margin').innerText = `Margin: ${lazadaData.margin.toFixed(1)}%`;
+      document.getElementById('comp-lazada-payout').innerText = `฿${lazadaData.netPayout.toFixed(2)}`;
+      document.getElementById('comp-lazada-fee').innerText = `-฿${lazadaData.totalFees.toFixed(2)}`;
+
+      // Highlight best platform card
+      const maxProfit = Math.max(shopeeData.netProfit, tiktokData.netProfit, lazadaData.netProfit);
+      ['shopee', 'tiktok', 'lazada'].forEach(p => {
+        const card = document.getElementById(`card-comp-${p}`);
+        const pProfit = p === 'shopee' ? shopeeData.netProfit : p === 'tiktok' ? tiktokData.netProfit : lazadaData.netProfit;
+        if (pProfit === maxProfit && price > 0) {
+          card.classList.add('ring-2', 'ring-emerald-500', 'bg-emerald-50/20');
+        } else {
+          card.classList.remove('ring-2', 'ring-emerald-500', 'bg-emerald-50/20');
+        }
+      });
     }
 
-    // Initialize
-    setCalcPlatform('shopee');
+    // Initialize on load
+    selectPlatform('shopee');
   </script>
 </body>
 </html>
